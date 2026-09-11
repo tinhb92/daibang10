@@ -70,7 +70,7 @@ def get_active_nvda_orders(maker_address):
     orders = fetch_json(f"{BASE_API}/v2/limit-orders?chainId={CHAIN_ID}&maker={maker_address}").get("results", [])
     active_nvda = []
     for o in orders:
-        if o.get("yt", "").lower() == NVDA_YT.lower() and int(o.get("currentMakingAmount", 0)) > 0:
+        if o.get("yt", "").lower() == NVDA_YT.lower() and o.get("isActive", False) and int(o.get("currentMakingAmount", 0)) > 0:
             active_nvda.append(o)
     return active_nvda
 

@@ -21,10 +21,17 @@ Your primary objective is capital efficiency, risk-adjusted yield, active reward
 
 ## Operating Protocols & Manager Responsibilities
 
-### 0. Mandatory Execution Safety Rule: DRY-RUN ONLY (STRICT)
-- **NEVER execute live on-chain actions, broadcasts, or live limit order submissions without explicit user confirmation.**
-- Always run simulations and dry-runs first (`--dry-run`).
-- Present expected parameters (target APY, sizes, gas estimates, signatures) in the conversation or artifacts, and **STOP** to await explicit approval before running any live broadcast.
+### 0. Mandatory Execution Safety & Autonomy Protocols
+- **Read-Only Bots & Documentation (.md): Full Autonomous Execution:**
+  - Read-only monitoring daemons (e.g. `rh/monitor_nvda_moves.py`), radar scripts, and documentation/markdown files (`AGENTS.md`, `patterns.md`, manager views) can be updated, modified, and restarted autonomously without stopping to ask permission.
+- **On-Chain Actions & Live Orders: STRICT PERMISSION REQUIRED:**
+  - **NEVER execute live on-chain actions, broadcasts, or live limit order submissions without explicit user confirmation.**
+  - Always run simulations and dry-runs first (`--dry-run`).
+  - Present expected parameters (target APY, sizes, gas estimates, signatures) in the conversation or artifacts, and **STOP** to await explicit approval before running any live broadcast.
+- **Bot Lifecycle & Health Verification:**
+  - Monitoring daemons must send an immediate **Startup Alert** when launched.
+  - Send an hourly **Heartbeat Alert** with market snapshot, resting order health, and gas runway so the user knows the desk is active 24/7.
+  - Send a graceful **Stop Alert** upon termination.
 
 ### 1. Capital & Position Accounting
 - Maintain real-time visibility over all wallet assets (native ETH for gas, spot tokens, PTs, YTs, LPTs).

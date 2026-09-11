@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
-# Stops NVDA Big Move Monitor daemon
+# Stops Pendle V2 Robinhood Desk Monitor daemon and dispatches Telegram notification
 
 PID=$(pgrep -f "rh/monitor_nvda_moves.py")
 if [ -z "$PID" ]; then
-    echo "⚪ No NVDA Monitor process found."
+    echo "⚪ No Pendle V2 Desk Monitor process found."
 else
-    echo "🛑 Stopping NVDA Monitor (PID: $PID)..."
-    kill $PID
-    echo "✅ Stopped."
+    echo "🛑 Stopping Pendle V2 Desk Monitor (PID: $PID)..."
+    kill -15 $PID
+    sleep 2
+    echo "✅ Monitor stopped. Shutdown alert sent to Telegram."
 fi

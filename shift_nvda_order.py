@@ -186,9 +186,8 @@ def main():
     parser.add_argument("--amount", type=float, default=0.05, help="Amount of NVDA to order (default: 0.05)")
     args = parser.parse_args()
 
-    if not args.dry_run and not args.execute:
-        print("[!] Must specify either --dry-run or --execute")
-        sys.exit(1)
+    if not args.execute:
+        args.dry_run = True
 
     pk = load_private_key()
     acct = Account.from_key(pk)

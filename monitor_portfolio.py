@@ -181,22 +181,25 @@ def generate_report():
         oid = o.get("id")[:14] + "..."
         making_wei = int(o.get("currentMakingAmount", 0))
         making_val = making_wei / 1e18
-        raw_rate = int(o.get("lnImpliedRate", 0)) / 1e18 * 100
+        raw_ln_rate = int(o.get("lnImpliedRate", 0)) / 1e18
+        import math
+        apy_rate = (math.exp(raw_ln_rate) - 1) * 100
         is_nvda = o.get("yt", "").lower() == MARKETS["NVDA"]["yt"].lower()
         market_label = "NVDA (Oct 2026)" if is_nvda else "sNUKE"
         
+        is_canceled = o.get("isCanceled", False) or not o.get("isActive", True)
         status_tag = ""
-        if making_wei == 0:
-            status_tag = "⚪ Inactive / Expired"
+        if making_wei == 0 or is_canceled:
+            status_tag = "⚪ Cancelled / Inactive"
         elif is_nvda:
-            if min_apy <= raw_rate <= max_apy:
+            if min_apy <= apy_rate <= max_apy:
                 status_tag = "🟢 **IN-RANGE (Earning 100% APR)**"
             else:
                 status_tag = f"🔴 **OUT-OF-RANGE** (Needs {min_apy:.2f}%-{max_apy:.2f}%)"
         else:
             status_tag = "⚪ Off-Band"
 
-        report.append(f"| `{oid}` | {market_label} | Type {o.get('type')} | {making_val:.4f} | **{raw_rate:.2f}%** | [{min_apy:.2f}%, {max_apy:.2f}%] | {status_tag} |")
+        report.append(f"| `{oid}` | {market_label} | Type {o.get('type')} | {making_val:.4f} | **{apy_rate:.2f}%** | [{min_apy:.2f}%, {max_apy:.2f}%] | {status_tag} |")
 
     report.append("\n## 4. Operations Manager Action Items")
     report.append("1. **Re-center NVDA Limit Order:** Order `0x25b6e378...` is currently resting at `7.79%`, which sits below the required `9.65%` lower boundary. Cancel and replace with an order at `~9.95% - 10.00%` to immediately unlock **100% APR PENDLE incentive mining**.")

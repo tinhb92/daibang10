@@ -1,0 +1,392 @@
+[
+  {
+    "wallet": "0x743d7b30661d65b41960bf6b5d1bb93cf7972a73",
+    "market": "0x905a911e627eccc7a0ee3a30bb4f7e98501a1fb1",
+    "chainId": 999,
+    "peak_tvl": 9997.428687,
+    "net_gain": 29266.375051,
+    "roi": 292.7390228755127,
+    "vol": 23761.10493901365,
+    "meta": {
+      "proName": "hwHLP",
+      "expiry": "2025-12-18",
+      "asset": "USD\u20ae0"
+    },
+    "pt_spent": 0,
+    "yt_spent": 0,
+    "lp_spent": 0,
+    "lp_bal": 0
+  },
+  {
+    "wallet": "0x743d7b30661d65b41960bf6b5d1bb93cf7972a73",
+    "market": "0x181c9118a16e7ac4bb6ea545adaa119dcaf7e307",
+    "chainId": 999,
+    "peak_tvl": 5429.276147975327,
+    "net_gain": 15540.452422999999,
+    "roi": 286.23433399672086,
+    "vol": 12514.731475221526,
+    "meta": {
+      "proName": "WHLP",
+      "expiry": "2025-12-18",
+      "asset": "USDHL"
+    },
+    "pt_spent": 0,
+    "yt_spent": 0,
+    "lp_spent": 0,
+    "lp_bal": 0
+  },
+  {
+    "wallet": "0x743d7b30661d65b41960bf6b5d1bb93cf7972a73",
+    "market": "0x1b089668c0833baaf1c523a7ed3d6d8ccfee840b",
+    "chainId": 1,
+    "peak_tvl": 1571.365015227761,
+    "net_gain": 3841.4728506275283,
+    "roi": 244.46725066427211,
+    "vol": 7919.115149860711,
+    "meta": {
+      "proName": "agETH",
+      "expiry": "2026-06-25",
+      "asset": "ETH"
+    },
+    "pt_spent": 0,
+    "yt_spent": 0,
+    "lp_spent": 0,
+    "lp_bal": 0
+  },
+  {
+    "wallet": "0x743d7b30661d65b41960bf6b5d1bb93cf7972a73",
+    "market": "0xe5c04b27476a71803fed99a0914a2fc5c37e4cf6",
+    "chainId": 1,
+    "peak_tvl": 1499.629601,
+    "net_gain": 2948.641274,
+    "roi": 196.624637979522,
+    "vol": 5217.922641871783,
+    "meta": {
+      "proName": "hwHLP",
+      "expiry": "2025-12-18",
+      "asset": "USDC"
+    },
+    "pt_spent": 0,
+    "yt_spent": 0,
+    "lp_spent": 0,
+    "lp_bal": 0
+  },
+  {
+    "wallet": "0x743d7b30661d65b41960bf6b5d1bb93cf7972a73",
+    "market": "0x487e1cef7805cf0225dec3dd0f3044fe0fb70611",
+    "chainId": 1,
+    "peak_tvl": 15846.624313001905,
+    "net_gain": 26529.26658353826,
+    "roi": 167.4127313144631,
+    "vol": 57917.985096747114,
+    "meta": {
+      "proName": "sENA",
+      "expiry": "2025-04-24",
+      "asset": "ENA"
+    },
+    "pt_spent": 0,
+    "yt_spent": 0,
+    "lp_spent": 0,
+    "lp_bal": 0
+  },
+  {
+    "wallet": "0x1b5bd4ed671c2e0ae70d3971b5a73dc51bdddb0b",
+    "market": "0x18ffb61c6d223bd91ec15acc248bb7e670abcc48",
+    "chainId": 42161,
+    "peak_tvl": 11368.507837733578,
+    "net_gain": 17142.948630733576,
+    "roi": 150.793304410926,
+    "vol": 15420.777570781087,
+    "meta": {
+      "proName": "gUSDC",
+      "expiry": "2025-12-18",
+      "asset": "USDC"
+    },
+    "pt_spent": 0,
+    "yt_spent": 11368.507837733578,
+    "lp_spent": 0,
+    "lp_bal": 0
+  },
+  {
+    "wallet": "0x1b5bd4ed671c2e0ae70d3971b5a73dc51bdddb0b",
+    "market": "0x676106576004ef54b4bd39ce8d2b34069f86eb8f",
+    "chainId": 1,
+    "peak_tvl": 1086.2454126312284,
+    "net_gain": 1615.20496118356,
+    "roi": 148.696136471686,
+    "vol": 1086.2453564945872,
+    "meta": {
+      "proName": "pufETH",
+      "expiry": "2024-12-26",
+      "asset": "ETH"
+    },
+    "pt_spent": 0,
+    "yt_spent": 1086.2454126312284,
+    "lp_spent": 0,
+    "lp_bal": 0
+  },
+  {
+    "wallet": "0x1b5bd4ed671c2e0ae70d3971b5a73dc51bdddb0b",
+    "market": "0x875f154f4ec93255beaea9367c3adf71cdcb4cc0",
+    "chainId": 42161,
+    "peak_tvl": 2122.9180571408842,
+    "net_gain": 2902.8428031408844,
+    "roi": 136.73833492425948,
+    "vol": 3613.8980995964503,
+    "meta": {
+      "proName": "aUSDC",
+      "expiry": "2024-12-26",
+      "asset": "USDC"
+    },
+    "pt_spent": 0,
+    "yt_spent": 2122.9180571408842,
+    "lp_spent": 0,
+    "lp_bal": 0
+  },
+  {
+    "wallet": "0x743d7b30661d65b41960bf6b5d1bb93cf7972a73",
+    "market": "0xca6e93df62f12e6cc6f4caf1bd6dbd6d40d2bc8a",
+    "chainId": 1,
+    "peak_tvl": 3496.499055,
+    "net_gain": 4618.458732145177,
+    "roi": 132.08808752688702,
+    "vol": 5534.7703246607,
+    "meta": {
+      "proName": "msyrupUSDp",
+      "expiry": "2026-02-26",
+      "asset": "USDT"
+    },
+    "pt_spent": 0,
+    "yt_spent": 1993.017133145177,
+    "lp_spent": 0,
+    "lp_bal": 0
+  },
+  {
+    "wallet": "0x1b5bd4ed671c2e0ae70d3971b5a73dc51bdddb0b",
+    "market": "0x9bc62257ffe7d0f7c52a019e6fc0af3102f8f44e",
+    "chainId": 42161,
+    "peak_tvl": 1360.915412,
+    "net_gain": 1748.658442,
+    "roi": 128.49133947496216,
+    "vol": 3497.726969329529,
+    "meta": {
+      "proName": "sUSDC.e",
+      "expiry": "2024-02-01",
+      "asset": "USDC.e"
+    },
+    "pt_spent": 0,
+    "yt_spent": 1360.915412,
+    "lp_spent": 0,
+    "lp_bal": 0
+  },
+  {
+    "wallet": "0x1b5bd4ed671c2e0ae70d3971b5a73dc51bdddb0b",
+    "market": "0x14cfb8b051f0b35045afa79c70f7e4b0b1f32442",
+    "chainId": 1,
+    "peak_tvl": 1619.288772,
+    "net_gain": 1940.56838,
+    "roi": 119.8407852605057,
+    "vol": 1619.2887718026193,
+    "meta": {
+      "proName": "stkaUSDC",
+      "expiry": "2025-10-30",
+      "asset": "USDC"
+    }
+  },
+  {
+    "wallet": "0x1b5bd4ed671c2e0ae70d3971b5a73dc51bdddb0b",
+    "market": "0x8621c587059357d6c669f72da3bfe1398fc0d0b5",
+    "chainId": 42161,
+    "peak_tvl": 6166.63377127064,
+    "net_gain": 7389.544324928586,
+    "roi": 119.8310877379372,
+    "vol": 75796.39066708568,
+    "meta": {
+      "proName": "aUSDC",
+      "expiry": "2024-06-27",
+      "asset": "USDC"
+    }
+  },
+  {
+    "wallet": "0x1b5bd4ed671c2e0ae70d3971b5a73dc51bdddb0b",
+    "market": "0xa877a0e177b54a37066c1786f91a1dab68f094af",
+    "chainId": 42161,
+    "peak_tvl": 3640.228805,
+    "net_gain": 4105.07054,
+    "roi": 112.76957465864565,
+    "vol": 3640.2286406528774,
+    "meta": {
+      "proName": "gUSDC",
+      "expiry": "2024-12-26",
+      "asset": "USDC"
+    }
+  },
+  {
+    "wallet": "0x1b5bd4ed671c2e0ae70d3971b5a73dc51bdddb0b",
+    "market": "0x65819e4ee91923499934c86e93357f633033cb0b",
+    "chainId": 42161,
+    "peak_tvl": 4262.652220295574,
+    "net_gain": 4548.721009291652,
+    "roi": 106.71105157568408,
+    "vol": 36202.059895144914,
+    "meta": {
+      "proName": "MUXLP",
+      "expiry": "2024-03-28",
+      "asset": "MUXLP"
+    }
+  },
+  {
+    "wallet": "0x1b5bd4ed671c2e0ae70d3971b5a73dc51bdddb0b",
+    "market": "0x22e0f26320ace985e3cb2434095f18bfe114e28e",
+    "chainId": 42161,
+    "peak_tvl": 9307.934998985835,
+    "net_gain": 9830.511895242047,
+    "roi": 105.6143161325595,
+    "vol": 17371.469818910413,
+    "meta": {
+      "proName": "gUSDC",
+      "expiry": "2025-06-26",
+      "asset": "USDC"
+    }
+  },
+  {
+    "wallet": "0x0258da40e011acb8e0f6308d6dda4de363c9b604",
+    "market": "0xda57abf95a7c21eb9df08fbaada182f749f6c62f",
+    "chainId": 1,
+    "peak_tvl": 5422.519063798358,
+    "net_gain": 5700.684725380922,
+    "roi": 105.129823580329,
+    "vol": 16299.30399719655,
+    "meta": {
+      "proName": "sENA",
+      "expiry": "2025-09-25",
+      "asset": "ENA"
+    }
+  },
+  {
+    "wallet": "0x1b5bd4ed671c2e0ae70d3971b5a73dc51bdddb0b",
+    "market": "0xa9104b8b6698979568852c30231871e28a482b3c",
+    "chainId": 42161,
+    "peak_tvl": 1002.9824526488391,
+    "net_gain": 1040.3873440020868,
+    "roi": 103.72936647639874,
+    "vol": 1017.1721371119664,
+    "meta": {
+      "proName": "gDAI",
+      "expiry": "2025-03-27",
+      "asset": "DAI"
+    }
+  },
+  {
+    "wallet": "0xf9bb823a2eaa181ab89b79cea6301274368999b4",
+    "market": "0x520dc4a08e55f6bcc241e0fb780a683a425e8956",
+    "chainId": 1,
+    "peak_tvl": 1036.383401,
+    "net_gain": 1072.321140001062,
+    "roi": 103.46761043899255,
+    "vol": 1036.3833973576636,
+    "meta": {
+      "proName": "nBASIS",
+      "expiry": "2026-03-26",
+      "asset": "USDC"
+    }
+  },
+  {
+    "wallet": "0x743d7b30661d65b41960bf6b5d1bb93cf7972a73",
+    "market": "0xdf014ab15b68e3b8db53e8d307d01b81cce98739",
+    "chainId": 1,
+    "peak_tvl": 2552.907533,
+    "net_gain": 2626.617830958786,
+    "roi": 102.88730778557289,
+    "vol": 2552.9075335238294,
+    "meta": {
+      "proName": "mHYPER",
+      "expiry": "2026-09-24",
+      "asset": "USDC"
+    }
+  },
+  {
+    "wallet": "0x43c89407960a524cb8c6ce09d647423fcecc40c6",
+    "market": "0xa5fd0e8991be631917d2d2b2d5dacfd7bfef7876",
+    "chainId": 1,
+    "peak_tvl": 1572.5378664233115,
+    "net_gain": 1588.8612652096128,
+    "roi": 101.038028980722,
+    "vol": 5747.239039359645,
+    "meta": {
+      "proName": "swETH",
+      "expiry": "2024-06-27",
+      "asset": "ETH"
+    }
+  },
+  {
+    "wallet": "0x743d7b30661d65b41960bf6b5d1bb93cf7972a73",
+    "market": "0x05b5a8bd55d17a7cc8133d8ccd285f83be01a062",
+    "chainId": 1,
+    "peak_tvl": 2261.2270360661164,
+    "net_gain": 2254.8142801806825,
+    "roi": 99.71640371430415,
+    "vol": 2347.384944752516,
+    "meta": {
+      "proName": "savUSD",
+      "expiry": "2026-08-06",
+      "asset": "avUSD"
+    }
+  },
+  {
+    "wallet": "0x43c89407960a524cb8c6ce09d647423fcecc40c6",
+    "market": "0xda57abf95a7c21eb9df08fbaada182f749f6c62f",
+    "chainId": 1,
+    "peak_tvl": 2988.554618190449,
+    "net_gain": 2929.38139376658,
+    "roi": 98.0200052539211,
+    "vol": 8906.490630147478,
+    "meta": {
+      "proName": "sENA",
+      "expiry": "2025-09-25",
+      "asset": "ENA"
+    }
+  },
+  {
+    "wallet": "0x743d7b30661d65b41960bf6b5d1bb93cf7972a73",
+    "market": "0xd72c8c4af3fc310c86b294afd62b1608d49ee6ec",
+    "chainId": 1,
+    "peak_tvl": 2242.0480573429213,
+    "net_gain": 2166.7596917413507,
+    "roi": 96.64198252330078,
+    "vol": 3580.300137366303,
+    "meta": {
+      "proName": "sAID",
+      "expiry": "2026-07-30",
+      "asset": "AID"
+    }
+  },
+  {
+    "wallet": "0x1b5bd4ed671c2e0ae70d3971b5a73dc51bdddb0b",
+    "market": "0xc5b32dba5f29f8395fb9591e1a15f23a75214f33",
+    "chainId": 1,
+    "peak_tvl": 5257.471654,
+    "net_gain": 5010.5130391096045,
+    "roi": 95.30271143349857,
+    "vol": 5257.471629120428,
+    "meta": {
+      "proName": "USDG",
+      "expiry": "2026-05-28",
+      "asset": "USDG"
+    }
+  },
+  {
+    "wallet": "0x7bfee91193d9df2ac0bfe90191d40f23c773c060",
+    "market": "0x227d4a2e5734b500fa0bed940e4df54bdda25636",
+    "chainId": 80094,
+    "peak_tvl": 6488.056209306555,
+    "net_gain": 6039.633613442492,
+    "roi": 93.08849089160418,
+    "vol": 6488.056209012042,
+    "meta": {
+      "proName": "iBGT",
+      "expiry": "2025-06-26",
+      "asset": "iBGT"
+    }
+  }
+]

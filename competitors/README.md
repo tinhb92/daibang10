@@ -19,8 +19,12 @@ This directory maintains comprehensive forensic profiles on the dominant liquidi
   * Quantitative analysis of the 4 winning behavioral archetypes (Short-Yield Snipers, Delta-Neutral MMs, New Chain Colonists, and L2 Specialists).
 * 🏊‍♂️ [**`pendlev2_pools_roi_competitor_analysis.md`**](file:///Users/tin/eagle/daibang10/competitors/pendlev2_pools_roi_competitor_analysis.md):
   * Dedicated 2-month forensic analysis of competitors benefiting significantly from **Pendle V2 AMM Liquidity Pools on ROI and Net Profit**.
-  * Profiles of `#1 Profit Whale` (`0x010b23`, **+$106.8k net profit**, single pool ROI up to **+156.8%**) and `#1 ROI Whale` (`0x11c9ac`, **+$96.4k net profit**, **+27.3% aggregate ROI** with $81.9k in Robinhood `sNET`).
+  * Profiles of `#1 Profit Whale` (`0x743d7b`, **+$113.6k net profit**, single pool ROI up to **+292.7%**) and `#1 ROI Whale` (`0x11c9ac`, **+$96.4k net profit**, **+27.3% aggregate ROI** with $81.9k in Robinhood `sNET`).
   * Contrast with Boros (0% pool LP yield) and mathematical proof of Convergent Zero Impermanent Loss at Maturity.
+* 🎯 [**`high_roi_pool_plays_1k_to_20k.md`**](file:///Users/tin/eagle/daibang10/competitors/high_roi_pool_plays_1k_to_20k.md):
+  * Specialized forensic study focusing on the **$1,000 to $20,000 USD agile capital bracket**.
+  * Top 20 documented high-ROI pool plays delivering **+100% to +292% realized ROI** (`hwHLP`, `WHLP`, `gUSDC`, `sENA`, `msyrupUSDp`).
+  * 4 core execution archetypes (Genesis Colonization, Volume-to-TVL Multipliers, Systematic Multi-Baskets, and Robinhood Chain Texture) and the 3 fatal graveyard traps.
 
 ### 2. In-Depth Competitor Profiles
 

@@ -284,10 +284,25 @@ Every recorded historical scenario must be documented under the following taxono
 
 ---
 
-## The 5 Immutable Rules for the Pendle Robinhood Desk
+## Core Principle 6: "The Agile Sweet-Spot & Volume-to-TVL Multiplier ($1k – $20k Capital)"
+> *"Empirical study of 489 high-ROI on-chain pool moves proves that $1,000 to $20,000 capital captures the highest risk-adjusted yield in DeFi: zero price impact, zero slippage, and maximum fee velocity."* — See [`competitors/high_roi_pool_plays_1k_to_20k.md`](file:///Users/tin/eagle/daibang10/competitors/high_roi_pool_plays_1k_to_20k.md)
+
+### 1. The Volume-to-TVL ($V / \text{TVL}$) Velocity Multiplier
+- Headline APY is merely a static snapshot. Realized pool ROI is driven by **trading volume relative to pool liquidity**.
+- **Case Evidence (`0x1b5bd4ed` in Arbitrum `aUSDC`):** Deployed **$6,166.63 USD** into a pool that processed **$75,796.39 in swap volume** (12.3x turnover), generating **`+$7,389.54 USD` profit (119.83% ROI)** on a stablecoin.
+- **Invariant:** Prioritize pools with high turnover relative to TVL. High swap volume continuously reinvests trading fees into the LP share.
+
+### 2. The Agile Sizing Discipline
+- **$1,000 – $5,000 per pool:** Optimal ticket size for Robinhood Chain (`4663`) and alt-EVM deployments. Easily absorbed without widening spreads, easily monitored, and easily held to maturity.
+
+---
+
+## The 6 Immutable Rules for the Pendle Robinhood Desk
 
 1. **Rule 1 (Seth Klarman Floor):** Never buy PT or quote Short below the 8.00% base hurdle rate. If market implied APY is 3.90% (PFE), sit in cash.
 2. **Rule 2 (The Ajit Jain $T-7$ Razor):** Never accumulate unhedged YT, write new speculative policies, or zap into pools inside the final 7 days of contract maturity (e.g. sNET).
 3. **Rule 3 (The 5x Gas Economic Guard):** Never submit an on-chain cancellation unless the projected incremental reward is at least 5.0x the transaction fee.
 4. **Rule 4 (The Convergent Pool Rule):** Prioritize high-yield Pendle AMM pools (e.g. sNUKE @ 147.7% APY) over low-yielding limit orders when pools offer passive multi-stream yields with zero maintenance gas.
 5. **Rule 5 (24/7 Autonomous Radar & Heartbeat):** Keep [`rh/monitor_nvda_moves.py`](file:///Users/tin/eagle/daibang10/rh/monitor_nvda_moves.py) running 24/7 with hourly heartbeat alerts to ensure zero unmonitored drift and instant fill detection.
+6. **Rule 6 (The Agile $1k–$5k Ticket Invariant):** Deploy pool allocations in modular $1,000 – $5,000 tickets to capture maximum fee-to-capital velocity with zero price impact, avoiding mega-whale yield dilution.
+

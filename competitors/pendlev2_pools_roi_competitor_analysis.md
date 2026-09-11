@@ -29,12 +29,16 @@ These are the dominant institutional LP whales who extracted the largest dollar 
 
 | Rank | Wallet Address | Net Gain (USD) | Peak TVL Deployed | Aggregate ROI | Active Pools | Primary Pool Alpha & Execution Texture |
 | :---: | :--- | :---: | :---: | :---: | :---: | :--- |
-| **#1** | [`0x010b23b2f2a5f6bc4ce0c68a5f65c248c1129831`](https://etherscan.io/address/0x010b23b2f2a5f6bc4ce0c68a5f65c248c1129831) | **`+$106,821.11`** | `$980,937.00` | **`10.89%`** | 14 pools | **The Cross-Chain Pool Emperor.** Extracted **+$118,706.19 USD** on HyperEVM pool (`0xab9b8a`) on only $75.7k capital (**156.75% ROI**). Active on Robinhood Chain (`sNET`). |
-| **#2** | [`0x11c9ac11ce9913e26faa7a9ee5b07c92b0c8c372`](https://etherscan.io/address/0x11c9ac11ce9913e26faa7a9ee5b07c92b0c8c372) | **`+$96,388.66`** | `$353,184.89` | **`27.29%`** | 6 pools | **The Sonic & Robinhood Whale.** Generated **+$97,496.91 USD** on Sonic pool (`0x7e2bcd`) on $109k peak capital (**89.20% ROI**). Deployed **$81,957.04 USD** into Robinhood Chain `sNET`. |
-| **#3** | [`0x09a72958044f48e117235ad88af8a75818f81384`](https://etherscan.io/address/0x09a72958044f48e117235ad88af8a75818f81384) | **`+$1,033.49`** | `$91,749.12` | **`1.13%`** | 9 pools | **Multi-Pool Systematic LP.** Generated $823 profit on Arbitrum (`0x2092fa`) and farmed Robinhood Chain `sNET` with $1,053 TVL. |
-| **#4** | [`0x08a743041f7b809226d7390ed6b62e37c6b56aad`](https://basescan.org/address/0x08a743041f7b809226d7390ed6b62e37c6b56aad) | **`+$626.15`** | `$2,352.99` | **`26.61%`** | 2 pools | **High-Asymmetry Capital Sniper.** Deployed $377 into Base pool (`0xa46cac`) generating **+$626.15 USD net gain (165.99% ROI)**. Also deployed $1,975 into Robinhood Chain `sNET`. |
-| **#5** | [`0x0f50b117d8fb284b820b8a708a186a527fb5f0fa`](https://etherscan.io/address/0x0f50b117d8fb284b820b8a708a186a527fb5f0fa) | **`+$97.31`** | `$13,834.92` | **`0.70%`** | 37 pools | **Hyper-Diversified Long-Tail Farmer.** Spreads small allocations across 37 different AMM pools to harvest early emission distributions. |
-| **#6** | [`0x0f38d0b7bd81edc710fe1ec5a43ae81ccc494b8d`](https://etherscan.io/address/0x0f38d0b7bd81edc710fe1ec5a43ae81ccc494b8d) | **`+$72.76`** | `$333.56` | **`21.81%`** | 2 pools | **Micro-Capital Compounding Sniper.** Captured 21.8% ROI on just $333 of capital in 2 pools. |
+| **#1** | [`0x743d7b30661d65b41960bf6b5d1bb93cf7972a73`](file:///Users/tin/eagle/daibang10/competitors/0x743d7b30661d65b41960bf6b5d1bb93cf7972a73.md) | **`+$113,624.72`** | `$4,137,096.78` | **`2.75%`** | 320 pools | **The Omnipresent Desk Whale.** Profiled competitor who made **+$29,266.38** on HyperEVM (`0x905a91`, **292.74% ROI**) and **+$26,529.27** on Ethereum (`0x487e1c`, **167.41% ROI**). Active on Robinhood Chain (`NVDA`, `PFE`, `SGOV`). |
+| **#2** | [`0x010b23b2f2a5f6bc4ce0c68a5f65c248c1129831`](https://etherscan.io/address/0x010b23b2f2a5f6bc4ce0c68a5f65c248c1129831) | **`+$106,821.11`** | `$980,937.00` | **`10.89%`** | 14 pools | **The Cross-Chain Pool Emperor.** Extracted **+$118,706.19 USD** on HyperEVM pool (`0xab9b8a`) on only $75.7k capital (**156.75% ROI**). Active on Robinhood Chain (`sNET`). |
+| **#3** | [`0x11c9ac11ce9913e26faa7a9ee5b07c92b0c8c372`](https://etherscan.io/address/0x11c9ac11ce9913e26faa7a9ee5b07c92b0c8c372) | **`+$96,388.66`** | `$353,184.89` | **`27.29%`** | 6 pools | **The Sonic & Robinhood Whale.** Generated **+$97,496.91 USD** on Sonic pool (`0x7e2bcd`) on $109k peak capital (**89.20% ROI**). Deployed **$81,957.04 USD** into Robinhood Chain `sNET`. |
+| **#4** | [`0x1b648ade1ef219c87987cd60eba069a7faf1621f`](https://etherscan.io/address/0x1b648ade1ef219c87987cd60eba069a7faf1621f) | **`+$89,074.68`** | `$56,942,570.53` | **`0.16%`** | 165 pools | **Institutional Mega-Liquidity Provider.** Deployed multi-million dollar capital buffers across 165 pools, harvesting steady swap fees and high-volume rewards. |
+| **#5** | [`0xcd54cc88ac8bb4f437937b5dfa9c341570c6169b`](https://etherscan.io/address/0xcd54cc88ac8bb4f437937b5dfa9c341570c6169b) | **`+$78,407.20`** | `$1,923,767.93` | **`4.08%`** | 238 pools | **Broad-Spectrum Yield Harvester.** Systematic programmatic LP deployment spanning 238 pools across all major EVM chains. |
+| **#6** | [`0x927d81b91c41d1961e3a7d24847b95484e60c626`](https://etherscan.io/address/0x927d81b91c41d1961e3a7d24847b95484e60c626) | **`+$7,479.16`** | `$522,791.50` | **`1.43%`** | 20 pools | **Conservative Blue-Chip Farmer.** Focuses on lower-beta synthetic and LST pools with tight trading bands. |
+| **#7** | [`0x7a73a3612e003e2cb9f0f02b1e021bb4a352437a`](https://etherscan.io/address/0x7a73a3612e003e2cb9f0f02b1e021bb4a352437a) | **`+$6,844.73`** | `$239,613.95` | **`2.86%`** | 58 pools | **Mid-Market Arbitrageur.** Allocates across 58 active markets, capturing mispriced LP yield opportunities. |
+| **#8** | [`0x136342756cc5fb8f4e53bfe581f9b5b5aef27032`](https://etherscan.io/address/0x136342756cc5fb8f4e53bfe581f9b5b5aef27032) | **`+$5,685.68`** | `$107,197.44` | **`5.30%`** | 6 pools | **Concentrated Pool Sniper.** Targets 6 specific high-volume pools with $100k capital. |
+| **#9** | [`0x16c29e0cf90bb07d4022c927cbbe1693956044c7`](https://etherscan.io/address/0x16c29e0cf90bb07d4022c927cbbe1693956044c7) | **`+$3,090.25`** | `$12,234.10` | **`25.26%`** | 17 pools | **High-Efficiency Compounding Sniper.** Captured 25.26% ROI on $12.2k capital deployed across 17 high-turnover pools. |
+| **#10**| [`0x56ed60c71e3f193b20c6d144144dd7d32638f934`](https://etherscan.io/address/0x56ed60c71e3f193b20c6d144144dd7d32638f934) | **`+$3,041.40`** | `$155,587.66` | **`1.95%`** | 21 pools | **Systematic Multi-Asset Desk.** Rotates liquidity into newly listed assets to capture the early APY spike. |
 
 ---
 
@@ -45,10 +49,15 @@ Filtering for operators who deployed meaningful capital ($\ge \$50 \text{ USD}$)
 | Rank | Wallet Address | Aggregate ROI (%) | Peak Pool ROI (%) | Net Gain (USD) | Peak Capital Deployed | Core Strategy & Execution Weapon |
 | :---: | :--- | :---: | :---: | :---: | :---: | :--- |
 | **#1** | [`0x11c9ac11ce9913e26faa7a9ee5b07c92b0c8c372`](https://etherscan.io/address/0x11c9ac11ce9913e26faa7a9ee5b07c92b0c8c372) | **`27.29%`** | **`89.20%`** | **`$96,388.66`** | `$353,184.89` | **Genesis Pool Colonization.** Deploys 6-figure liquidity on Day 1 of pool launch; captures >80% of initial swap fee frenzy and early emission bursts. |
-| **#2** | [`0x08a743041f7b809226d7390ed6b62e37c6b56aad`](https://basescan.org/address/0x08a743041f7b809226d7390ed6b62e37c6b56aad) | **`26.61%`** | **`165.99%`** | **`$626.15`** | `$2,352.99` | **High-Turnover Sniper.** Targets virgin memecoin/synthetic pools with explosive trading volume relative to TVL. |
-| **#3** | [`0x0f38d0b7bd81edc710fe1ec5a43ae81ccc494b8d`](https://etherscan.io/address/0x0f38d0b7bd81edc710fe1ec5a43ae81ccc494b8d) | **`21.81%`** | **`21.81%`** | **`$72.76`** | `$333.56` | **Small-Stack Compounding.** Holds LP across 2 pools with zero rebalancing friction. |
-| **#4** | [`0x010b23b2f2a5f6bc4ce0c68a5f65c248c1129831`](https://etherscan.io/address/0x010b23b2f2a5f6bc4ce0c68a5f65c248c1129831) | **`10.89%`** | **`156.75%`** | **`$106,821.11`** | `$980,937.00` | **Institutional Whale Allocation.** Deploys near $1M across 14 pools, concentrating 70% of gains in a single high-conviction HyperEVM pool. |
-| **#5** | [`0x03d0958903b9f04c845ae21342c79c42bb5102e8`](https://etherscan.io/address/0x03d0958903b9f04c845ae21342c79c42bb5102e8) | **`3.36%`** | **`3.36%`** | **`$28.40`** | `$844.15` | **Steady Multi-Pool Farmer.** Low-drawdown allocation across 4 pools. |
+| **#2** | [`0x08a743041f7b809226d7390ed6b62e37c6b56aad`](https://basescan.org/address/0x08a743041f7b809226d7390ed6b62e37c6b56aad) | **`26.61%`** | **`165.99%`** | **`$626.15`** | `$2,352.99` | **High-Turnover Sniper.** Targets virgin memecoin/synthetic pools with explosive trading volume relative to TVL on Base. |
+| **#3** | [`0x16c29e0cf90bb07d4022c927cbbe1693956044c7`](https://etherscan.io/address/0x16c29e0cf90bb07d4022c927cbbe1693956044c7) | **`25.26%`** | **`25.26%`** | **`$3,090.25`** | `$12,234.10` | **Agile Mid-Cap Compounding.** Rotates $12k dynamically across 17 pools, extracting 25.3% ROI in 2 months. |
+| **#4** | [`0xf9bb823a2eaa181ab89b79cea6301274368999b4`](https://etherscan.io/address/0xf9bb823a2eaa181ab89b79cea6301274368999b4) | **`23.01%`** | **`23.01%`** | **`$2,476.83`** | `$10,764.36` | **Systematic Long-Tail Pool Farm.** Deployed $10.7k into 30 pools with 23.0% net ROI. |
+| **#5** | [`0x0f38d0b7bd81edc710fe1ec5a43ae81ccc494b8d`](https://etherscan.io/address/0x0f38d0b7bd81edc710fe1ec5a43ae81ccc494b8d) | **`21.81%`** | **`21.81%`** | **`$72.76`** | `$333.56` | **Small-Stack Compounding.** Holds LP across 2 pools with zero rebalancing friction. |
+| **#6** | [`0x697999ecfc86f0bfa43235bcf324cc7f186e3d54`](https://etherscan.io/address/0x697999ecfc86f0bfa43235bcf324cc7f186e3d54) | **`13.20%`** | **`13.20%`** | **`$2,524.46`** | `$19,118.13` | **Concentrated Tactical LP.** Extracted $2.5k gain on $19.1k capital across 6 pools. |
+| **#7** | [`0x010b23b2f2a5f6bc4ce0c68a5f65c248c1129831`](https://etherscan.io/address/0x010b23b2f2a5f6bc4ce0c68a5f65c248c1129831) | **`10.89%`** | **`156.75%`** | **`$106,821.11`** | `$980,937.00` | **Institutional Whale Allocation.** Deploys near $1M across 14 pools, concentrating 70% of gains in a single high-conviction HyperEVM pool. |
+| **#8** | [`0x1ad6a32f5f71fa2331f3aadee56455e74274ad59`](https://etherscan.io/address/0x1ad6a32f5f71fa2331f3aadee56455e74274ad59) | **`8.80%`** | **`8.80%`** | **`$18.83`** | `$213.92` | **Micro-Capital Single-Pool Hold.** Held 1 pool to maturity. |
+| **#9** | [`0x136342756cc5fb8f4e53bfe581f9b5b5aef27032`](https://etherscan.io/address/0x136342756cc5fb8f4e53bfe581f9b5b5aef27032) | **`5.30%`** | **`5.30%`** | **`$5,685.68`** | `$107,197.44` | **Targeted Yield Scalper.** 5.3% ROI on 6 pools with $107k capital. |
+| **#10**| [`0xcd54cc88ac8bb4f437937b5dfa9c341570c6169b`](https://etherscan.io/address/0xcd54cc88ac8bb4f437937b5dfa9c341570c6169b) | **`4.08%`** | **`4.08%`** | **`$78,407.20`** | `$1,923,767.93` | **Scale Compounding.** 4.08% net ROI on nearly $2M deployed capital. |
 
 ---
 
@@ -83,6 +92,18 @@ Filtering for operators who deployed meaningful capital ($\ge \$50 \text{ USD}$)
   - In those 3 losing pools, the underlying asset experienced a severe market decline and pre-expiry gamma drain.
   - The LP did **not** hold to maturity, but panic-exited early while the PT discount was wide and liquidity was evaporating, crystallizing severe impermanent loss.
 * **Taleb Desk Invariant Extracted:** **The Convergent Holding Rule.** Never panic-unwind an LP position when PT is trading at a discount before maturity. Either hold to terminal maturity ($T$) where $PT \to SY$ at 1:1, or do not enter pools whose underlying spot asset you are unwilling to hold to redemption.
+
+---
+
+### Case Study 4: The Profiled Competitor Revealed as an LP Titan (`0x743d7b...`)
+* **Aggregate Metrics:** **`$113,624.72 USD` Net Gain** across 320 pools with `$4,137,096.78` Peak TVL.
+* **The Revelation:**
+  - While previously analyzed for limit order market making, `0x743d7b` generates the lion's share of profits through **systematic, multi-chain AMM liquidity provision**.
+  - **HyperEVM Pool (`0x905a91`):** Committed `$9,997.43 USD` and extracted **`+$29,266.38 USD` in profit** (**`292.74%` realized ROI**)!
+  - **Ethereum Pool (`0x487e1c`):** Committed `$15,846.62 USD` and extracted **`+$26,529.27 USD` in profit** (**`167.41%` realized ROI**)!
+  - **HyperEVM Pool (`0xab9b8a`):** Extracted another **`+$19,471.21 USD`** (**`56.81%` ROI**).
+  - **Robinhood Chain Execution:** Actively maintains LP positions in Robinhood `NVDA`, `PFE`, and `SGOV` pools alongside limit orders.
+* **Taleb Desk Invariant Extracted:** **The Hybrid Desk Super-Power.** The most profitable institutional operators do not treat limit orders and AMM pools as competing venues; they use resting limit orders to capture wide retail spreads while simultaneously parking core balance sheet in AMM pools to earn 24/7 underlying interest + trading fees + emission distributions.
 
 ---
 

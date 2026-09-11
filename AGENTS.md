@@ -61,6 +61,7 @@ The desk strictly adheres to the 4 core principles defined in [patterns.md](file
 ### Desk Module Structure
 - [`rh/shift_nvda_order.py`](file:///Users/tin/eagle/daibang10/rh/shift_nvda_order.py): NVDA limit order cancel & shift automation with integrated gas economics check. Defaults to `--dry-run`.
 - [`rh/monitor_portfolio.py`](file:///Users/tin/eagle/daibang10/rh/monitor_portfolio.py): Portfolio balances, active orders, and gas runway tracking.
+- [`rh/monitor_nvda_moves.py`](file:///Users/tin/eagle/daibang10/rh/monitor_nvda_moves.py): Autonomous background daemon monitoring big market moves, rate wicks, spot price jumps, incentive band compression, and order fills with Telegram alerting.
 - [`rh/gas_governor.py`](file:///Users/tin/eagle/daibang10/rh/gas_governor.py): Gas metrics, runway calculation, economic viability evaluation, and 10x ceiling enforcement.
 - [`rh/alerter.py`](file:///Users/tin/eagle/daibang10/rh/alerter.py): Telegram dispatcher for operational & gas spike alerts via `@pendleV2_bot` (`8609659416:AAEBGuiFu3SjmVABHG-TSDwZzxOFxzr31EU`).
 

@@ -30,6 +30,27 @@ This directory maintains comprehensive forensic profiles on the dominant liquidi
 
 ---
 
+## Web3 Identity, ENS & Social Calibration Audit
+
+We conducted an on-chain identity resolution (ENS Universal Resolver, reverse registrar, text records, DeBank Web3 social profiles, and funding provenance) to calibrate these competitors against their public web/social identities:
+
+| Rank | Address | ENS Domain | Public Entity / Social Footprint | Funding Provenance & OpSec Architecture |
+| :---: | :--- | :--- | :--- | :--- |
+| **#1** | `0xb1350ae77f1f7d977fab077ea71c6011e74b9306` | *(None / Unregistered)* | **Pseudo-Anonymous PT Compounder** | Pure execution EOA (Nonce: 275). Zero public social links to avoid toxic flow targeting. |
+| **#2** | `0xc693b4ffb338579467a541b2bf267b1955870920` | *(None / Unregistered)* | **Institutional Cross-Chain LP** | High-activity execution bot (Nonce: 4,947). Deploys $371k across 4 chains. |
+| **#4** | `0x9c80a96a06cb6f7943a462dde7ac215011fa8ace` | *(None / Unregistered)* | **Quant MM Syndicate** | Dedicated trading bot (Nonce: 1,459). Runs automated two-sided quoting. |
+| **#5** | `0xa8236ead24b2a3085a6e5f11a23b39eee03ae300` | *(None / Unregistered)* | **Arbitrum CLOB MM** | **Directly funded by `Binance: Hot 1`** (`0xf92402bB...`). Typical CEX-funded sub-account. |
+| **#7** | `0x614d98a57a5d879d717152de0690ed2b04562ade` | [**`zeropants.eth`**](https://debank.com/profile/0x614d98a57a5d879d717152de0690ed2b04562ade) | **ZeroPants ("Mercenary Stablecoin Farmer")** | **Top DeBank Whale**: **13,200 followers**, **$596.2M TVF** (Total Value of Followers). Prominent DeFi whale. |
+| **#41**| `0x743d7b30661d65b41960bf6b5d1bb93cf7972a73` | [**`drunklord.eth`**](https://etherscan.io/address/0x743d7b30661d65b41960bf6b5d1bb93cf7972a73) | **drunklord.eth (Robinhood Goliath)** | **12,265 Mainnet Nonce**. Known multi-chain DeFi whale active across LI.FI, Pendle, and 1inch. |
+
+### Institutional OpSec Doctrine: Why Top Quants Don't Dox Their Signers
+In institutional DeFi market making, **tying a personal Twitter account to an execution wallet is considered a severe operational vulnerability**:
+1. **Adverse Selection & Sandwiching:** If a maker's personal identity is known, predatory takers and toxic flow can calculate their inventory limits, front-run their order shifts, or target them during rate spikes.
+2. **Sub-Account Isolation:** Sophisticated desks (such as Wintermute, Selini, Keyrock, and private prop syndicates) fund dedicated burner/maker EOAs straight from centralized exchange hot wallets (`Binance: Hot 1`), maintaining a complete firewall between their public social persona and their on-chain execution bots.
+3. **Public Whales vs Execution Bots:** While influencers like `zeropants.eth` maintain massive social followings (13.2k followers on DeBank), pure quant arbitrageurs operate entirely anonymously via un-doxxed signing keys.
+
+---
+
 ## Real-Time Competitor Telemetry Commands
 
 ```bash

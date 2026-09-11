@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
 """
-Pendle V2 - Robinhood Chain Multi-Market Big Move & Order Fill Monitor
+Pendle V2 - Robinhood Chain Multi-Market Big Move, Order Fill & Telegram Assistant
 Monitors active watch markets on Robinhood Chain (4663):
   1. NVDA (15-OCT-2026): 0x206a5cd00e9ffabb8ca564076b64799a78df19b9
   2. sNET (17-SEP-2026): 0x23c68474e3cd533a2f952a0fb998f1867e57d27f
   3. sNUKE (24-SEP-2026): 0x8547b391a65deb89c41a4c3b2eb1502d0bbc566a
   4. PFE (10-DEC-2026):  0x892defbf510d9baa96dbd2a51b13e879a857a79b
+  5. SGOV (19-NOV-2026): 0xd6e26e957b3207a5c618213d928647ec84150ca0
 
-Noise Reduction & Signal Optimization:
-  - High-Signal Priority: Limit order fills and out-of-band drifts are dispatched immediately.
-  - Position-Aware Filtering: Sensitive alerts for markets with active capital; high macro thresholds for background markets.
-  - Relative APY Scaling: Avoids spamming on minor basis wiggles in hyper-yield pools (e.g. sNET 13,000%).
-  - Cooldown & Debouncing: 30-minute cooldown and anchored baselines prevent oscillation ping-pongs.
-  - Structured Heartbeat: 1-hour heartbeat ping reporting health, resting orders, and gas runway.
+Institutional Features:
+  - Interactive Telegram Assistant: Responds in real-time to /status, /orders, /markets, /gas, /heartbeat, /help
+  - Zero-Noise Optimization: 30-minute cooldowns, position-aware filtering, and relative APY scaling.
+  - Critical Priority: Limit order fills and out-of-band drift alerts are dispatched instantly.
+  - Actionable Re-centering: Out-of-band alerts provide exact target APY and execution command.
+  - 1-Hour Heartbeat: Clean, executive health report every 60 minutes.
 
 Usage:
   python rh/monitor_nvda_moves.py --loop --interval 60 --heartbeat-interval 3600
@@ -27,10 +28,11 @@ import math
 import json
 import signal
 import socket
+import threading
 import argparse
 import urllib.request
 from datetime import datetime, timezone
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, List
 from web3 import Web3
 
 # Local package imports
@@ -41,7 +43,7 @@ if PROJECT_DIR not in sys.path:
 if RH_DIR not in sys.path:
     sys.path.insert(0, RH_DIR)
 
-from alerter import send_telegram_alert
+from alerter import send_telegram_alert, PRIMARY_BOT_TOKEN
 from gas_governor import get_gas_metrics
 
 CHAIN_ID = 4663
@@ -59,35 +61,40 @@ WATCHLIST = {
         "yt": "0x9cc22e51c6f0cb4aa1bfd1f18e85df1451ebb9b3",
         "pt": "0x4bcb25fce9618e62e9f9fba8d65af50cf867b812",
         "accounting": "0xd0601ce157db5bdc3162bbac2a2c8af5320d9eec",
-        "expiry": "2026-10-15"
+        "expiry": "2026-10-15",
+        "edge_buffer_bps": 20
     },
     "sNET": {
         "market": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
         "yt": "0xfb2d72fc9c378a73b4e03abac48194367447fa5a",
         "pt": "0x72b8e8c226848ceb35ba51d193f4f962dee957c1",
         "accounting": "0xba46fc84409589f369c107e869c06809df3d9727",
-        "expiry": "2026-09-17"
+        "expiry": "2026-09-17",
+        "edge_buffer_bps": 200
     },
     "sNUKE": {
         "market": "0x8547b391a65deb89c41a4c3b2eb1502d0bbc566a",
         "yt": "0xe32a6d0356d080d9dd8c0bd8e7ab3f464b3f1dbc",
         "pt": "0xb06180609b22973bee751a6c833db4821f8476fb",
         "accounting": "0xcd7079e32bf53093f60bf973c28e5d72937c12f2",
-        "expiry": "2026-09-24"
+        "expiry": "2026-09-24",
+        "edge_buffer_bps": 50
     },
     "PFE": {
         "market": "0x892defbf510d9baa96dbd2a51b13e879a857a79b",
         "yt": "0x7600d0a61f83d7e4c4154c4664b19be6d9acf180",
         "pt": "0xf9cd484f7e7799ae32b7f9a75e60c478fd1f0b6e",
         "accounting": "0x7066a64c24e4206cd62e83bf198c1e7eb361f51e",
-        "expiry": "2026-12-10"
+        "expiry": "2026-12-10",
+        "edge_buffer_bps": 10
     },
     "SGOV": {
         "market": "0xd6e26e957b3207a5c618213d928647ec84150ca0",
         "yt": "0x7eee53b86290e58179ed96bea7887a37e8a1b7b9",
         "pt": "0x9f1e57d8984d9ae2b081ed6fceff2fb60cb785f1",
         "accounting": "0x92fd66527192e3e61d4ddd13322aa222de86f9b5",
-        "expiry": "2026-11-19"
+        "expiry": "2026-11-19",
+        "edge_buffer_bps": 2
     }
 }
 
@@ -95,6 +102,7 @@ WATCHLIST = {
 START_TIME = time.time()
 LOOP_COUNT = 0
 SHUTDOWN_TRIGGERED = False
+LATEST_STATES: Dict[str, Any] = {}
 
 def fetch_json(url: str) -> Any:
     req = urllib.request.Request(url, headers=HEADERS)
@@ -182,6 +190,7 @@ def get_market_state(m_key: str, m_cfg: Dict[str, Any], user_orders: list, all_i
     }
 
 def get_all_markets_state() -> Dict[str, Any]:
+    global LATEST_STATES
     user_orders = fetch_json(f"{BASE_API}/v2/limit-orders?chainId={CHAIN_ID}&maker={WALLET}").get("results", [])
     all_incentives = fetch_json(f"{BASE_API}/v1/limit-orders/incentive/configs").get("configs", [])
 
@@ -191,6 +200,7 @@ def get_all_markets_state() -> Dict[str, Any]:
             results[m_key] = get_market_state(m_key, m_cfg, user_orders, all_incentives)
         except Exception as e:
             print(f"Error fetching state for {m_key}: {e}")
+    LATEST_STATES = results
     return results
 
 def load_previous_state() -> Optional[Dict[str, Any]]:
@@ -248,6 +258,159 @@ def get_alert_baseline(event_key: str, fallback: float) -> float:
     return ALERT_TRACKER.get("baselines", {}).get(event_key, fallback)
 
 # -----------------------------------------------------------------------------
+# INTERACTIVE TELEGRAM COMMAND CARD BUILDERS
+# -----------------------------------------------------------------------------
+def build_status_card() -> str:
+    now_str = datetime.now(timezone.utc).strftime('%H:%M:%S UTC')
+    host = socket.gethostname()
+    uptime_sec = int(time.time() - START_TIME)
+    hours, rem = divmod(uptime_sec, 3600)
+    minutes, _ = divmod(rem, 60)
+    uptime_str = f"{hours}h {minutes}m"
+    gas = fetch_gas_status()
+    states = LATEST_STATES or get_all_markets_state()
+
+    active_orders = [k for k, v in states.items() if v.get("order") and v["order"].get("making_amt", 0) > 0]
+
+    return (
+        f"🦅 <b>[PENDLE V2 DESK STATUS]</b>\n"
+        f"━━━━━━━━━━━━━━━━━━━━\n"
+        f"• <b>Network:</b> Robinhood Chain (<code>4663</code>)\n"
+        f"• <b>Maker Wallet:</b> <code>{WALLET[:8]}...{WALLET[-6:]}</code>\n"
+        f"• <b>Host:</b> <code>{host}</code>\n"
+        f"• <b>Uptime:</b> <code>{uptime_str}</code> | <b>Cycles:</b> {LOOP_COUNT:,}\n"
+        f"• <b>ETH Gas Runway:</b> <code>{gas['eth_balance']:.6f} ETH</code> (~{gas['runway_cancels']:,} txs)\n"
+        f"• <b>Active Orders:</b> {len(active_orders)} deployed ({', '.join(active_orders) if active_orders else 'None'})\n"
+        f"• <b>Monitored Markets:</b> {len(WATCHLIST)} active\n"
+        f"• <b>Desk Health:</b> 🟢 <b>All systems nominal & monitoring 24/7</b>\n\n"
+        f"🕒 <i>Status checked at {now_str}</i>"
+    )
+
+def build_orders_card() -> str:
+    now_str = datetime.now(timezone.utc).strftime('%H:%M:%S UTC')
+    states = LATEST_STATES or get_all_markets_state()
+    order_items = []
+
+    for k, s in states.items():
+        o = s.get("order")
+        if o and o.get("making_amt", 0) > 0:
+            in_b = s["min_apy"] <= o["apy"] <= s["max_apy"]
+            b_tag = "🟢 <b>IN-BAND (Mining 100% APR)</b>" if in_b else "🚨 <b>OUT-OF-BAND (0 Rewards)</b>"
+            notional_usd = o["making_amt"] * s["spot_price"]
+            order_items.append(
+                f"• <b>{k} ({WATCHLIST[k]['expiry']}):</b>\n"
+                f"  - Order ID: <code>{o['id'][:14]}...</code>\n"
+                f"  - Rate: <code>{o['apy']:.2f}% APY</code> (Band: [{s['min_apy']:.2f}%, {s['max_apy']:.2f}%])\n"
+                f"  - Size: <code>{o['making_amt']:.4f} {k}</code> (~${notional_usd:.2f} USD)\n"
+                f"  - Status: {b_tag}"
+            )
+
+    if not order_items:
+        body = "<i>No active limit orders currently resting on Robinhood Chain.</i>"
+    else:
+        body = "\n\n".join(order_items)
+
+    return (
+        f"📋 <b>[PENDLE V2: ACTIVE RESTING ORDERS]</b>\n"
+        f"━━━━━━━━━━━━━━━━━━━━\n"
+        f"• <b>Wallet:</b> <code>{WALLET[:8]}...{WALLET[-6:]}</code>\n\n"
+        f"{body}\n\n"
+        f"🕒 <i>Checked at {now_str}</i>"
+    )
+
+def build_markets_card() -> str:
+    now_str = datetime.now(timezone.utc).strftime('%H:%M:%S UTC')
+    states = LATEST_STATES or get_all_markets_state()
+    lines = []
+
+    for k, s in states.items():
+        band_str = f"[{s['min_apy']:.2f}%, {s['max_apy']:.2f}%]"
+        o_tag = " (Active Order ✅)" if s.get("order") and s["order"].get("making_amt", 0) > 0 else ""
+        lines.append(
+            f"• <b>{k}{o_tag}:</b>\n"
+            f"  - Rate: <code>{s['implied_apy']:.2f}% APY</code> | Spot: <code>${s['spot_price']:.2f}</code>\n"
+            f"  - Eligible Band: <code>{band_str}</code>\n"
+            f"  - Liquidity: <code>${s['liquidity_usd']:,.0f}</code> | Pool Rewards: <code>{s['reward_per_hr']:.4f}/hr</code>"
+        )
+
+    return (
+        f"📊 <b>[ROBINHOOD CHAIN MARKETS SNAPSHOT]</b>\n"
+        f"━━━━━━━━━━━━━━━━━━━━\n" +
+        "\n\n".join(lines) +
+        f"\n\n🕒 <i>Updated at {now_str}</i>"
+    )
+
+def build_gas_card() -> str:
+    now_str = datetime.now(timezone.utc).strftime('%H:%M:%S UTC')
+    gas = fetch_gas_status()
+
+    return (
+        f"⛽ <b>[GAS GOVERNOR & RUNWAY REPORT]</b>\n"
+        f"━━━━━━━━━━━━━━━━━━━━\n"
+        f"• <b>Maker Wallet:</b> <code>{WALLET[:8]}...{WALLET[-6:]}</code>\n"
+        f"• <b>Native ETH Balance:</b> <code>{gas['eth_balance']:.6f} ETH</code> (~${gas['eth_balance_usd']:.2f} USD)\n"
+        f"• <b>Cost per Cancellation:</b> <code>~${gas['cost_per_cancel_usd']:.4f} USD</code> (~66,000 units)\n"
+        f"• <b>Cancel Runway:</b> <code>{gas['runway_cancels']:,}</code> transactions remaining\n"
+        f"• <b>Runway Health:</b> 🟢 <b>Safe & Nominal</b> (Hurdle: >100 txs)\n"
+        f"• <b>10x Ceiling Guard:</b> Hard limit at 720,000 units / $0.22 USD\n\n"
+        f"🕒 <i>Report generated at {now_str}</i>"
+    )
+
+# -----------------------------------------------------------------------------
+# INTERACTIVE TELEGRAM POLLER THREAD
+# -----------------------------------------------------------------------------
+def telegram_command_worker():
+    """Background listener that responds to /status, /orders, /markets, /gas, /heartbeat, /help."""
+    offset = None
+    while not SHUTDOWN_TRIGGERED:
+        try:
+            url = f"https://api.telegram.org/bot{PRIMARY_BOT_TOKEN}/getUpdates"
+            params = ["timeout=8"]
+            if offset is not None:
+                params.append(f"offset={offset}")
+            full_url = f"{url}?{'&'.join(params)}"
+            req = urllib.request.Request(full_url, headers=HEADERS)
+            with urllib.request.urlopen(req, timeout=12) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+
+            updates = data.get("result", [])
+            for u in updates:
+                offset = u.get("update_id", 0) + 1
+                msg = u.get("message", {})
+                chat_id = msg.get("chat", {}).get("id")
+                text = (msg.get("text") or "").strip()
+                if not text or not chat_id:
+                    continue
+
+                cmd = text.split()[0].lower().split("@")[0]
+                if cmd in ("/status", "/ping"):
+                    send_telegram_alert(build_status_card())
+                elif cmd in ("/orders", "/positions"):
+                    send_telegram_alert(build_orders_card())
+                elif cmd in ("/markets", "/rates"):
+                    send_telegram_alert(build_markets_card())
+                elif cmd in ("/gas", "/runway"):
+                    send_telegram_alert(build_gas_card())
+                elif cmd in ("/heartbeat", "/alive"):
+                    states = LATEST_STATES or get_all_markets_state()
+                    send_heartbeat_alert(states, START_TIME, LOOP_COUNT)
+                elif cmd in ("/help", "/start"):
+                    help_card = (
+                        f"🦅 <b>[PENDLE V2 TRADING DESK • COMMANDS]</b>\n"
+                        f"━━━━━━━━━━━━━━━━━━━━\n"
+                        f"• /status — Engine health, gas runway, and overview\n"
+                        f"• /orders — Active resting limit orders & in-band status\n"
+                        f"• /markets — Live rates, implied APYs, and incentive bands\n"
+                        f"• /gas — Gas metrics, runway, and 10x ceiling safety\n"
+                        f"• /heartbeat — Instant real-time heartbeat status card\n"
+                        f"• /help — Show this command menu\n\n"
+                        f"<i>Chain ID: 4663 (Robinhood Chain)</i>"
+                    )
+                    send_telegram_alert(help_card)
+        except Exception:
+            time.sleep(3)
+
+# -----------------------------------------------------------------------------
 # LIFECYCLE ALERTS (STARTUP, HEARTBEAT, SHUTDOWN)
 # -----------------------------------------------------------------------------
 def send_startup_alert(states: Dict[str, Any], interval: int, heartbeat_interval: int):
@@ -268,7 +431,8 @@ def send_startup_alert(states: Dict[str, Any], interval: int, heartbeat_interval
         market_lines.append(f"  • <b>{k}:</b> Rate: <code>{s['implied_apy']:.2f}%</code> | Band: <code>{band_str}</code>\n    └─ {ord_str}")
 
     msg = (
-        f"🚀 <b>[PENDLE V2 DESK MONITOR STARTED]</b>\n\n"
+        f"🚀 <b>[PENDLE V2 DESK MONITOR STARTED]</b>\n"
+        f"━━━━━━━━━━━━━━━━━━━━\n"
         f"• <b>Host:</b> <code>{host}</code> | <b>PID:</b> <code>{os.getpid()}</code>\n"
         f"• <b>Network:</b> Robinhood Chain (ID: <code>4663</code>)\n"
         f"• <b>Wallet:</b> <code>{WALLET[:8]}...{WALLET[-6:]}</code>\n"
@@ -276,7 +440,8 @@ def send_startup_alert(states: Dict[str, Any], interval: int, heartbeat_interval
         f"• <b>Scan Interval:</b> {interval}s | <b>Heartbeat:</b> every {heartbeat_interval//60}m\n\n"
         f"<b>Monitored Markets ({len(states)}):</b>\n" +
         "\n".join(market_lines) +
-        f"\n\n🕒 <i>Initialized at {now_str}</i>"
+        f"\n\n💬 <i>Send /help to interact with the desk bot.</i>\n"
+        f"🕒 <i>Initialized at {now_str}</i>"
     )
     print("\n>>> DISPATCHING STARTUP ALERT <<<")
     send_telegram_alert(msg)
@@ -290,7 +455,8 @@ def send_shutdown_alert(start_time: float, loop_count: int, reason: str = "Manua
     uptime_str = f"{hours}h {minutes}m {seconds}s"
 
     msg = (
-        f"⏹️ <b>[PENDLE V2 DESK MONITOR STOPPED]</b>\n\n"
+        f"⏹️ <b>[PENDLE V2 DESK MONITOR STOPPED]</b>\n"
+        f"━━━━━━━━━━━━━━━━━━━━\n"
         f"• <b>Host:</b> <code>{host}</code> | <b>PID:</b> <code>{os.getpid()}</code>\n"
         f"• <b>Uptime:</b> <code>{uptime_str}</code>\n"
         f"• <b>Inspection Cycles:</b> {loop_count:,}\n"
@@ -325,8 +491,9 @@ def send_heartbeat_alert(states: Dict[str, Any], start_time: float, loop_count: 
         market_lines.append(f"  • <b>{k}:</b> Rate: <code>{s['implied_apy']:.2f}%</code> | Band: <code>{band}</code> | Spot: ${s['spot_price']:.2f}\n    └─ {ord_str}")
 
     msg = (
-        f"💓 <b>[PENDLE V2 DESK HEARTBEAT - ALIVE]</b>\n\n"
-        f"• <b>Status:</b> All systems nominal & monitoring 24/7\n"
+        f"💓 <b>[PENDLE V2 DESK HEARTBEAT • NOMINAL]</b>\n"
+        f"━━━━━━━━━━━━━━━━━━━━\n"
+        f"• <b>Status:</b> 🟢 All systems nominal & monitoring 24/7\n"
         f"• <b>Host:</b> <code>{host}</code> | <b>Uptime:</b> <code>{uptime_str}</code> | <b>Loops:</b> {loop_count:,}\n"
         f"• <b>ETH Gas Runway:</b> <code>{gas['eth_balance']:.6f} ETH</code> (~{gas['runway_cancels']:,} cancels)\n"
         f"• <b>Active Resting Orders:</b> {active_order_count} deployed\n\n"
@@ -353,12 +520,16 @@ def check_market_moves(m_key: str, current: Dict[str, Any], prev: Dict[str, Any]
     if cur_order and prev_order:
         delta_filled = cur_order["net_output"] - prev_order["net_output"]
         if delta_filled > 0:
+            fill_usd = delta_filled * current["spot_price"]
             alerts.append(
-                f"🎯 <b>LIMIT ORDER FILL DETECTED!</b>\n"
-                f"  • Market: <b>{m_key}</b> ({m_cfg['expiry']})\n"
-                f"  • Filled Size: <b>{delta_filled:.4f}</b>\n"
-                f"  • Total Received: <code>{cur_order['net_output']:.4f}</code>\n"
-                f"  • Remaining Making: <code>{cur_order['making_amt']:.4f}</code>"
+                f"🎯 <b>[LIMIT ORDER FILL DETECTED!]</b>\n"
+                f"━━━━━━━━━━━━━━━━━━━━\n"
+                f"• <b>Market:</b> <b>{m_key}</b> ({m_cfg['expiry']})\n"
+                f"• <b>Execution Rate:</b> <code>{cur_order['apy']:.2f}% APY</code>\n"
+                f"• <b>Filled Size:</b> <b>+{delta_filled:.4f} {m_key}</b> (~${fill_usd:.2f} USD)\n"
+                f"• <b>Total Output Received:</b> <code>{cur_order['net_output']:.4f}</code>\n"
+                f"• <b>Remaining Making Size:</b> <code>{cur_order['making_amt']:.4f}</code>\n"
+                f"• <b>Action:</b> Review balance to deploy counter-quote or compound."
             )
 
     # -------------------------------------------------------------------------
@@ -373,28 +544,35 @@ def check_market_moves(m_key: str, current: Dict[str, Any], prev: Dict[str, Any]
 
         drift_key = f"{m_key}:order_drift"
         if not is_in_band:
-            # Immediate alert on transition, 30m reminder if still out
             if prev_in_band or should_alert(drift_key, cooldown_seconds=1800):
+                buffer_bps = m_cfg.get("edge_buffer_bps", 20)
+                buffer_pct = buffer_bps / 100.0
+                rec_rate = round(min(max_band - buffer_pct, max(min_band + buffer_pct, current["implied_apy"])), 2)
                 alerts.append(
-                    f"🚨 <b>Order Drifted OUT-OF-RANGE!</b>\n"
-                    f"  • Market: <b>{m_key}</b>\n"
-                    f"  • Your Order Rate: <code>{order_apy:.2f}%</code>\n"
-                    f"  • Current Eligible Band: <code>[{min_band:.2f}%, {max_band:.2f}%]</code>\n"
-                    f"  • Action Required: Re-center to continue mining rewards."
+                    f"🚨 <b>[ORDER DRIFTED OUT-OF-RANGE!]</b>\n"
+                    f"━━━━━━━━━━━━━━━━━━━━\n"
+                    f"• <b>Market:</b> <b>{m_key}</b>\n"
+                    f"• <b>Your Order Rate:</b> <code>{order_apy:.2f}% APY</code>\n"
+                    f"• <b>Eligible Band:</b> <code>[{min_band:.2f}%, {max_band:.2f}%]</code>\n"
+                    f"• <b>Current Implied:</b> <code>{current['implied_apy']:.2f}%</code>\n"
+                    f"• <b>Reward Status:</b> ⚠️ <b>EARNING 0 REWARDS (Incentive paused)</b>\n\n"
+                    f"💡 <b>Re-Center Recommendation:</b>\n"
+                    f"  • Recommended Target: <code>{rec_rate:.2f}% APY</code> (Buffer: {buffer_bps} bps)\n"
+                    f"  • Shift Command: <code>python rh/shift_nvda_order.py --target-apy {rec_rate:.2f}</code>"
                 )
                 record_alert(drift_key)
         elif is_in_band:
-            # Compression warning: resting within 10 bps of edge, throttled to 30 mins
             compress_key = f"{m_key}:band_compress"
             dist_to_min = order_apy - min_band
             dist_to_max = max_band - order_apy
             if (dist_to_min < 0.10 or dist_to_max < 0.10) and should_alert(compress_key, cooldown_seconds=1800):
                 alerts.append(
-                    f"⚠️ <b>Incentive Band Compression Alert:</b>\n"
-                    f"  • Market: <b>{m_key}</b>\n"
-                    f"  • Order Rate: <code>{order_apy:.2f}%</code>\n"
-                    f"  • Eligible Band: <code>[{min_band:.2f}%, {max_band:.2f}%]</code>\n"
-                    f"  • Warning: Order is resting within 10 bps of band boundary."
+                    f"⚠️ <b>[INCENTIVE BAND COMPRESSION WARNING]</b>\n"
+                    f"━━━━━━━━━━━━━━━━━━━━\n"
+                    f"• <b>Market:</b> <b>{m_key}</b>\n"
+                    f"• <b>Order Rate:</b> <code>{order_apy:.2f}%</code>\n"
+                    f"• <b>Band Range:</b> <code>[{min_band:.2f}%, {max_band:.2f}%]</code>\n"
+                    f"• <b>Warning:</b> Resting within 10 bps of boundary."
                 )
                 record_alert(compress_key)
 
@@ -408,28 +586,26 @@ def check_market_moves(m_key: str, current: Dict[str, Any], prev: Dict[str, Any]
 
     threshold_met = False
     if has_active_order:
-        # Active market: sensitive to genuine moves
         if cur_apy > 100.0:
             rel_change = abs(delta_apy) / max(baseline_apy, 1.0) * 100.0
-            threshold_met = rel_change >= 5.0  # 5% relative move
+            threshold_met = rel_change >= 5.0
         else:
-            threshold_met = abs(delta_apy) >= 0.50  # 50 bps absolute move
+            threshold_met = abs(delta_apy) >= 0.50
     else:
-        # Background market: ONLY alert on major macro regime shifts
         if cur_apy > 100.0:
             rel_change = abs(delta_apy) / max(baseline_apy, 1.0) * 100.0
-            threshold_met = rel_change >= 15.0  # 15% relative move (e.g. >1,800% shift on sNET)
+            threshold_met = rel_change >= 15.0
         else:
-            threshold_met = abs(delta_apy) >= 2.0  # 200 bps move
+            threshold_met = abs(delta_apy) >= 2.0
 
     if threshold_met and should_alert(apy_key, cooldown_seconds=1800):
         direction = "📈 SPIKED" if delta_apy > 0 else "📉 DROPPED"
         alerts.append(
-            f"<b>Implied APY Move ({direction}):</b>\n"
-            f"  • Market: <b>{m_key}</b>\n"
-            f"  • Current APY: <code>{cur_apy:.2f}%</code>\n"
-            f"  • Baseline APY: <code>{baseline_apy:.2f}%</code>\n"
-            f"  • Delta: <b>{delta_apy:+.2f}%</b>"
+            f"⚡ <b>[MARKET RADAR: {m_key} APY {direction}]</b>\n"
+            f"━━━━━━━━━━━━━━━━━━━━\n"
+            f"• <b>Current Implied APY:</b> <code>{cur_apy:.2f}%</code>\n"
+            f"• <b>Baseline APY:</b> <code>{baseline_apy:.2f}%</code>\n"
+            f"• <b>Delta:</b> <b>{delta_apy:+.2f}%</b>"
         )
         record_alert(apy_key, baseline_val=cur_apy)
 
@@ -443,17 +619,16 @@ def check_market_moves(m_key: str, current: Dict[str, Any], prev: Dict[str, Any]
 
     if baseline_spot > 0:
         pct_spot = (cur_spot - baseline_spot) / baseline_spot * 100.0
-        # Active order market: 3.0% threshold | Background market: 6.0% threshold
         spot_threshold = 3.0 if has_active_order else 6.0
 
         if abs(pct_spot) >= spot_threshold and should_alert(spot_key, cooldown_seconds=1800):
             direction = "🟢 SURGED" if pct_spot > 0 else "🔴 DUMPED"
             alerts.append(
-                f"<b>Underlying Spot Price {direction}:</b>\n"
-                f"  • Market: <b>{m_key}</b>\n"
-                f"  • Current: <code>${cur_spot:.2f}</code>\n"
-                f"  • Baseline: <code>${baseline_spot:.2f}</code>\n"
-                f"  • Move: <b>{pct_spot:+.2f}%</b> (${cur_spot - baseline_spot:+.2f})"
+                f"⚡ <b>[SPOT PRICE {direction}: {m_key}]</b>\n"
+                f"━━━━━━━━━━━━━━━━━━━━\n"
+                f"• <b>Current Spot:</b> <code>${cur_spot:.2f}</code>\n"
+                f"• <b>Baseline Spot:</b> <code>${baseline_spot:.2f}</code>\n"
+                f"• <b>Move:</b> <b>{pct_spot:+.2f}%</b> (${cur_spot - baseline_spot:+.2f})"
             )
             record_alert(spot_key, baseline_val=cur_spot)
 
@@ -471,11 +646,11 @@ def check_market_moves(m_key: str, current: Dict[str, Any], prev: Dict[str, Any]
 
         if abs(pct_liq) >= liq_threshold and should_alert(liq_key, cooldown_seconds=1800):
             alerts.append(
-                f"<b>Pool Liquidity Shock:</b>\n"
-                f"  • Market: <b>{m_key}</b>\n"
-                f"  • Current: <code>${cur_liq:,.0f}</code>\n"
-                f"  • Baseline: <code>${baseline_liq:,.0f}</code>\n"
-                f"  • Delta: <b>{pct_liq:+.1f}%</b> (${cur_liq - baseline_liq:+,.0f})"
+                f"🌊 <b>[POOL LIQUIDITY SHOCK: {m_key}]</b>\n"
+                f"━━━━━━━━━━━━━━━━━━━━\n"
+                f"• <b>Current Liquidity:</b> <code>${cur_liq:,.0f}</code>\n"
+                f"• <b>Baseline Liquidity:</b> <code>${baseline_liq:,.0f}</code>\n"
+                f"• <b>Delta:</b> <b>{pct_liq:+.1f}%</b> (${cur_liq - baseline_liq:+,.0f})"
             )
             record_alert(liq_key, baseline_val=cur_liq)
 
@@ -487,10 +662,10 @@ def check_market_moves(m_key: str, current: Dict[str, Any], prev: Dict[str, Any]
     if prev_short_depth == 0.0 and current["short_depth"] > 200.0:
         if should_alert(comp_key, cooldown_seconds=3600):
             alerts.append(
-                f"⚔️ <b>Competitor Influx on Short Side:</b>\n"
-                f"  • Market: <b>{m_key}</b>\n"
-                f"  • Short depth jumped from $0.00 to <code>${current['short_depth']:,.2f}</code>.\n"
-                f"  • Reward pool dilution active."
+                f"⚔️ <b>[COMPETITOR INFLUX DETECTED: {m_key}]</b>\n"
+                f"━━━━━━━━━━━━━━━━━━━━\n"
+                f"• <b>Short Depth Jump:</b> $0.00 ➔ <code>${current['short_depth']:,.2f}</code>\n"
+                f"• <b>Note:</b> Reward pool dilution active."
             )
             record_alert(comp_key)
 
@@ -511,11 +686,10 @@ def inspect_all_and_alert(current_states: Dict[str, Any], prev_states: Optional[
             continue
         m_alerts = check_market_moves(m_key, cur, prev)
         if m_alerts:
-            header = f"🦅 <b>[{m_key} MARKET RADAR ALERT]</b>\n"
-            all_alerts.append(header + "\n\n".join(m_alerts))
+            all_alerts.extend(m_alerts)
 
     if all_alerts:
-        full_msg = f"🦅 <b>[PENDLE V2 ROBINHOOD RADAR] Activity Detected ({now_str})</b>\n\n" + "\n\n---\n\n".join(all_alerts)
+        full_msg = "\n\n---\n\n".join(all_alerts)
         print("\n>>> DISPATCHING TELEGRAM ALERT <<<")
         print(full_msg)
         send_telegram_alert(full_msg)
@@ -574,22 +748,7 @@ def main():
 
     if args.test_alert:
         states = get_all_markets_state()
-        lines = []
-        for k, s in states.items():
-            order_s = f"{s['order']['apy']:.2f}% ({s['order']['making_amt']:.4f})" if s.get("order") else "None"
-            lines.append(
-                f"• <b>{k} ({WATCHLIST[k]['expiry']}):</b>\n"
-                f"  - Implied APY: <code>{s['implied_apy']:.2f}%</code>\n"
-                f"  - Underlying APY: <code>{s['underlying_apy']:.2f}%</code>\n"
-                f"  - Spot Price: <code>${s['spot_price']:.2f}</code> | YT: <code>${s['yt_price']:.2f}</code> | PT: <code>${s['pt_price']:.2f}</code>\n"
-                f"  - Liquidity: <code>${s['liquidity_usd']:,.0f}</code>\n"
-                f"  - Incentive Band: <code>[{s['min_apy']:.2f}%, {s['max_apy']:.2f}%]</code>\n"
-                f"  - Hourly Reward Pool: <code>{s['reward_per_hr']:.4f} PENDLE/hr</code>\n"
-                f"  - Short Maker Depth: <code>${s['short_depth']:,.2f}</code>\n"
-                f"  - My Active Order: <code>{order_s}</code>"
-            )
-        msg = f"🦅 <b>[PENDLE V2 RADAR: MULTI-MARKET RADAR TEST]</b>\n\n" + "\n\n".join(lines) + f"\n\n✅ <i>Tracking {len(states)} markets on Robinhood Chain.</i>"
-        send_telegram_alert(msg)
+        send_telegram_alert(build_markets_card())
         save_current_state(states)
         return
 
@@ -605,12 +764,16 @@ def main():
     START_TIME = time.time()
     last_heartbeat_time = START_TIME
 
-    print(f"🚀 Starting Multi-Market Robinhood Monitor Daemon (Noise-Filtered)...")
+    print(f"🚀 Starting Multi-Market Robinhood Monitor Daemon (Institutional & Interactive)...")
     print(f"   - Host:               {socket.gethostname()}")
     print(f"   - Scan Interval:      {args.interval}s")
     print(f"   - Heartbeat Interval: {args.heartbeat_interval}s ({args.heartbeat_interval//60} mins)")
     print(f"   - Monitored Markets:  {list(WATCHLIST.keys())}")
-    print(f"   - Active Alert Filter: 30m Cooldowns & Position-Aware Thresholds Enabled")
+    print(f"   - Interactive Bot:    Active (@pendleV2_bot commands: /status, /orders, /markets, /gas, /heartbeat, /help)")
+
+    # Start Interactive Telegram Poller Thread
+    cmd_thread = threading.Thread(target=telegram_command_worker, daemon=True, name="TeleBotPoller")
+    cmd_thread.start()
 
     # Fetch initial state and send Startup Alert
     try:

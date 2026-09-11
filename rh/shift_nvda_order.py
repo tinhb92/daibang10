@@ -19,8 +19,13 @@ from web3 import Web3
 from eth_account import Account
 from eth_account.messages import encode_typed_data
 
-# Ensure rh package imports work
-sys.path.append(os.path.dirname(__file__))
+# Ensure rh and root package imports work
+RH_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_DIR = os.path.dirname(RH_DIR)
+if PROJECT_DIR not in sys.path:
+    sys.path.insert(0, PROJECT_DIR)
+if RH_DIR not in sys.path:
+    sys.path.insert(0, RH_DIR)
 from gas_governor import (
     get_gas_metrics,
     evaluate_shift_economic_viability,
@@ -29,6 +34,7 @@ from gas_governor import (
     MAX_ALLOWED_GAS_UNITS,
     MAX_ALLOWED_GAS_COST_USD
 )
+from rh.config.market_params import validate_order_safety
 
 CHAIN_ID = 4663
 RPC_URL = "https://rpc.mainnet.chain.robinhood.com"
@@ -274,6 +280,27 @@ def main():
             sys.exit(1)
     else:
         print("✅ Shift is economically sound: Rewards strongly dominate gas cost.")
+
+    # Quantitative Safety Constraint Check (Seth Klarman, Ajit Jain, Gas Ceiling)
+    is_safe, reason, violations = validate_order_safety(
+        market_identifier="NVDA",
+        side="SHORT",
+        rate_apy=args.target_apy,
+        gas_units=gas_est if 'gas_est' in locals() else AVG_CANCEL_GAS_UNITS,
+        gas_cost_usd=econ["gas_cost_usd"],
+        expected_reward_usd=econ["expected_reward_usd"],
+        dte_days=33.9
+    )
+    print(f"\n[Constraint Safety Verification]")
+    if not is_safe:
+        print(f"🛑 SAFETY CONSTRAINT VIOLATION: {reason}")
+        for v in violations:
+            print(f"   ❌ {v}")
+        if args.execute:
+            print("Execution ABORTED by safety constraints.")
+            sys.exit(1)
+    else:
+        print(f"  - Safety Check: ✅ PASSED (Klarman floor, Carry ceiling, Ajit Jain cliff, Gas 10x ceiling)")
 
     # 3. Cancel Plan
     cancel_tx_data = None

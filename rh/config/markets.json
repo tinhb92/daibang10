@@ -1,0 +1,94 @@
+{
+  "supported_markets": [
+    "NVDA",
+    "sNET",
+    "sNUKE",
+    "PFE"
+  ],
+  "default_target_market": "NVDA",
+  "min_short_rates": {
+    "NVDA": 9.65,
+    "sNET": 11333.29,
+    "sNUKE": 95.53,
+    "PFE": 8.0
+  },
+  "max_long_rates": {
+    "NVDA": 10.4,
+    "sNET": 13333.29,
+    "sNUKE": 116.76,
+    "PFE": 4.17
+  },
+  "edge_buffers_bps": {
+    "NVDA": 20,
+    "sNET": 200,
+    "sNUKE": 50,
+    "PFE": 10
+  },
+  "min_dte_cliff_days": 7,
+  "gas_guardrails": {
+    "baseline_gas_units": 72000,
+    "max_allowed_gas_multiplier": 10,
+    "max_gas_units": 720000,
+    "max_gas_cost_usd": 0.22,
+    "min_reward_to_gas_ratio": 5.0,
+    "min_eth_runway": 0.002
+  },
+  "markets": {
+    "NVDA": {
+      "symbol": "PT-NVDA-15OCT2026",
+      "marketAddress": "0x206a5cd00e9ffabb8ca564076b64799a78df19b9",
+      "ptAddress": "0x4bcb25fce9618e62e9f9fba8d65af50cf867b812",
+      "ytAddress": "0x9cc22e51c6f0cb4aa1bfd1f18e85df1451ebb9b3",
+      "accountingAsset": "0xd0601ce157db5bdc3162bbac2a2c8af5320d9eec",
+      "assetName": "NVIDIA Synthetic Equity",
+      "expiry": "2026-10-15T00:00:00.000Z",
+      "decimals": 18,
+      "base_hurdle_floor": 8.0,
+      "max_long_ceiling": 15.0,
+      "edge_buffer_bps": 20,
+      "min_dte_threshold": 7
+    },
+    "sNET": {
+      "symbol": "PT-sNET-17SEP2026",
+      "marketAddress": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+      "ptAddress": "0x72b8e8c226848ceb35ba51d193f4f962dee957c1",
+      "ytAddress": "0xfb2d72fc9c378a73b4e03abac48194367447fa5a",
+      "accountingAsset": "0xba46fc84409589f369c107e869c06809df3d9727",
+      "assetName": "Cloudflare Synthetic Equity",
+      "expiry": "2026-09-17T00:00:00.000Z",
+      "decimals": 18,
+      "base_hurdle_floor": 50.0,
+      "max_long_ceiling": 15000.0,
+      "edge_buffer_bps": 200,
+      "min_dte_threshold": 7
+    },
+    "sNUKE": {
+      "symbol": "PT-sNUKE-24SEP2026",
+      "marketAddress": "0x8547b391a65deb89c41a4c3b2eb1502d0bbc566a",
+      "ptAddress": "0xb06180609b22973bee751a6c833db4821f8476fb",
+      "ytAddress": "0xe32a6d0356d080d9dd8c0bd8e7ab3f464b3f1dbc",
+      "accountingAsset": "0xcd7079e32bf53093f60bf973c28e5d72937c12f2",
+      "assetName": "Nuclear Power Synthetic Yield",
+      "expiry": "2026-09-24T00:00:00.000Z",
+      "decimals": 18,
+      "base_hurdle_floor": 20.0,
+      "max_long_ceiling": 150.0,
+      "edge_buffer_bps": 50,
+      "min_dte_threshold": 7
+    },
+    "PFE": {
+      "symbol": "PT-PFE-10DEC2026",
+      "marketAddress": "0x892defbf510d9baa96dbd2a51b13e879a857a79b",
+      "ptAddress": "0xf9cd484f7e7799ae32b7f9a75e60c478fd1f0b6e",
+      "ytAddress": "0x7600d0a61f83d7e4c4154c4664b19be6d9acf180",
+      "accountingAsset": "0x7066a64c24e4206cd62e83bf198c1e7eb361f51e",
+      "assetName": "Pfizer Synthetic Equity",
+      "expiry": "2026-12-10T00:00:00.000Z",
+      "decimals": 18,
+      "base_hurdle_floor": 8.0,
+      "max_long_ceiling": 5.0,
+      "edge_buffer_bps": 10,
+      "min_dte_threshold": 7
+    }
+  }
+}

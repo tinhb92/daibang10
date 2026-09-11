@@ -257,25 +257,52 @@ def main():
         # Step A: Cancel on-chain
         if order_ids_to_cancel and cancel_tx_data:
             print("\n>>> Broadcasting On-Chain Cancel Transaction...")
-            nonce = w3.eth.get_transaction_count(maker)
-            tx = {
-                "from": from_addr,
-                "to": to_addr,
-                "data": cancel_tx_data,
-                "nonce": nonce,
-                "gas": int(gas_est * 1.3),
-                "gasPrice": int(gas_price * 1.1),
-                "chainId": CHAIN_ID
-            }
-            signed_tx = w3.eth.account.sign_transaction(tx, private_key=pk)
-            tx_hash = w3.eth.send_raw_transaction(signed_tx.rawTransaction)
-            print(f"Transaction sent: {tx_hash.hex()}")
-            print("Waiting for confirmation on Robinhood Chain...")
-            receipt = w3.eth.wait_for_transaction_receipt(tx_hash, timeout=60)
-            if receipt.status == 1:
-                print(f"✅ Cancellation Confirmed in block {receipt.blockNumber}!")
-            else:
-                print(f"❌ Cancellation transaction failed: status {receipt.status}")
+            max_retries = 5
+            cancellation_confirmed = False
+
+            for attempt in range(1, max_retries + 1):
+                try:
+                    # Query pending nonce to avoid collisions
+                    nonce = w3.eth.get_transaction_count(from_addr, "pending")
+                    current_gas_price = w3.eth.gas_price
+                    bumped_gas_price = int(current_gas_price * (1.15 + 0.1 * (attempt - 1)))
+
+                    tx = {
+                        "from": from_addr,
+                        "to": to_addr,
+                        "data": cancel_tx_data,
+                        "nonce": nonce,
+                        "gas": int(gas_est * 1.35),
+                        "gasPrice": bumped_gas_price,
+                        "chainId": CHAIN_ID
+                    }
+                    signed_tx = w3.eth.account.sign_transaction(tx, private_key=pk)
+                    raw_bytes = getattr(signed_tx, "raw_transaction", getattr(signed_tx, "rawTransaction", None))
+                    tx_hash = w3.eth.send_raw_transaction(raw_bytes)
+                    print(f"Transaction broadcast (Attempt {attempt}/{max_retries}, Nonce: {nonce}): {tx_hash.hex()}")
+                    print("Waiting for confirmation on Robinhood Chain...")
+                    receipt = w3.eth.wait_for_transaction_receipt(tx_hash, timeout=60)
+                    if receipt.status == 1:
+                        print(f"✅ Cancellation Confirmed in block {receipt.blockNumber}!")
+                        cancellation_confirmed = True
+                        break
+                    else:
+                        raise RuntimeError(f"Transaction reverted on-chain with status {receipt.status}")
+                except Exception as err:
+                    err_str = str(err).lower()
+                    if ("nonce" in err_str or "already known" in err_str or "replacement" in err_str or "underpriced" in err_str) and attempt < max_retries:
+                        print(f"⚠️ Nonce clash / mempool conflict detected: {err}")
+                        print(f"   Refreshing pending nonce and retrying ({attempt + 1}/{max_retries}) in 2s...")
+                        time.sleep(2)
+                    elif attempt < max_retries:
+                        print(f"⚠️ Broadcast warning: {err}. Retrying ({attempt + 1}/{max_retries}) in 2s...")
+                        time.sleep(2)
+                    else:
+                        print(f"❌ Failed to cancel on-chain after {max_retries} attempts: {err}")
+                        sys.exit(1)
+
+            if not cancellation_confirmed:
+                print("❌ Cancellation was not confirmed. Halting execution.")
                 sys.exit(1)
 
         # Step B: Submit New Order
@@ -286,7 +313,7 @@ def main():
 
         # Step C: Refresh Dashboard
         print("\n>>> Updating Portfolio & Operations Manager Dashboard...")
-        os.system("python3 monitor_portfolio.py")
+        os.system(f"{sys.executable} monitor_portfolio.py")
         print("Done!")
 
 if __name__ == "__main__":

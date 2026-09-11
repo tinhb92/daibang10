@@ -87,6 +87,9 @@ The desk strictly adheres to the 4 core principles defined in [patterns.md](file
   - Frequent re-centering on small order sizes can quickly erode or exceed the mining yield.
 
 ### Desk Module Structure
+- [`rh/allocator.py`](file:///Users/tin/eagle/daibang10/rh/allocator.py): Taleb Hybrid Capital Allocation & Compounding Optimizer. Analyzes wallet spot balances, evaluates idle capital vs AMM pools, and checks drifted orders against 5.0x gas hurdle.
+- [`rh/velocity_radar.py`](file:///Users/tin/eagle/daibang10/rh/velocity_radar.py): Continuous Volume-to-TVL Velocity & Fee Turnover Scanner across Robinhood, Arbitrum, Base, and Sonic to identify fee compounding acceleration.
+- [`rh/pool_actions.py`](file:///Users/tin/eagle/daibang10/rh/pool_actions.py): Pre-flight simulation & Zap-In engine for Pendle V2 AMM pools (defaults strictly to `--dry-run`, models 0-IL terminal convergence).
 - [`rh/scan_pools.py`](file:///Users/tin/eagle/daibang10/rh/scan_pools.py): Pendle V2 AMM Liquidity Pools Opportunity & Antifragility Scanner with multi-stream APY decomposition, convergent IL modeling, and auto-markdown radar export.
 - [`rh/scan_opportunities.py`](file:///Users/tin/eagle/daibang10/rh/scan_opportunities.py): Desk opportunity & gas hurdle scanner with dynamic DTE calculation, Ajit Jain cliff hazard filtering, solitary maker vacuum detection, and automatic markdown radar generation.
 - [`rh/shift_nvda_order.py`](file:///Users/tin/eagle/daibang10/rh/shift_nvda_order.py) / [`rh/shift_order.py`](file:///Users/tin/eagle/daibang10/rh/shift_order.py): Multi-market limit order cancel & shift automation with integrated gas economics check. Defaults to `--dry-run`.
@@ -96,8 +99,10 @@ The desk strictly adheres to the 4 core principles defined in [patterns.md](file
 - [`rh/alerter.py`](file:///Users/tin/eagle/daibang10/rh/alerter.py): Telegram dispatcher for operational & gas spike alerts via `@pendleV2_bot` (`8609659416:AAEBGuiFu3SjmVABHG-TSDwZzxOFxzr31EU`).
 - [`tests/test_taleb_desk.py`](file:///Users/tin/eagle/daibang10/tests/test_taleb_desk.py): Zero-dependency Python unit test suite verifying Klarman floors, Ajit Jain cliffs, 10x gas ceiling, and multi-day amortization.
 - [`tests/test_pools_scanner.py`](file:///Users/tin/eagle/daibang10/tests/test_pools_scanner.py): Unit test suite for AMM pool yield decomposition, illiquidity trap detection, and DTE cliff gating.
+- [`tests/test_allocator_and_actions.py`](file:///Users/tin/eagle/daibang10/tests/test_allocator_and_actions.py): Unit test suite for Taleb hybrid allocator, velocity radar, and pool actions pre-flight simulations.
 - [`robinhood_market_radar.md`](file:///Users/tin/eagle/daibang10/robinhood_market_radar.md): Persistent executive matrix of limit order rates, bands, whale vacuums, and dry-run shift commands.
 - [`pendlev2_pools_radar.md`](file:///Users/tin/eagle/daibang10/pendlev2_pools_radar.md): Persistent executive matrix of AMM Liquidity Pools, underlying/fee/emission breakdowns, and direct Zap-In links.
+- [`competitors/high_roi_pool_plays_1k_to_20k.md`](file:///Users/tin/eagle/daibang10/competitors/high_roi_pool_plays_1k_to_20k.md): Forensic study of 489 high-ROI moves ($1k–$20k) delivering +100% to +292% ROI across Pendle V2 AMM pools.
 
 ### Mandatory Gas Hurdle & Ceiling Rules
 - **10x Gas Ceiling Guard (Strict):** Allow up to **$10\times$ baseline** ($720,000$ gas units or $\approx \$0.22 \text{ USD}$). Any operation estimating above either limit **MUST BE IGNORED & ABORTED**, triggering an immediate Telegram alert.

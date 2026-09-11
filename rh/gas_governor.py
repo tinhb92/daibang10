@@ -46,7 +46,10 @@ def check_and_enforce_gas_ceiling(gas_units: int, gas_cost_usd: float, market_na
             f"• <b>Policy:</b> Hard 10x ceiling on 72,000 units ($0.022 USD) to prevent fee burning."
         )
         try:
-            from alerter import send_telegram_alert
+            try:
+                from alerter import send_telegram_alert
+            except ImportError:
+                from rh.alerter import send_telegram_alert
             send_telegram_alert(alert_msg)
         except Exception as e:
             print(f"Failed to dispatch Telegram gas alert: {e}")

@@ -19,17 +19,19 @@
 
 ---
 
-## 2. Multi-Market Liquidity Pool Matrix
+## 2. Multi-Market Liquidity Pool Matrix (Robinhood Chain 4663)
 
-| Pool | DTE | TVL (USD) | 24h Vol | Aggregated APY | Underlying | Swap Fees | PENDLE APR | Taleb Status |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **[sNUKE](https://app.pendle.finance/trade/pools/0x8547b391a65deb89c41a4c3b2eb1502d0bbc566a/zap/in?chain=robinhood)** | `12.0d` | `$21,581` | `$1,013` | **147.70%** | `104.20%` | `27.18%` | `13.33%` | 🟢 **Prime Fat Pitch** |
-| **[NVDA](https://app.pendle.finance/trade/pools/0x206a5cd00e9ffabb8ca564076b64799a78df19b9/zap/in?chain=robinhood)** | `33.0d` | `$109,440` | `$49,290` | **27.15%** | `11.14%` | `5.29%` | `11.82%` | 🟢 **Prime Fat Pitch** |
-| **[PFE](https://app.pendle.finance/trade/pools/0x892defbf510d9baa96dbd2a51b13e879a857a79b/zap/in?chain=robinhood)** | `89.0d` | `$45,555` | `$14,354` | **23.38%** | `0.00%` | `4.58%` | `16.94%` | 🟢 **Prime Fat Pitch** |
-| **[SHROOM](https://app.pendle.finance/trade/pools/0x49e5d9de386b5ff5cc344748977a412d07191256/zap/in?chain=robinhood)** | `12.0d` | `$195,876` | `$62,092` | **72.82%** | `52.37%` | `16.44%` | `1.28%` | 🟢 **Prime Fat Pitch** |
-| **[microduck](https://app.pendle.finance/trade/pools/0xdd34d9471667107f9b45e2204add3dd4da54e5a6/zap/in?chain=robinhood)** | `12.0d` | `$1,196` | `$167` | **254.34%** | `0.00%` | `17.12%` | `209.23%` | 🛑 ⚠️ ILLIQUID TRAP ($1,196 TVL) |
-| **[SGOV](https://app.pendle.finance/trade/pools/0xd6e26e957b3207a5c618213d928647ec84150ca0/zap/in?chain=robinhood)** | `68.0d` | `$1,801` | `$43` | **139.08%** | `0.00%` | `0.09%` | `138.89%` | 🛑 ⚠️ ILLIQUID TRAP ($1,801 TVL) |
-| **[sNET](https://app.pendle.finance/trade/pools/0x23c68474e3cd533a2f952a0fb998f1867e57d27f/zap/in?chain=robinhood)** | `5.0d` | `$737,385` | `$89,039` | **14859.40%** | `22129.63%` | `16.84%` | `10.22%` | 🛑 ⛔ AJIT JAIN CLIFF (5.0d < 7d) |
+> *Turnover velocity ($V / \text{TVL}$) tracks continuous fee re-investment speed. High velocity (>0.30x) indicates explosive fee compounding. See [`competitors/high_roi_pool_plays_1k_to_20k.md`](file:///Users/tin/eagle/daibang10/competitors/high_roi_pool_plays_1k_to_20k.md).*
+
+| Pool | DTE | TVL (USD) | 24h Vol | Velocity (V/TVL) | Aggregated APY | Underlying | Swap Fees | PENDLE APR | Taleb Status |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| **[NVDA](https://app.pendle.finance/trade/pools/0x206a5cd00e9ffabb8ca564076b64799a78df19b9/zap/in?chain=robinhood)** | `33.0d` | `$109,491` | `$49,290` | **`0.45x`** 🚀 | **27.14%** | `11.02%` | `5.23%` | `11.86%` | 🟢 **Top Velocity Fat Pitch** |
+| **[sNUKE](https://app.pendle.finance/trade/pools/0x8547b391a65deb89c41a4c3b2eb1502d0bbc566a/zap/in?chain=robinhood)** | `12.0d` | `$21,576` | `$1,483` | `0.07x` | **149.15%** | `104.20%` | `27.18%` | `13.33%` | 🟢 **Top Pure Yield Fat Pitch** |
+| **[SHROOM](https://app.pendle.finance/trade/pools/0x49e5d9de386b5ff5cc344748977a412d07191256/zap/in?chain=robinhood)** | `12.0d` | `$203,030` | `$62,092` | **`0.31x`** 🚀 | **72.15%** | `52.37%` | `16.44%` | `1.28%` | 🟢 **High-Volume Memecoin Farm** |
+| **[PFE](https://app.pendle.finance/trade/pools/0x892defbf510d9baa96dbd2a51b13e879a857a79b/zap/in?chain=robinhood)** | `89.0d` | `$45,557` | `$14,354` | **`0.32x`** 🚀 | **23.39%** | `0.00%` | `4.58%` | `16.94%` | 🟢 **Long-Duration Low-Beta Farm** |
+| **[SGOV](https://app.pendle.finance/trade/pools/0xd6e26e957b3207a5c618213d928647ec84150ca0/zap/in?chain=robinhood)** | `68.0d` | `$1,801` | `$43` | `0.02x` | **139.32%** | `0.00%` | `0.09%` | `138.89%` | ⚠️ **ILLIQUID TRAP (< $5k TVL Floor)** |
+| **[sNET](https://app.pendle.finance/trade/pools/0x23c68474e3cd533a2f952a0fb998f1867e57d27f/zap/in?chain=robinhood)** | `5.0d` | `$708,388` | `$82,907` | `0.12x` | **14858.5%** | `22129.6%` | `16.84%` | `10.22%` | ⛔ **AJIT JAIN CLIFF (< 7d DTE)** |
+| **[microduck](https://app.pendle.finance/trade/pools/0xdd34d9471667107f9b45e2204add3dd4da54e5a6/zap/in?chain=robinhood)** | `12.0d` | `$1,264` | `$167` | `0.13x` | **242.90%** | `0.00%` | `17.12%` | `209.23%` | ⚠️ **ILLIQUID TRAP (< $5k TVL Floor)** |
 
 ---
 
@@ -91,6 +93,17 @@
 
 ## 4. Taleb Antifragility Exclusions (The Graveyard Forensic Doctrine)
 
-- 🛑 **microduck** (`12.0d` DTE, TVL: `$1,196`): **Rejected** — *⚠️ ILLIQUID TRAP ($1,196 TVL)*. Enforcing Seth Klarman margin of safety & Ajit Jain terminal cliff avoidance.
-- 🛑 **SGOV** (`68.0d` DTE, TVL: `$1,801`): **Rejected** — *⚠️ ILLIQUID TRAP ($1,801 TVL)*. Enforcing Seth Klarman margin of safety & Ajit Jain terminal cliff avoidance.
-- 🛑 **sNET** (`5.0d` DTE, TVL: `$737,385`): **Rejected** — *⛔ AJIT JAIN CLIFF (5.0d < 7d)*. Enforcing Seth Klarman margin of safety & Ajit Jain terminal cliff avoidance.
+- 🛑 **microduck** (`12.0d` DTE, TVL: `$1,264`): **Rejected** — *⚠️ ILLIQUID TRAP ($1,264 TVL < $5,000 Floor)*.
+- 🛑 **SGOV** (`68.0d` DTE, TVL: `$1,801`): **Rejected** — *⚠️ ILLIQUID TRAP ($1,801 TVL < $5,000 Floor)*.
+- 🛑 **sNET** (`5.0d` DTE, TVL: `$708k`): **Rejected** — *⛔ AJIT JAIN CLIFF (5.0d < 7.0d)*. Pre-expiry liquidity evaporation hazard.
+
+---
+
+## 5. Operational Desk Tooling & Compounding Playbooks
+
+- 🛰️ [**`rh/velocity_radar.py`**](file:///Users/tin/eagle/daibang10/rh/velocity_radar.py): Continuous Volume-to-TVL Velocity & Fee Turnover Scanner across Robinhood, Arbitrum, Base, and Sonic.
+- ⚖️ [**`rh/allocator.py`**](file:///Users/tin/eagle/daibang10/rh/allocator.py): Taleb Hybrid Capital Allocation & Compounding Optimizer. Bridges solitary maker limit orders and high-velocity AMM pools.
+- ⚡ [**`rh/pool_actions.py`**](file:///Users/tin/eagle/daibang10/rh/pool_actions.py): Pre-flight simulation & Zap-In engine for Pendle V2 AMM pools (defaults strictly to `--dry-run`).
+- 🎯 [**`competitors/high_roi_pool_plays_1k_to_20k.md`**](file:///Users/tin/eagle/daibang10/competitors/high_roi_pool_plays_1k_to_20k.md): Empirical study of 489 high-ROI pool moves ($1k–$20k) delivering +100% to +292% ROI.
+- 📋 [**`portfolio_manager_view.md`**](file:///Users/tin/eagle/daibang10/portfolio_manager_view.md): Real-time capital accounting, active orders, and accumulated rewards.
+

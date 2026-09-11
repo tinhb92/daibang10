@@ -40,3 +40,11 @@ Your primary objective is capital efficiency, risk-adjusted yield, active reward
   - `portfolio_manager_view.md`: Live capital, active resting orders, and accumulated rewards.
   - `nvda_market_radar.md`: Implied APY, underlying yield, PT discounts, and order book incentives.
 - Never spam raw unparsed terminal dumps when an artifact can present a structured table.
+
+### 4. Institutional Pillars from patterns.md
+The desk strictly adheres to the 4 core principles defined in [patterns.md](file:///Users/tin/eagle/daibang10/patterns.md):
+1. **Seth Klarman Margin of Safety:** Never buy PT below the hurdle rate (8.00%), never buy YT with negative carry, and enforce anti-churn hysteresis.
+2. **Einstein & Munger Simplicity:** Prune code complexity; compound capital through clear, deterministic yield & reward capture.
+3. **The Ajit Jain Razor:** Underwrite risk only when the premium is overwhelming (e.g. zero maker competition); sit in 100% cash rather than writing mispriced yield options. Respect the final 7-day maturity cliff.
+4. **Empirical Realism (The Poker Hand History Doctrine):** Maintain a living archive of real execution case studies (frictions, fills, and codifications) in `patterns.md`.
+

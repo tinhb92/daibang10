@@ -3,26 +3,30 @@
     "NVDA",
     "sNET",
     "sNUKE",
-    "PFE"
+    "PFE",
+    "SGOV"
   ],
   "default_target_market": "NVDA",
   "min_short_rates": {
     "NVDA": 9.65,
     "sNET": 11333.29,
     "sNUKE": 95.53,
-    "PFE": 8.0
+    "PFE": 8.0,
+    "SGOV": 0.87
   },
   "max_long_rates": {
     "NVDA": 10.4,
     "sNET": 13333.29,
     "sNUKE": 116.76,
-    "PFE": 4.17
+    "PFE": 4.17,
+    "SGOV": 0.96
   },
   "edge_buffers_bps": {
     "NVDA": 20,
     "sNET": 200,
     "sNUKE": 50,
-    "PFE": 10
+    "PFE": 10,
+    "SGOV": 2
   },
   "min_dte_cliff_days": 7,
   "gas_guardrails": {
@@ -88,6 +92,20 @@
       "base_hurdle_floor": 8.0,
       "max_long_ceiling": 5.0,
       "edge_buffer_bps": 10,
+      "min_dte_threshold": 7
+    },
+    "SGOV": {
+      "symbol": "PT-SGOV-19NOV2026",
+      "marketAddress": "0xd6e26e957b3207a5c618213d928647ec84150ca0",
+      "ptAddress": "0x9f1e57d8984d9ae2b081ed6fceff2fb60cb785f1",
+      "ytAddress": "0x7eee53b86290e58179ed96bea7887a37e8a1b7b9",
+      "accountingAsset": "0x92fd66527192e3e61d4ddd13322aa222de86f9b5",
+      "assetName": "iShares 0-3 Month Treasury Bond ETF (SGOV)",
+      "expiry": "2026-11-19T00:00:00.000Z",
+      "decimals": 18,
+      "base_hurdle_floor": 4.5,
+      "max_long_ceiling": 1.5,
+      "edge_buffer_bps": 2,
       "min_dte_threshold": 7
     }
   }

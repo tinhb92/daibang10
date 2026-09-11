@@ -81,6 +81,13 @@ WATCHLIST = {
         "pt": "0xf9cd484f7e7799ae32b7f9a75e60c478fd1f0b6e",
         "accounting": "0x7066a64c24e4206cd62e83bf198c1e7eb361f51e",
         "expiry": "2026-12-10"
+    },
+    "SGOV": {
+        "market": "0xd6e26e957b3207a5c618213d928647ec84150ca0",
+        "yt": "0x7eee53b86290e58179ed96bea7887a37e8a1b7b9",
+        "pt": "0x9f1e57d8984d9ae2b081ed6fceff2fb60cb785f1",
+        "accounting": "0x92fd66527192e3e61d4ddd13322aa222de86f9b5",
+        "expiry": "2026-11-19"
     }
 }
 

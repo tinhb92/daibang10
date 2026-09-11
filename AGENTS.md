@@ -23,8 +23,11 @@ Your mandate:
   - **NVDA (15-OCT-2026):** `0x206a5cd00e9ffabb8ca564076b64799a78df19b9`
     - PT: `0x4bcb25fce9618e62e9f9fba8d65af50cf867b812`
     - YT: `0x9cc22e51c6f0cb4aa1bfd1f18e85df1451ebb9b3`
-    - Underlying / Accounting: `0xd0601ce157db5bdc3162bbac2a2c8af5320d9eec`
   - **sNUKE (24-SEP-2026):** `0x8547b391a65deb89c41a4c3b2eb1502d0bbc566a`
+  - **SGOV (19-NOV-2026):** `0xd6e26e957b3207a5c618213d928647ec84150ca0`
+    - PT: `0x9f1e57d8984d9ae2b081ed6fceff2fb60cb785f1`
+    - YT: `0x7eee53b86290e58179ed96bea7887a37e8a1b7b9`
+    - Underlying / Accounting: `0x92fd66527192e3e61d4ddd13322aa222de86f9b5`
 
 ---
 

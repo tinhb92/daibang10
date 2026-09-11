@@ -68,11 +68,17 @@ def get_onchain_balances():
     balances = {"ETH": {"amount": eth_bal, "price": 2500.0, "value_usd": eth_bal * 2500.0}}
 
     tokens_to_query = [
-        ("NVDA", MARKETS["NVDA"]["accounting"]),
-        ("PT-NVDA", MARKETS["NVDA"]["pt"]),
-        ("sNUKE", MARKETS["sNUKE"]["accounting"]),
-        ("SHROOM", MARKETS["SHROOM"]["accounting"]),
-        ("SGOV", MARKETS["SGOV"]["accounting"]),
+        ("NVDA", MARKETS.get("NVDA", {}).get("accounting")),
+        ("PT-NVDA", MARKETS.get("NVDA", {}).get("pt")),
+        ("LP-NVDA", MARKETS.get("NVDA", {}).get("market")),
+        ("sNUKE", MARKETS.get("sNUKE", {}).get("accounting")),
+        ("LP-sNUKE", MARKETS.get("sNUKE", {}).get("market")),
+        ("SHROOM", MARKETS.get("SHROOM", {}).get("accounting")),
+        ("LP-SHROOM", MARKETS.get("SHROOM", {}).get("market")),
+        ("SGOV", MARKETS.get("SGOV", {}).get("accounting")),
+        ("LP-SGOV", MARKETS.get("SGOV", {}).get("market")),
+        ("PFE", MARKETS.get("PFE", {}).get("accounting")),
+        ("LP-PFE", MARKETS.get("PFE", {}).get("market")),
     ]
 
     for symbol, addr in tokens_to_query:
@@ -93,6 +99,7 @@ def get_market_prices_and_incentives():
         addr = m.get("address", "").lower()
         market_info[addr] = {
             "name": m.get("proName") or m.get("name"),
+            "aggregatedApy": (m.get("aggregatedApy") or 0) * 100,
             "impliedApy": (m.get("impliedApy") or 0) * 100,
             "underlyingApy": (m.get("underlyingApy") or 0) * 100,
             "underlyingPrice": m.get("accountingAsset", {}).get("price", {}).get("usd", 0),
@@ -228,6 +235,25 @@ def generate_report():
 
         band_str = f"[{min_apy:.2f}%, {max_apy:.2f}%]" if min_apy > 0 else "N/A"
         report.append(f"| `{oid}` | {mkt_key} | Type {o.get('type')} | {making_val:.4f} | **{apy_rate:.2f}%** | {band_str} | {status_tag} |")
+
+    # 5. Pendle V2 AMM Liquidity Pool Positions & Yield Opportunities
+    report.append("\n## 5. Pendle V2 AMM Liquidity Pool Positions & Yield Opportunities")
+    report.append("> [!TIP]")
+    report.append("> Pendle V2 AMM Pools generate continuous multi-stream yield (Underlying Yield + AMM Swap Fees + PENDLE Emissions) with Zero Impermanent Loss at Maturity ($PT \\to SY$ at 1:1), contrasting Boros which has 0% pool LP yield.")
+    report.append("")
+    report.append("| Pool | Holding | Pool Aggregated APY | Implied APY | Status | Direct Zap-In |")
+    report.append("| :--- | :--- | :--- | :--- | :--- | :--- |")
+    for m_key, m_val in MARKETS.items():
+        lp_sym = f"LP-{m_key}"
+        lp_bal = balances.get(lp_sym, {}).get("amount", 0.0)
+        m_addr = m_val["market"].lower()
+        info = market_info.get(m_addr, {})
+        agg_apy = info.get("aggregatedApy", 0.0)
+        imp_apy = info.get("impliedApy", 0.0)
+        holding_str = f"**{lp_bal:.4f} LP**" if lp_bal > 0 else "0.0000 LP"
+        status = "🟢 Active LP Position" if lp_bal > 0 else "⚪ No LP Deployed"
+        zap_url = f"https://app.pendle.finance/trade/pools/{m_addr}/zap/in?chain=robinhood"
+        report.append(f"| **{m_key}** | {holding_str} | **{agg_apy:.2f}%** | {imp_apy:.2f}% | {status} | [Zap In]({zap_url}) |")
 
     return "\n".join(report)
 

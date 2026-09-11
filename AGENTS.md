@@ -87,14 +87,17 @@ The desk strictly adheres to the 4 core principles defined in [patterns.md](file
   - Frequent re-centering on small order sizes can quickly erode or exceed the mining yield.
 
 ### Desk Module Structure
+- [`rh/scan_pools.py`](file:///Users/tin/eagle/daibang10/rh/scan_pools.py): Pendle V2 AMM Liquidity Pools Opportunity & Antifragility Scanner with multi-stream APY decomposition, convergent IL modeling, and auto-markdown radar export.
 - [`rh/scan_opportunities.py`](file:///Users/tin/eagle/daibang10/rh/scan_opportunities.py): Desk opportunity & gas hurdle scanner with dynamic DTE calculation, Ajit Jain cliff hazard filtering, solitary maker vacuum detection, and automatic markdown radar generation.
 - [`rh/shift_nvda_order.py`](file:///Users/tin/eagle/daibang10/rh/shift_nvda_order.py) / [`rh/shift_order.py`](file:///Users/tin/eagle/daibang10/rh/shift_order.py): Multi-market limit order cancel & shift automation with integrated gas economics check. Defaults to `--dry-run`.
-- [`rh/monitor_portfolio.py`](file:///Users/tin/eagle/daibang10/rh/monitor_portfolio.py): Portfolio balances, active orders, and gas runway tracking; auto-exports to [`portfolio_manager_view.md`](file:///Users/tin/eagle/daibang10/portfolio_manager_view.md).
+- [`rh/monitor_portfolio.py`](file:///Users/tin/eagle/daibang10/rh/monitor_portfolio.py): Portfolio balances, active orders, AMM pool LP balances, and gas runway tracking; auto-exports to [`portfolio_manager_view.md`](file:///Users/tin/eagle/daibang10/portfolio_manager_view.md).
 - [`rh/monitor_nvda_moves.py`](file:///Users/tin/eagle/daibang10/rh/monitor_nvda_moves.py): Autonomous background daemon monitoring big market moves, rate wicks, spot price jumps, incentive band compression, and order fills with Telegram alerting.
 - [`rh/gas_governor.py`](file:///Users/tin/eagle/daibang10/rh/gas_governor.py): Gas metrics, runway calculation, economic viability evaluation, and 10x ceiling enforcement.
 - [`rh/alerter.py`](file:///Users/tin/eagle/daibang10/rh/alerter.py): Telegram dispatcher for operational & gas spike alerts via `@pendleV2_bot` (`8609659416:AAEBGuiFu3SjmVABHG-TSDwZzxOFxzr31EU`).
 - [`tests/test_taleb_desk.py`](file:///Users/tin/eagle/daibang10/tests/test_taleb_desk.py): Zero-dependency Python unit test suite verifying Klarman floors, Ajit Jain cliffs, 10x gas ceiling, and multi-day amortization.
-- [`robinhood_market_radar.md`](file:///Users/tin/eagle/daibang10/robinhood_market_radar.md): Persistent executive matrix of market rates, bands, whale vacuums, and dry-run shift commands.
+- [`tests/test_pools_scanner.py`](file:///Users/tin/eagle/daibang10/tests/test_pools_scanner.py): Unit test suite for AMM pool yield decomposition, illiquidity trap detection, and DTE cliff gating.
+- [`robinhood_market_radar.md`](file:///Users/tin/eagle/daibang10/robinhood_market_radar.md): Persistent executive matrix of limit order rates, bands, whale vacuums, and dry-run shift commands.
+- [`pendlev2_pools_radar.md`](file:///Users/tin/eagle/daibang10/pendlev2_pools_radar.md): Persistent executive matrix of AMM Liquidity Pools, underlying/fee/emission breakdowns, and direct Zap-In links.
 
 ### Mandatory Gas Hurdle & Ceiling Rules
 - **10x Gas Ceiling Guard (Strict):** Allow up to **$10\times$ baseline** ($720,000$ gas units or $\approx \$0.22 \text{ USD}$). Any operation estimating above either limit **MUST BE IGNORED & ABORTED**, triggering an immediate Telegram alert.

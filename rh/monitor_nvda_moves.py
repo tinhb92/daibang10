@@ -104,10 +104,25 @@ LOOP_COUNT = 0
 SHUTDOWN_TRIGGERED = False
 LATEST_STATES: Dict[str, Any] = {}
 
-def fetch_json(url: str) -> Any:
+def fetch_json(url: str, max_retries: int = 3) -> Any:
     req = urllib.request.Request(url, headers=HEADERS)
-    with urllib.request.urlopen(req, timeout=10) as resp:
-        return json.loads(resp.read().decode("utf-8"))
+    for attempt in range(1, max_retries + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                return json.loads(resp.read().decode("utf-8"))
+        except urllib.error.HTTPError as e:
+            if e.code == 429 and attempt < max_retries:
+                time.sleep(2.0 * attempt)
+                continue
+            if attempt < max_retries:
+                time.sleep(1.0 * attempt)
+                continue
+            raise
+        except Exception:
+            if attempt < max_retries:
+                time.sleep(1.0 * attempt)
+                continue
+            raise
 
 def fetch_gas_status() -> Dict[str, Any]:
     try:

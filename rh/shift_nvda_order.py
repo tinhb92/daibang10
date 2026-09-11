@@ -92,14 +92,29 @@ def load_private_key():
                         return line.split("=", 1)[1].strip().strip("\"'")
     raise ValueError("I3 key not found in search paths")
 
-def fetch_json(url, data=None):
+def fetch_json(url, data=None, max_retries=3):
     req = urllib.request.Request(
         url,
         data=json.dumps(data).encode() if data else None,
         headers={"Content-Type": "application/json", **HEADERS}
     )
-    with urllib.request.urlopen(req, timeout=10) as resp:
-        return json.loads(resp.read().decode("utf-8"))
+    for attempt in range(1, max_retries + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                return json.loads(resp.read().decode("utf-8"))
+        except urllib.error.HTTPError as e:
+            if e.code == 429 and attempt < max_retries:
+                time.sleep(2.0 * attempt)
+                continue
+            if attempt < max_retries and e.code != 400: # Don't retry validation error 400
+                time.sleep(1.0 * attempt)
+                continue
+            raise
+        except Exception:
+            if attempt < max_retries:
+                time.sleep(1.0 * attempt)
+                continue
+            raise
 
 def get_market_incentive_band(market_addr):
     configs = fetch_json(f"{BASE_API}/v1/limit-orders/incentive/configs").get("configs", [])

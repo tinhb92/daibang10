@@ -297,12 +297,15 @@ def build_orders_card() -> str:
             in_b = s["min_apy"] <= o["apy"] <= s["max_apy"]
             b_tag = "🟢 <b>IN-BAND (Mining 100% APR)</b>" if in_b else "🚨 <b>OUT-OF-BAND (0 Rewards)</b>"
             notional_usd = o["making_amt"] * s["spot_price"]
+            m_addr = WATCHLIST[k]["market"]
+            trade_link = f"https://app.pendle.finance/trade/markets/{m_addr}/limit-order/buy?chain=robinhood&view=yt"
             order_items.append(
-                f"• <b>{k} ({WATCHLIST[k]['expiry']}):</b>\n"
+                f"• <b><a href=\"{trade_link}\">{k}</a> ({WATCHLIST[k]['expiry']}):</b>\n"
                 f"  - Order ID: <code>{o['id'][:14]}...</code>\n"
                 f"  - Rate: <code>{o['apy']:.2f}% APY</code> (Band: [{s['min_apy']:.2f}%, {s['max_apy']:.2f}%])\n"
                 f"  - Size: <code>{o['making_amt']:.4f} {k}</code> (~${notional_usd:.2f} USD)\n"
-                f"  - Status: {b_tag}"
+                f"  - Status: {b_tag}\n"
+                f"  - <a href=\"{trade_link}\">🔗 Open {k} Limit Order on Pendle</a>"
             )
 
     if not order_items:
@@ -310,10 +313,11 @@ def build_orders_card() -> str:
     else:
         body = "\n\n".join(order_items)
 
+    wallet_link = f"https://robinhoodchain.blockscout.com/address/{WALLET}"
     return (
         f"📋 <b>[PENDLE V2: ACTIVE RESTING ORDERS]</b>\n"
         f"━━━━━━━━━━━━━━━━━━━━\n"
-        f"• <b>Wallet:</b> <code>{WALLET[:8]}...{WALLET[-6:]}</code>\n\n"
+        f"• <b>Wallet:</b> <a href=\"{wallet_link}\"><code>{WALLET[:8]}...{WALLET[-6:]}</code></a>\n\n"
         f"{body}\n\n"
         f"🕒 <i>Checked at {now_str}</i>"
     )
@@ -326,11 +330,13 @@ def build_markets_card() -> str:
     for k, s in states.items():
         band_str = f"[{s['min_apy']:.2f}%, {s['max_apy']:.2f}%]"
         o_tag = " (Active Order ✅)" if s.get("order") and s["order"].get("making_amt", 0) > 0 else ""
+        m_addr = WATCHLIST[k]["market"]
+        trade_link = f"https://app.pendle.finance/trade/markets/{m_addr}/limit-order/buy?chain=robinhood&view=yt"
         lines.append(
-            f"• <b>{k}{o_tag}:</b>\n"
+            f"• <b><a href=\"{trade_link}\">{k}</a>{o_tag}:</b>\n"
             f"  - Rate: <code>{s['implied_apy']:.2f}% APY</code> | Spot: <code>${s['spot_price']:.2f}</code>\n"
             f"  - Eligible Band: <code>{band_str}</code>\n"
-            f"  - Liquidity: <code>${s['liquidity_usd']:,.0f}</code> | Pool Rewards: <code>{s['reward_per_hr']:.4f}/hr</code>"
+            f"  - Liquidity: <code>${s['liquidity_usd']:,.0f}</code> | Pool: <code>{s['reward_per_hr']:.4f}/hr</code>"
         )
 
     return (
@@ -356,11 +362,97 @@ def build_gas_card() -> str:
         f"🕒 <i>Report generated at {now_str}</i>"
     )
 
+def build_summary_card() -> str:
+    now_str = datetime.now(timezone.utc).strftime('%H:%M:%S UTC')
+    agg = fetch_json(f"{BASE_API}/v1/limit-orders/incentive/user/aggregate?user={WALLET}")
+    gas = fetch_gas_status()
+
+    lifetime_rew = agg.get("lifetimeReward", 0.0)
+    epoch_rew = agg.get("currentEpochReward", 0.0)
+    notional_inc = agg.get("incentivizedNotionalUsd", 0.0)
+    total_notional = agg.get("totalNotionalUsd", 0.0)
+    pendle_price = 2.13
+
+    # Participated markets breakdown
+    depth_lines = []
+    for p in agg.get("participatedMarkets", []):
+        addr = p.get("marketAddress", "").lower()
+        m_name = next((k for k, v in WATCHLIST.items() if v["market"].lower() == addr), addr[:8])
+        user_long = p.get("long", {}).get("userMakingAmountInRange", 0.0)
+        tot_long = p.get("long", {}).get("totalMakingAmountInRange", 0.0)
+        if user_long > 0:
+            share_pct = (user_long / tot_long * 100.0) if tot_long > 0 else 0.0
+            depth_lines.append(f"  • <b>{m_name}:</b> <code>{share_pct:.1f}%</code> of band depth (${user_long:,.2f} / ${tot_long:,.2f})")
+
+    depth_body = "\n".join(depth_lines) if depth_lines else "  <i>No resting maker depth currently in range.</i>"
+
+    return (
+        f"💰 <b>[PENDLE V2: REWARDS & CAPITAL SUMMARY]</b>\n"
+        f"━━━━━━━━━━━━━━━━━━━━\n"
+        f"• <b>Lifetime Harvested:</b> <code>{lifetime_rew:.4f} PENDLE</code> (~${lifetime_rew * pendle_price:.2f})\n"
+        f"• <b>Active Epoch Rewards:</b> <code>{epoch_rew:.4f} PENDLE</code> (~${epoch_rew * pendle_price:.2f}) (Accruing)\n"
+        f"• <b>Incentivized Capital:</b> <code>${notional_inc:,.2f} USD</code> / ${total_notional:,.2f}\n"
+        f"• <b>ETH Gas Buffer:</b> <code>{gas['eth_balance']:.6f} ETH</code> (~{gas['runway_cancels']:,} cancels)\n\n"
+        f"🏆 <b>Maker Band Depth Capture:</b>\n"
+        f"{depth_body}\n\n"
+        f"🕒 <i>Report generated at {now_str}</i>"
+    )
+
+def build_shift_card() -> str:
+    now_str = datetime.now(timezone.utc).strftime('%H:%M:%S UTC')
+    states = LATEST_STATES or get_all_markets_state()
+    lines = []
+    for k, s in states.items():
+        o = s.get("order")
+        if o and o.get("making_amt", 0) > 0:
+            in_b = s["min_apy"] <= o["apy"] <= s["max_apy"]
+            status_tag = "✅ In-Band" if in_b else "🚨 OUT-OF-BAND"
+            buffer_bps = WATCHLIST[k].get("edge_buffer_bps", 20)
+            buffer_pct = buffer_bps / 100.0
+            rec_rate = round(min(s["max_apy"] - buffer_pct, max(s["min_apy"] + buffer_pct, s["implied_apy"])), 2)
+            lines.append(
+                f"• <b>{k}</b> ({status_tag}):\n"
+                f"  - Order: <code>{o['apy']:.2f}%</code> | Band: [{s['min_apy']:.2f}%, {s['max_apy']:.2f}%]\n"
+                f"  - Recommended APY: <code>{rec_rate:.2f}%</code>\n"
+                f"  - Shift CMD: <code>python rh/shift_order.py --market {k} --target-apy {rec_rate:.2f}</code>"
+            )
+
+    return (
+        f"🔄 <b>[LIMIT ORDER SHIFT & RE-CENTER ADVISOR]</b>\n"
+        f"━━━━━━━━━━━━━━━━━━━━\n" +
+        ("\n\n".join(lines) if lines else "<i>No active limit orders found.</i>") +
+        f"\n\n💡 <i>Dry-run is enforced by default. Append --execute to broadcast on-chain.</i>\n"
+        f"🕒 <i>Checked at {now_str}</i>"
+    )
+
+def build_radar_card() -> str:
+    now_str = datetime.now(timezone.utc).strftime('%H:%M:%S UTC')
+    states = LATEST_STATES or get_all_markets_state()
+    lines = []
+    for k, s in states.items():
+        band_str = f"[{s['min_apy']:.2f}%, {s['max_apy']:.2f}%]"
+        short_comp = f"${s['short_depth']:,.2f}" if s['short_depth'] > 0 else "None ($0 maker depth 🏆)"
+        lines.append(
+            f"• <b>{k}:</b>\n"
+            f"  - Implied APY: <code>{s['implied_apy']:.2f}%</code> | Underlying: <code>{s['underlying_apy']:.2f}%</code>\n"
+            f"  - Band: <code>{band_str}</code>\n"
+            f"  - Spot: <code>${s['spot_price']:.2f}</code> | PT: <code>${s['pt_price']:.2f}</code> | YT: <code>${s['yt_price']:.4f}</code>\n"
+            f"  - Liquidity: <code>${s['liquidity_usd']:,.0f}</code>\n"
+            f"  - Short Maker Competition: <code>{short_comp}</code>"
+        )
+
+    return (
+        f"📡 <b>[DEEP MARKET RADAR & MICROSTRUCTURE]</b>\n"
+        f"━━━━━━━━━━━━━━━━━━━━\n" +
+        "\n\n".join(lines) +
+        f"\n\n🕒 <i>Deep radar snapshot at {now_str}</i>"
+    )
+
 # -----------------------------------------------------------------------------
 # INTERACTIVE TELEGRAM POLLER THREAD
 # -----------------------------------------------------------------------------
 def telegram_command_worker():
-    """Background listener that responds to /status, /orders, /markets, /gas, /heartbeat, /help."""
+    """Background listener that responds to /status, /orders, /summary, /pnl, /markets, /radar, /shift, /gas, /heartbeat, /help."""
     offset = None
     while not SHUTDOWN_TRIGGERED:
         try:
@@ -387,8 +479,14 @@ def telegram_command_worker():
                     send_telegram_alert(build_status_card())
                 elif cmd in ("/orders", "/positions"):
                     send_telegram_alert(build_orders_card())
+                elif cmd in ("/summary", "/pnl", "/rewards"):
+                    send_telegram_alert(build_summary_card())
                 elif cmd in ("/markets", "/rates"):
                     send_telegram_alert(build_markets_card())
+                elif cmd in ("/radar", "/deep"):
+                    send_telegram_alert(build_radar_card())
+                elif cmd in ("/shift", "/recenter"):
+                    send_telegram_alert(build_shift_card())
                 elif cmd in ("/gas", "/runway"):
                     send_telegram_alert(build_gas_card())
                 elif cmd in ("/heartbeat", "/alive"):
@@ -398,11 +496,14 @@ def telegram_command_worker():
                     help_card = (
                         f"🦅 <b>[PENDLE V2 TRADING DESK • COMMANDS]</b>\n"
                         f"━━━━━━━━━━━━━━━━━━━━\n"
-                        f"• /status — Engine health, gas runway, and overview\n"
+                        f"• /status — Engine health, uptime, and gas runway\n"
                         f"• /orders — Active resting limit orders & in-band status\n"
+                        f"• /summary — Accrued PENDLE mining rewards & capital capture\n"
                         f"• /markets — Live rates, implied APYs, and incentive bands\n"
+                        f"• /radar — Deep microstructure & maker depth competition\n"
+                        f"• /shift — Limit order re-center advisor & CLI syntax\n"
                         f"• /gas — Gas metrics, runway, and 10x ceiling safety\n"
-                        f"• /heartbeat — Instant real-time heartbeat status card\n"
+                        f"• /heartbeat — Instant real-time heartbeat health card\n"
                         f"• /help — Show this command menu\n\n"
                         f"<i>Chain ID: 4663 (Robinhood Chain)</i>"
                     )
@@ -558,7 +659,7 @@ def check_market_moves(m_key: str, current: Dict[str, Any], prev: Dict[str, Any]
                     f"• <b>Reward Status:</b> ⚠️ <b>EARNING 0 REWARDS (Incentive paused)</b>\n\n"
                     f"💡 <b>Re-Center Recommendation:</b>\n"
                     f"  • Recommended Target: <code>{rec_rate:.2f}% APY</code> (Buffer: {buffer_bps} bps)\n"
-                    f"  • Shift Command: <code>python rh/shift_nvda_order.py --target-apy {rec_rate:.2f}</code>"
+                    f"  • Shift Command: <code>python rh/shift_nvda_order.py --market {m_key} --target-apy {rec_rate:.2f}</code>"
                 )
                 record_alert(drift_key)
         elif is_in_band:

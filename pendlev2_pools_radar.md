@@ -3,7 +3,8 @@
 > **Last Updated:** `2026-09-11 23:14:08 UTC`  
 > **Target Network:** Robinhood Chain (Chain ID: `4663`) | **Desk:** `rh/`  
 > **Desk Wallet:** [`0xaa7c405151c1a11fc2e9998a31b285c7b53d248b`](https://robinhoodchain.blockscout.com/address/0xaa7c405151c1a11fc2e9998a31b285c7b53d248b)  
-> **Institutional Doctrine:** Taleb Antifragile Yield Capture & Convergent Impermanent Loss Elimination
+> **Institutional Doctrine:** Taleb Antifragile Yield Capture & Convergent Impermanent Loss Elimination  
+> **Competitor Forensics:** [**`pendlev2_pools_roi_competitor_analysis.md`**](file:///Users/tin/eagle/daibang10/competitors/pendlev2_pools_roi_competitor_analysis.md) (Top pool winners up to **+156.8% ROI**)
 
 ---
 

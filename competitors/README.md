@@ -17,6 +17,10 @@ This directory maintains comprehensive forensic profiles on the dominant liquidi
   * Complete 3-month ranking of all 332 active makers across Ethereum, Arbitrum, Base, BSC, Monad, Plasma, Robinhood, and HyperEVM.
   * Breakdown of the Top 20 accounts capturing >$185k in protocol incentives.
   * Quantitative analysis of the 4 winning behavioral archetypes (Short-Yield Snipers, Delta-Neutral MMs, New Chain Colonists, and L2 Specialists).
+* 🏊‍♂️ [**`pendlev2_pools_roi_competitor_analysis.md`**](file:///Users/tin/eagle/daibang10/competitors/pendlev2_pools_roi_competitor_analysis.md):
+  * Dedicated 2-month forensic analysis of competitors benefiting significantly from **Pendle V2 AMM Liquidity Pools on ROI and Net Profit**.
+  * Profiles of `#1 Profit Whale` (`0x010b23`, **+$106.8k net profit**, single pool ROI up to **+156.8%**) and `#1 ROI Whale` (`0x11c9ac`, **+$96.4k net profit**, **+27.3% aggregate ROI** with $81.9k in Robinhood `sNET`).
+  * Contrast with Boros (0% pool LP yield) and mathematical proof of Convergent Zero Impermanent Loss at Maturity.
 
 ### 2. In-Depth Competitor Profiles
 

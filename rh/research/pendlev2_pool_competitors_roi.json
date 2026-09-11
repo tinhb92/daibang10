@@ -1,0 +1,3825 @@
+[
+  {
+    "wallet": "0x0000dacbf814b33b2d6432ab8e1557f56fc40000",
+    "total_gain_usd": -472.2385323604674,
+    "total_peak_tvl": 6554.216260545548,
+    "aggregate_roi_pct": -7.205110627844313,
+    "pools_count": 1,
+    "pools": [
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": -472.2385323604674,
+        "peak_tvl_usd": 6554.216260545548,
+        "trading_volume_usd": 12439.792984825823,
+        "lp_balance": 0,
+        "roi_pct": -7.205110627844313
+      }
+    ]
+  },
+  {
+    "wallet": "0x0071d46bf1d4d6c94cff1d6903695e18245d96a0",
+    "total_gain_usd": 0.0,
+    "total_peak_tvl": 2272.39566488598,
+    "aggregate_roi_pct": 0.0,
+    "pools_count": 1,
+    "pools": [
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 2272.39566488598,
+        "trading_volume_usd": 2272.39566488598,
+        "lp_balance": 0.7879865541332853,
+        "roi_pct": 0.0
+      }
+    ]
+  },
+  {
+    "wallet": "0x00d179855361339c00d15d3be224e944652a2d00",
+    "total_gain_usd": -7.617411641873844,
+    "total_peak_tvl": 993.2929776356661,
+    "aggregate_roi_pct": -0.7668846768659895,
+    "pools_count": 6,
+    "pools": [
+      {
+        "pool_name": "sNUKE",
+        "market_address": "0x8547b391a65deb89c41a4c3b2eb1502d0bbc566a",
+        "chainId": 4663,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 101.50261967460352,
+        "trading_volume_usd": 101.50261967460352,
+        "lp_balance": 2.5550913347472313,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain42161-0x60712e",
+        "market_address": "0x60712e3c9136cf411c561b4e948d4d26637561e7",
+        "chainId": 42161,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 306.19585215562245,
+        "trading_volume_usd": 0,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain1-0x36d3ca",
+        "market_address": "0x36d3ca43ae7939645c306e26603ce16e39a89192",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 142.2297992,
+        "trading_volume_usd": 142.22979919564045,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain80094-0x227d4a",
+        "market_address": "0x227d4a2e5734b500fa0bed940e4df54bdda25636",
+        "chainId": 80094,
+        "net_gain_usd": 67.20371392483938,
+        "peak_tvl_usd": 87.21217700245852,
+        "trading_volume_usd": 87.21217700241726,
+        "lp_balance": 0,
+        "roi_pct": 77.05771858320301
+      },
+      {
+        "pool_name": "Chain80094-0x31ed9f",
+        "market_address": "0x31ed9f16c7bbc26ae3404b14abc68adc7611b1a6",
+        "chainId": 80094,
+        "net_gain_usd": 5.1653089728722446,
+        "peak_tvl_usd": 54.48428856894246,
+        "trading_volume_usd": 113.31720182162243,
+        "lp_balance": 0,
+        "roi_pct": 9.480364172024103
+      },
+      {
+        "pool_name": "Chain42161-0x5e03c9",
+        "market_address": "0x5e03c94fc5fb2e21882000a96df0b63d2c4312e2",
+        "chainId": 42161,
+        "net_gain_usd": -79.98643453958546,
+        "peak_tvl_usd": 301.6682410340392,
+        "trading_volume_usd": 523.3500471099791,
+        "lp_balance": 0,
+        "roi_pct": -26.514701801360673
+      }
+    ]
+  },
+  {
+    "wallet": "0x00ff6b7d26407a46af2b631b4fa452a036d027e5",
+    "total_gain_usd": -18111.428616590638,
+    "total_peak_tvl": 380078.24249635544,
+    "aggregate_roi_pct": -4.765184267753582,
+    "pools_count": 23,
+    "pools": [
+      {
+        "pool_name": "Chain1-0x307c15",
+        "market_address": "0x307c15f808914df5a5dbe17e5608f84953ffa023",
+        "chainId": 1,
+        "net_gain_usd": 152.87490835694163,
+        "peak_tvl_usd": 58351.55066418041,
+        "trading_volume_usd": 114855.38795747922,
+        "lp_balance": 0,
+        "roi_pct": 0.2619894529226028
+      },
+      {
+        "pool_name": "Chain999-0x8867d2",
+        "market_address": "0x8867d2b7adb8609c51810237ecc9a25a2f601b97",
+        "chainId": 999,
+        "net_gain_usd": -1114.101561836266,
+        "peak_tvl_usd": 2981.952111501388,
+        "trading_volume_usd": 2981.952101950766,
+        "lp_balance": 0,
+        "roi_pct": -37.36148402716384
+      },
+      {
+        "pool_name": "Chain1-0x78728b",
+        "market_address": "0x78728b6a081e800204d5abaaa559a84f2404335e",
+        "chainId": 1,
+        "net_gain_usd": -52.82582807533885,
+        "peak_tvl_usd": 91.83763271939114,
+        "trading_volume_usd": 130.84943736339534,
+        "lp_balance": 0,
+        "roi_pct": -57.52089476951957
+      },
+      {
+        "pool_name": "Chain1-0x6d8c4d",
+        "market_address": "0x6d8c4de7071d5aee27fc3a810764e62a4a00ceb9",
+        "chainId": 1,
+        "net_gain_usd": 594.5665432329115,
+        "peak_tvl_usd": 24986.618309303263,
+        "trading_volume_usd": 50538.483052617084,
+        "lp_balance": 0,
+        "roi_pct": 2.3795398635898506
+      },
+      {
+        "pool_name": "Chain8453-0xa679ce",
+        "market_address": "0xa679ce6d07cbe579252f0f9742fc73884b1c611c",
+        "chainId": 8453,
+        "net_gain_usd": -27.414751999999776,
+        "peak_tvl_usd": 21592.924097,
+        "trading_volume_usd": 42334.44220540777,
+        "lp_balance": 0,
+        "roi_pct": -0.12696173930333332
+      },
+      {
+        "pool_name": "Chain1-0xdace11",
+        "market_address": "0xdace1121e10500e9e29d071f01593fd76b000f08",
+        "chainId": 1,
+        "net_gain_usd": -2105.718946163566,
+        "peak_tvl_usd": 2105.716810515527,
+        "trading_volume_usd": 2179.806659551323,
+        "lp_balance": 0,
+        "roi_pct": -100.00010142142708
+      },
+      {
+        "pool_name": "Chain42161-0xe11f97",
+        "market_address": "0xe11f9786b06438456b044b3e21712228adcaa0d1",
+        "chainId": 42161,
+        "net_gain_usd": 597.4836612755781,
+        "peak_tvl_usd": 23631.861022534576,
+        "trading_volume_usd": 47861.20570634473,
+        "lp_balance": 0,
+        "roi_pct": 2.528297118478469
+      },
+      {
+        "pool_name": "Chain1-0x4f43c7",
+        "market_address": "0x4f43c77872db6ba177c270986cd30c3381af37ee",
+        "chainId": 1,
+        "net_gain_usd": -6757.257754535845,
+        "peak_tvl_usd": 7211.706599035023,
+        "trading_volume_usd": 11964.576875484438,
+        "lp_balance": 0,
+        "roi_pct": -93.69845627718706
+      },
+      {
+        "pool_name": "Chain1-0xcc781b",
+        "market_address": "0xcc781b043933c10a04409b22aada3a3d1a7f29d4",
+        "chainId": 1,
+        "net_gain_usd": 23.156087803490436,
+        "peak_tvl_usd": 1236.155343549839,
+        "trading_volume_usd": 2231.8374854492313,
+        "lp_balance": 0,
+        "roi_pct": 1.8732344542550474
+      },
+      {
+        "pool_name": "Chain1-0x4a5067",
+        "market_address": "0x4a5067c3ff1abb7449244025b0e37feaf77d8e3e",
+        "chainId": 1,
+        "net_gain_usd": 76.19178832659576,
+        "peak_tvl_usd": 1996.43489,
+        "trading_volume_usd": 1996.4348903601103,
+        "lp_balance": 0,
+        "roi_pct": 3.8163923455873765
+      },
+      {
+        "pool_name": "Chain8453-0x44e2b0",
+        "market_address": "0x44e2b05b2c17a12b37f11de18000922e64e23faa",
+        "chainId": 8453,
+        "net_gain_usd": -48.686324,
+        "peak_tvl_usd": 20689.438757,
+        "trading_volume_usd": 40811.543267305344,
+        "lp_balance": 0,
+        "roi_pct": -0.23531969412910062
+      },
+      {
+        "pool_name": "Chain146-0x7fa648",
+        "market_address": "0x7fa648887b2a10cbbf7c54d00d86d0b2a0a37b53",
+        "chainId": 146,
+        "net_gain_usd": -9636.418344241189,
+        "peak_tvl_usd": 13622.318325485812,
+        "trading_volume_usd": 17566.200609190353,
+        "lp_balance": 0,
+        "roi_pct": -70.73992923959605
+      },
+      {
+        "pool_name": "Chain1-0xac24a6",
+        "market_address": "0xac24a6f0068d9701eaea76ab0b418021017f8d59",
+        "chainId": 1,
+        "net_gain_usd": 1414.7323003522088,
+        "peak_tvl_usd": 57492.467097934954,
+        "trading_volume_usd": 118675.46657323459,
+        "lp_balance": 0,
+        "roi_pct": 2.460726372973867
+      },
+      {
+        "pool_name": "Chain146-0x3aef1d",
+        "market_address": "0x3aef1d372d0a7a7e482f465bc14a42d78f920392",
+        "chainId": 146,
+        "net_gain_usd": -2546.024645329919,
+        "peak_tvl_usd": 16331.699014948133,
+        "trading_volume_usd": 29954.017340433944,
+        "lp_balance": 0,
+        "roi_pct": -15.589465878593433
+      },
+      {
+        "pool_name": "SHROOM",
+        "market_address": "0x49e5d9de386b5ff5cc344748977a412d07191256",
+        "chainId": 4663,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 2.010513040283569,
+        "trading_volume_usd": 2.010513040283569,
+        "lp_balance": 68.34148366138616,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain1-0x0271a8",
+        "market_address": "0x0271a803f0d3dec9ccd105a4a4d41e6ee1458765",
+        "chainId": 1,
+        "net_gain_usd": 60.128306475503955,
+        "peak_tvl_usd": 15111.951076482484,
+        "trading_volume_usd": 30282.11061623496,
+        "lp_balance": 0,
+        "roi_pct": 0.39788579364233656
+      },
+      {
+        "pool_name": "Chain1-0x2877ef",
+        "market_address": "0x2877efcb13fd7639dc826276012736d02645e60d",
+        "chainId": 1,
+        "net_gain_usd": 207.43233900000007,
+        "peak_tvl_usd": 1707.601632,
+        "trading_volume_usd": 9737.464832211204,
+        "lp_balance": 0,
+        "roi_pct": 12.147583787270593
+      },
+      {
+        "pool_name": "Chain999-0xab9b8a",
+        "market_address": "0xab9b8a04d21c9fb1fee7b7d219cab9e725a86b0a",
+        "chainId": 999,
+        "net_gain_usd": 1330.191123000001,
+        "peak_tvl_usd": 18501.471794,
+        "trading_volume_usd": 37611.6491259072,
+        "lp_balance": 0,
+        "roi_pct": 7.1896503035579045
+      },
+      {
+        "pool_name": "Chain1-0xad016c",
+        "market_address": "0xad016c9565a4aeec6d4cfc8a01c648ecbea1a602",
+        "chainId": 1,
+        "net_gain_usd": 198.7828739331826,
+        "peak_tvl_usd": 15016.561581634587,
+        "trading_volume_usd": 30128.155750662896,
+        "lp_balance": 0,
+        "roi_pct": 1.3237575915933788
+      },
+      {
+        "pool_name": "Chain1-0xbaa5ae",
+        "market_address": "0xbaa5aed0afd90390f00b1915744ad7e3296fb880",
+        "chainId": 1,
+        "net_gain_usd": 219.66572300000274,
+        "peak_tvl_usd": 35175.909945,
+        "trading_volume_usd": 70353.48992889366,
+        "lp_balance": 0,
+        "roi_pct": 0.6244777273522291
+      },
+      {
+        "pool_name": "Chain1-0xde7153",
+        "market_address": "0xde715330043799d7a80249660d1e6b61eb3713b3",
+        "chainId": 1,
+        "net_gain_usd": -712.6325083584543,
+        "peak_tvl_usd": 6890.514483489773,
+        "trading_volume_usd": 12600.387256333946,
+        "lp_balance": 0,
+        "roi_pct": -10.342224953825713
+      },
+      {
+        "pool_name": "Chain1-0xd614fe",
+        "market_address": "0xd614fe385663110d3d4fcae270e88d4d76c58b8e",
+        "chainId": 1,
+        "net_gain_usd": -2.921135999998283,
+        "peak_tvl_usd": 35349.540795,
+        "trading_volume_usd": 70347.67749721039,
+        "lp_balance": 0,
+        "roi_pct": -0.008263575521217129
+      },
+      {
+        "pool_name": "Chain146-0x30d30b",
+        "market_address": "0x30d30b975025835869541e4fca35ec4964eb992e",
+        "chainId": 146,
+        "net_gain_usd": 17.367529193522483,
+        "peak_tvl_usd": 0,
+        "trading_volume_usd": 0,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      }
+    ]
+  },
+  {
+    "wallet": "0x010280ca2c6d28d9c48162fd52d33840fc5063ea",
+    "total_gain_usd": -436.21899655518087,
+    "total_peak_tvl": 1970.3472816874091,
+    "aggregate_roi_pct": -22.139193461449196,
+    "pools_count": 1,
+    "pools": [
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": -436.21899655518087,
+        "peak_tvl_usd": 1970.3472816874091,
+        "trading_volume_usd": 5036.5374865895865,
+        "lp_balance": 0,
+        "roi_pct": -22.139193461449196
+      }
+    ]
+  },
+  {
+    "wallet": "0x010b23b2f2a5f6bc4ce0c68a5f65c248c1129831",
+    "total_gain_usd": 106821.11094682862,
+    "total_peak_tvl": 980936.9958852177,
+    "aggregate_roi_pct": 10.889701519558965,
+    "pools_count": 14,
+    "pools": [
+      {
+        "pool_name": "Chain999-0xab9b8a",
+        "market_address": "0xab9b8a04d21c9fb1fee7b7d219cab9e725a86b0a",
+        "chainId": 999,
+        "net_gain_usd": 118706.18802765649,
+        "peak_tvl_usd": 75728.561188,
+        "trading_volume_usd": 49565.4133527288,
+        "lp_balance": 0,
+        "roi_pct": 156.75220308618083
+      },
+      {
+        "pool_name": "Chain1-0xb451a3",
+        "market_address": "0xb451a36c8b6b2eac77ad0737ba732818143a0e25",
+        "chainId": 1,
+        "net_gain_usd": 773.5209274448773,
+        "peak_tvl_usd": 100009.07328261074,
+        "trading_volume_usd": 200791.66749266634,
+        "lp_balance": 0,
+        "roi_pct": 0.7734507500724683
+      },
+      {
+        "pool_name": "Chain1-0xdfaab8",
+        "market_address": "0xdfaab89058daca36759aafa80bebbc6dbf4c2e4e",
+        "chainId": 1,
+        "net_gain_usd": -1722.140803722143,
+        "peak_tvl_usd": 4990.099200772691,
+        "trading_volume_usd": 6753.207188909515,
+        "lp_balance": 0,
+        "roi_pct": -34.51115367517099
+      },
+      {
+        "pool_name": "Chain999-0x976fb3",
+        "market_address": "0x976fb34e06c933bdd97cb1e8b868e04442edaa8d",
+        "chainId": 999,
+        "net_gain_usd": 14160.813095421001,
+        "peak_tvl_usd": 138551.31939461885,
+        "trading_volume_usd": 261477.92774461242,
+        "lp_balance": 0,
+        "roi_pct": 10.220626665480161
+      },
+      {
+        "pool_name": "Chain146-0x3aef1d",
+        "market_address": "0x3aef1d372d0a7a7e482f465bc14a42d78f920392",
+        "chainId": 146,
+        "net_gain_usd": 84.82906457630587,
+        "peak_tvl_usd": 84045.28978661232,
+        "trading_volume_usd": 0,
+        "lp_balance": 0,
+        "roi_pct": 0.10093256242162234
+      },
+      {
+        "pool_name": "Chain42161-0xcaf560",
+        "market_address": "0xcaf560681233b54c996ba06c71566fd30f32c973",
+        "chainId": 42161,
+        "net_gain_usd": -2025.6885203234747,
+        "peak_tvl_usd": 9693.000639046499,
+        "trading_volume_usd": 13441.932014414322,
+        "lp_balance": 0,
+        "roi_pct": -20.898466798437575
+      },
+      {
+        "pool_name": "Chain1-0xb9b784",
+        "market_address": "0xb9b7840ec34094ce1269c38ba7a6ac7407f9c4e3",
+        "chainId": 1,
+        "net_gain_usd": -14432.68802123116,
+        "peak_tvl_usd": 59573.22382947862,
+        "trading_volume_usd": 97723.95309195347,
+        "lp_balance": 0,
+        "roi_pct": -24.226803744150292
+      },
+      {
+        "pool_name": "Chain1-0xebf5c5",
+        "market_address": "0xebf5c58b74a836f1e51d08e9c909c4a4530afd41",
+        "chainId": 1,
+        "net_gain_usd": 2667.3202556700076,
+        "peak_tvl_usd": 86712.5979456,
+        "trading_volume_usd": 341434.99632364063,
+        "lp_balance": 0,
+        "roi_pct": 3.076046986094658
+      },
+      {
+        "pool_name": "Chain1-0xff8118",
+        "market_address": "0xff81180a7f949ba1f940eae6aa3b3ceb890b1912",
+        "chainId": 1,
+        "net_gain_usd": 3879.3234885380402,
+        "peak_tvl_usd": 210895.5113316304,
+        "trading_volume_usd": 412650.85666519566,
+        "lp_balance": 0,
+        "roi_pct": 1.8394528475467908
+      },
+      {
+        "pool_name": "Chain1-0x645069",
+        "market_address": "0x64506968e80c9ed07bff60c8d9d57474effff2c9",
+        "chainId": 1,
+        "net_gain_usd": -6240.095654094794,
+        "peak_tvl_usd": 49741.339611660595,
+        "trading_volume_usd": 93242.58356897742,
+        "lp_balance": 0,
+        "roi_pct": -12.545089663471712
+      },
+      {
+        "pool_name": "Chain42161-0x86aacb",
+        "market_address": "0x86aacbed3e7b3d33149d5dcfd2def3c6d8498b8b",
+        "chainId": 42161,
+        "net_gain_usd": -10048.16188437389,
+        "peak_tvl_usd": 48871.55411247199,
+        "trading_volume_usd": 66450.02419833018,
+        "lp_balance": 0,
+        "roi_pct": -20.56034858488285
+      },
+      {
+        "pool_name": "Chain1-0x353d0b",
+        "market_address": "0x353d0b2efb5b3a7987fb06d30ad6160522d08426",
+        "chainId": 1,
+        "net_gain_usd": 921.5852960937218,
+        "peak_tvl_usd": 49965.739728081404,
+        "trading_volume_usd": 100853.06475225654,
+        "lp_balance": 0,
+        "roi_pct": 1.844434408674988
+      },
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": 100.82489817363374,
+        "peak_tvl_usd": 15758.277355633574,
+        "trading_volume_usd": 46130.77008982049,
+        "lp_balance": 3.6641813309756643,
+        "roi_pct": 0.639821827590748
+      },
+      {
+        "pool_name": "Chain146-0x6e4e95",
+        "market_address": "0x6e4e95fab7db1f0524b4b0a05f0b9c96380b7dfa",
+        "chainId": 146,
+        "net_gain_usd": -4.5192230000000455,
+        "peak_tvl_usd": 46401.408479,
+        "trading_volume_usd": 0,
+        "lp_balance": 0,
+        "roi_pct": -0.009739409100146866
+      }
+    ]
+  },
+  {
+    "wallet": "0x01e3deefee4e759e51e66aeca568a6eacfd191de",
+    "total_gain_usd": -188.98445937397287,
+    "total_peak_tvl": 989.3025714030816,
+    "aggregate_roi_pct": -19.10279674154137,
+    "pools_count": 1,
+    "pools": [
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": -188.98445937397287,
+        "peak_tvl_usd": 989.3025714030816,
+        "trading_volume_usd": 1789.592304751759,
+        "lp_balance": 0,
+        "roi_pct": -19.10279674154137
+      }
+    ]
+  },
+  {
+    "wallet": "0x0258da40e011acb8e0f6308d6dda4de363c9b604",
+    "total_gain_usd": -2793.199742653856,
+    "total_peak_tvl": 904697.1758964765,
+    "aggregate_roi_pct": -0.3087441651275231,
+    "pools_count": 148,
+    "pools": [
+      {
+        "pool_name": "Chain56-0x9e515a",
+        "market_address": "0x9e515a7115c86d7314159dbdab41e555d5330dfe",
+        "chainId": 56,
+        "net_gain_usd": 129.8123797078316,
+        "peak_tvl_usd": 768.5195347507156,
+        "trading_volume_usd": 768.5195346932813,
+        "lp_balance": 0,
+        "roi_pct": 16.891227072053386
+      },
+      {
+        "pool_name": "Chain1-0x2ec8c4",
+        "market_address": "0x2ec8c498ec997ad963969a2c93bf7150a1f5b213",
+        "chainId": 1,
+        "net_gain_usd": -796.9200310452009,
+        "peak_tvl_usd": 11667.520569000002,
+        "trading_volume_usd": 22277.879350522777,
+        "lp_balance": 0,
+        "roi_pct": -6.830243206620747
+      },
+      {
+        "pool_name": "Chain1-0x701c3e",
+        "market_address": "0x701c3efda4e90be78dd63cc0493d2e9b7d2245a6",
+        "chainId": 1,
+        "net_gain_usd": -77.7709740862459,
+        "peak_tvl_usd": 610.4117724020734,
+        "trading_volume_usd": 1000.8346520377464,
+        "lp_balance": 0,
+        "roi_pct": -12.740739547044445
+      },
+      {
+        "pool_name": "Chain1-0xb9b784",
+        "market_address": "0xb9b7840ec34094ce1269c38ba7a6ac7407f9c4e3",
+        "chainId": 1,
+        "net_gain_usd": -3403.6317299428642,
+        "peak_tvl_usd": 6914.629517190048,
+        "trading_volume_usd": 10563.82281582923,
+        "lp_balance": 0,
+        "roi_pct": -49.22363116463866
+      },
+      {
+        "pool_name": "Chain1-0x47306e",
+        "market_address": "0x47306e3cb4e325042556864b38aa0cbe8d928be5",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 1090.211289,
+        "trading_volume_usd": 1090.2112221655314,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain9745-0x0cb289",
+        "market_address": "0x0cb289e9df2d0dcfe13732638c89655fb80c2be2",
+        "chainId": 9745,
+        "net_gain_usd": 2375.1557865710756,
+        "peak_tvl_usd": 5000.000049,
+        "trading_volume_usd": 5000.000048721849,
+        "lp_balance": 0,
+        "roi_pct": 47.50311526589098
+      },
+      {
+        "pool_name": "Chain1-0xe93b4a",
+        "market_address": "0xe93b4a93e80bd3065b290394264af5d82422ee70",
+        "chainId": 1,
+        "net_gain_usd": 3.562501650984839,
+        "peak_tvl_usd": 1993.4616527215235,
+        "trading_volume_usd": 3986.983040321439,
+        "lp_balance": 0,
+        "roi_pct": 0.17870931432873177
+      },
+      {
+        "pool_name": "Chain80094-0x227d4a",
+        "market_address": "0x227d4a2e5734b500fa0bed940e4df54bdda25636",
+        "chainId": 80094,
+        "net_gain_usd": -1752.6296581720567,
+        "peak_tvl_usd": 5921.826798251643,
+        "trading_volume_usd": 8509.283763924535,
+        "lp_balance": 0,
+        "roi_pct": -29.59609792521291
+      },
+      {
+        "pool_name": "Chain1-0x19588f",
+        "market_address": "0x19588f29f9402bb508007feadd415c875ee3f19f",
+        "chainId": 1,
+        "net_gain_usd": -725.5622548129804,
+        "peak_tvl_usd": 1772.273191848924,
+        "trading_volume_usd": 4734.625003950745,
+        "lp_balance": 0,
+        "roi_pct": -40.93963945005779
+      },
+      {
+        "pool_name": "Chain8453-0x14936c",
+        "market_address": "0x14936c9b8eb798ca6291c2d6ce5de2c6cb5f1f9c",
+        "chainId": 8453,
+        "net_gain_usd": 65.84746102936924,
+        "peak_tvl_usd": 4988.715367710527,
+        "trading_volume_usd": 10012.370256652517,
+        "lp_balance": 0,
+        "roi_pct": 1.3199282014677989
+      },
+      {
+        "pool_name": "Chain42161-0x3803d8",
+        "market_address": "0x3803d89c31de8b7def55c86f2469a5ea4db41b92",
+        "chainId": 42161,
+        "net_gain_usd": -266.30567570667847,
+        "peak_tvl_usd": 7122.541239515868,
+        "trading_volume_usd": 13948.899703701838,
+        "lp_balance": 0,
+        "roi_pct": -3.7389137774199774
+      },
+      {
+        "pool_name": "Chain1-0x90c98a",
+        "market_address": "0x90c98ab215498b72abfec04c651e2e496ba364c0",
+        "chainId": 1,
+        "net_gain_usd": -1674.6788765175618,
+        "peak_tvl_usd": 2113.382797242946,
+        "trading_volume_usd": 2752.1361590761494,
+        "lp_balance": 0,
+        "roi_pct": -79.24162526080445
+      },
+      {
+        "pool_name": "Chain1-0xed81f8",
+        "market_address": "0xed81f8ba2941c3979de2265c295748a6b6956567",
+        "chainId": 1,
+        "net_gain_usd": 12.99078802936898,
+        "peak_tvl_usd": 2498.872096073588,
+        "trading_volume_usd": 2498.872096073588,
+        "lp_balance": 0,
+        "roi_pct": 0.519866064765022
+      },
+      {
+        "pool_name": "Chain1-0x4339ff",
+        "market_address": "0x4339ffe2b7592dc783ed13cce310531ab366deac",
+        "chainId": 1,
+        "net_gain_usd": 55.019484634399724,
+        "peak_tvl_usd": 18516.99212455652,
+        "trading_volume_usd": 101146.53158464859,
+        "lp_balance": 0,
+        "roi_pct": 0.2971297080233404
+      },
+      {
+        "pool_name": "Chain1-0x90b70c",
+        "market_address": "0x90b70c407f1077f8eb92bf423b44cd92329b737a",
+        "chainId": 1,
+        "net_gain_usd": 252.51903737303897,
+        "peak_tvl_usd": 11318.90715172315,
+        "trading_volume_usd": 22879.08657077962,
+        "lp_balance": 0,
+        "roi_pct": 2.230948924557583
+      },
+      {
+        "pool_name": "Chain1-0x4eaa57",
+        "market_address": "0x4eaa571eafcd96f51728756bd7f396459bb9b869",
+        "chainId": 1,
+        "net_gain_usd": 11.279695822594512,
+        "peak_tvl_usd": 17175.74147011847,
+        "trading_volume_usd": 34362.76263605953,
+        "lp_balance": 0,
+        "roi_pct": 0.06567224967969147
+      },
+      {
+        "pool_name": "Chain1-0xc5b32d",
+        "market_address": "0xc5b32dba5f29f8395fb9591e1a15f23a75214f33",
+        "chainId": 1,
+        "net_gain_usd": 885.2661626329582,
+        "peak_tvl_usd": 37893.274467,
+        "trading_volume_usd": 99490.04701774662,
+        "lp_balance": 0,
+        "roi_pct": 2.336209195655306
+      },
+      {
+        "pool_name": "Chain1-0x78728b",
+        "market_address": "0x78728b6a081e800204d5abaaa559a84f2404335e",
+        "chainId": 1,
+        "net_gain_usd": -5588.3616921473495,
+        "peak_tvl_usd": 12548.844698099034,
+        "trading_volume_usd": 18026.501538261262,
+        "lp_balance": 0,
+        "roi_pct": -44.53287793890623
+      },
+      {
+        "pool_name": "Chain1-0xd75fc2",
+        "market_address": "0xd75fc2b1ca52e72163787d1c370650f952e75dd7",
+        "chainId": 1,
+        "net_gain_usd": 43.5521068040185,
+        "peak_tvl_usd": 3311.0294812487527,
+        "trading_volume_usd": 6657.393994488046,
+        "lp_balance": 0,
+        "roi_pct": 1.315364512779658
+      },
+      {
+        "pool_name": "Chain42161-0x430236",
+        "market_address": "0x43023675c804a759cbf900da83dbcc97ee2afbe7",
+        "chainId": 42161,
+        "net_gain_usd": -41.382670543919986,
+        "peak_tvl_usd": 1004.473646590634,
+        "trading_volume_usd": 1965.1549464677687,
+        "lp_balance": 0,
+        "roi_pct": -4.119836362494953
+      },
+      {
+        "pool_name": "Chain1-0xa96feb",
+        "market_address": "0xa96febd6c5faf7739d3149bfb43211ec6844a37c",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 998.2845068809661,
+        "trading_volume_usd": 998.284479279373,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain1-0x36159b",
+        "market_address": "0x36159b0539b019f1896800b40e52150471799668",
+        "chainId": 1,
+        "net_gain_usd": 143.70501824497688,
+        "peak_tvl_usd": 9366.00421002796,
+        "trading_volume_usd": 18861.70771182527,
+        "lp_balance": 0,
+        "roi_pct": 1.534325791687295
+      },
+      {
+        "pool_name": "Chain42161-0xa0192f",
+        "market_address": "0xa0192f6567f8f5dc38c53323235fd08b318d2dca",
+        "chainId": 42161,
+        "net_gain_usd": 615.3452004966229,
+        "peak_tvl_usd": 1301.074996339388,
+        "trading_volume_usd": 8869.686087627333,
+        "lp_balance": 0,
+        "roi_pct": 47.295136885107645
+      },
+      {
+        "pool_name": "Chain1-0x45252f",
+        "market_address": "0x45252f9a932910abc436644f0b29f5531f0eb4cc",
+        "chainId": 1,
+        "net_gain_usd": 1113.1285358329478,
+        "peak_tvl_usd": 15436.761534353227,
+        "trading_volume_usd": 25465.023046891303,
+        "lp_balance": 0,
+        "roi_pct": 7.210894159087533
+      },
+      {
+        "pool_name": "Chain5000-0x7dc07c",
+        "market_address": "0x7dc07c575a0c512422dcab82ce9ed74db58be30c",
+        "chainId": 5000,
+        "net_gain_usd": -1591.1454214695298,
+        "peak_tvl_usd": 6314.093679131969,
+        "trading_volume_usd": 10991.095792116454,
+        "lp_balance": 0,
+        "roi_pct": -25.199902033893686
+      },
+      {
+        "pool_name": "Chain1-0xf80b67",
+        "market_address": "0xf80b67a32df07960c731794769309e3d30e9717f",
+        "chainId": 1,
+        "net_gain_usd": 56.31887378877218,
+        "peak_tvl_usd": 38600.475765,
+        "trading_volume_usd": 75085.07750511407,
+        "lp_balance": 0,
+        "roi_pct": 0.14590201978763662
+      },
+      {
+        "pool_name": "Chain1-0x901e71",
+        "market_address": "0x901e710c2f634131b36e3c68b072ed5db9250f3e",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 703.3093943573593,
+        "trading_volume_usd": 703.3080176816262,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain146-0x3aef1d",
+        "market_address": "0x3aef1d372d0a7a7e482f465bc14a42d78f920392",
+        "chainId": 146,
+        "net_gain_usd": -319.9553559075616,
+        "peak_tvl_usd": 3147.1041124899452,
+        "trading_volume_usd": 3928.1510426303357,
+        "lp_balance": 0,
+        "roi_pct": -10.166659394512925
+      },
+      {
+        "pool_name": "Chain1-0x9afe7a",
+        "market_address": "0x9afe7a057a09cf5da748d952078c9c99938b4329",
+        "chainId": 1,
+        "net_gain_usd": -1531.2035531138513,
+        "peak_tvl_usd": 2169.325407,
+        "trading_volume_usd": 2807.3442300280435,
+        "lp_balance": 0,
+        "roi_pct": -70.58431843249284
+      },
+      {
+        "pool_name": "Chain146-0x1ab825",
+        "market_address": "0x1ab8253c77eb7edd5e4d95ed435e1e77042e95a0",
+        "chainId": 146,
+        "net_gain_usd": 5.31202600000001,
+        "peak_tvl_usd": 254.48647,
+        "trading_volume_usd": 552.9996736086885,
+        "lp_balance": 0,
+        "roi_pct": 2.0873510485645896
+      },
+      {
+        "pool_name": "Chain1-0x107a2e",
+        "market_address": "0x107a2e3cd2bb9a32b9ee2e4d51143149f8367eba",
+        "chainId": 1,
+        "net_gain_usd": -97.08865906605946,
+        "peak_tvl_usd": 877.3460767181142,
+        "trading_volume_usd": 1626.8465387529166,
+        "lp_balance": 0,
+        "roi_pct": -11.066175781994572
+      },
+      {
+        "pool_name": "Chain1-0xde7153",
+        "market_address": "0xde715330043799d7a80249660d1e6b61eb3713b3",
+        "chainId": 1,
+        "net_gain_usd": -205.52156859484276,
+        "peak_tvl_usd": 4811.517385851836,
+        "trading_volume_usd": 18015.844649195948,
+        "lp_balance": 0,
+        "roi_pct": -4.271450191558583
+      },
+      {
+        "pool_name": "Chain42161-0xcb4716",
+        "market_address": "0xcb471665bf23b2ac6196d84d947490fd5571215f",
+        "chainId": 42161,
+        "net_gain_usd": -10.154345973902442,
+        "peak_tvl_usd": 5258.394674348532,
+        "trading_volume_usd": 16698.36891199263,
+        "lp_balance": 0,
+        "roi_pct": -0.19310733793789403
+      },
+      {
+        "pool_name": "Chain1-0x373dc7",
+        "market_address": "0x373dc7be84fadebc2e879c98289fc662c6985946",
+        "chainId": 1,
+        "net_gain_usd": 594.953751,
+        "peak_tvl_usd": 699.632066,
+        "trading_volume_usd": 699.6307813492892,
+        "lp_balance": 0,
+        "roi_pct": 85.0380907212449
+      },
+      {
+        "pool_name": "Chain42161-0xfd8aee",
+        "market_address": "0xfd8aee8fcc10aac1897f8d5271d112810c79e022",
+        "chainId": 42161,
+        "net_gain_usd": 3475.5211351264165,
+        "peak_tvl_usd": 12798.932908284512,
+        "trading_volume_usd": 32835.074383316234,
+        "lp_balance": 0,
+        "roi_pct": 27.154772667624314
+      },
+      {
+        "pool_name": "Chain1-0x41264f",
+        "market_address": "0x41264f35ef7ef8c4905ca98052e8d7480f12859e",
+        "chainId": 1,
+        "net_gain_usd": -7.653760479716987,
+        "peak_tvl_usd": 10280.681754295567,
+        "trading_volume_usd": 19562.660145458784,
+        "lp_balance": 0,
+        "roi_pct": -0.07444798567487047
+      },
+      {
+        "pool_name": "Chain1-0x8f7627",
+        "market_address": "0x8f7627bd46b30e296aa3aabe1df9bfac10920b6e",
+        "chainId": 1,
+        "net_gain_usd": -21.096984519602188,
+        "peak_tvl_usd": 1065.9564300910415,
+        "trading_volume_usd": 2213.6144726902903,
+        "lp_balance": 0,
+        "roi_pct": -1.9791601161222256
+      },
+      {
+        "pool_name": "Chain5000-0x99e837",
+        "market_address": "0x99e83709846b6cb82d47a0d78b175e68497ea28b",
+        "chainId": 5000,
+        "net_gain_usd": 154.4727317199961,
+        "peak_tvl_usd": 6104.184630319596,
+        "trading_volume_usd": 22489.15907578861,
+        "lp_balance": 0,
+        "roi_pct": 2.53060385743785
+      },
+      {
+        "pool_name": "Chain42161-0x14fbc7",
+        "market_address": "0x14fbc760efaf36781cb0eb3cb255ad976117b9bd",
+        "chainId": 42161,
+        "net_gain_usd": -912.3601675207664,
+        "peak_tvl_usd": 13271.391581809761,
+        "trading_volume_usd": 48093.503645621015,
+        "lp_balance": 0,
+        "roi_pct": -6.874638291671534
+      },
+      {
+        "pool_name": "Chain1-0x18bafc",
+        "market_address": "0x18bafcabf2d5898956ae6ac31543d9657a604165",
+        "chainId": 1,
+        "net_gain_usd": 39.636336081492956,
+        "peak_tvl_usd": 446.80599493991485,
+        "trading_volume_usd": 446.80393656361633,
+        "lp_balance": 0,
+        "roi_pct": 8.871039451210393
+      },
+      {
+        "pool_name": "Chain1-0x6d8c4d",
+        "market_address": "0x6d8c4de7071d5aee27fc3a810764e62a4a00ceb9",
+        "chainId": 1,
+        "net_gain_usd": -586.7823159899239,
+        "peak_tvl_usd": 2777.3009695804653,
+        "trading_volume_usd": 3590.925518622279,
+        "lp_balance": 0,
+        "roi_pct": -21.127789980880692
+      },
+      {
+        "pool_name": "Chain42161-0x8e101c",
+        "market_address": "0x8e101c690390de722163d4dc3f76043bebbbcadd",
+        "chainId": 42161,
+        "net_gain_usd": -54.28073225833379,
+        "peak_tvl_usd": 1065.3143337092797,
+        "trading_volume_usd": 3264.064061060442,
+        "lp_balance": 0,
+        "roi_pct": -5.095278505202841
+      },
+      {
+        "pool_name": "Chain1-0x40deae",
+        "market_address": "0x40deae18c3ce932fdd5df1f44b54d8cf3902787b",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 708.85072009,
+        "trading_volume_usd": 708.8501153378099,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain1-0x403829",
+        "market_address": "0x403829bce022844f66cdb2911d2260526d4eb843",
+        "chainId": 1,
+        "net_gain_usd": 1220.2717930668416,
+        "peak_tvl_usd": 1682.268195484197,
+        "trading_volume_usd": 4584.808184035235,
+        "lp_balance": 0,
+        "roi_pct": 72.53729199318414
+      },
+      {
+        "pool_name": "Chain1-0x1bd1ae",
+        "market_address": "0x1bd1ae9d7a377e63cd0c584a2c42b8c614937e81",
+        "chainId": 1,
+        "net_gain_usd": 365.972006,
+        "peak_tvl_usd": 986.926266,
+        "trading_volume_usd": 986.9253620804768,
+        "lp_balance": 0,
+        "roi_pct": 37.08200081484102
+      },
+      {
+        "pool_name": "Chain1-0x50dce0",
+        "market_address": "0x50dce085af29caba28f7308bea57c4043757b491",
+        "chainId": 1,
+        "net_gain_usd": -11.075770543901458,
+        "peak_tvl_usd": 5846.905729270213,
+        "trading_volume_usd": 27490.696351923856,
+        "lp_balance": 0,
+        "roi_pct": -0.1894296069877612
+      },
+      {
+        "pool_name": "Chain9745-0x5fa691",
+        "market_address": "0x5fa69163085efd4767f24639eb1fb87ed34bbb12",
+        "chainId": 9745,
+        "net_gain_usd": 911.4212074588753,
+        "peak_tvl_usd": 1624.870112763681,
+        "trading_volume_usd": 1624.870112763681,
+        "lp_balance": 0,
+        "roi_pct": 56.091942383546765
+      },
+      {
+        "pool_name": "Chain1-0x21d85f",
+        "market_address": "0x21d85ff3bedff031ef466c7d5295240c8ab2a2b8",
+        "chainId": 1,
+        "net_gain_usd": -109.65968066611008,
+        "peak_tvl_usd": 1751.6538818211973,
+        "trading_volume_usd": 549.431910427208,
+        "lp_balance": 0,
+        "roi_pct": -6.260350963404752
+      },
+      {
+        "pool_name": "Chain1-0xe1f19c",
+        "market_address": "0xe1f19cbda26b6418b0c8e1ee978a533184496066",
+        "chainId": 1,
+        "net_gain_usd": -250.0497014913895,
+        "peak_tvl_usd": 13969.865861460801,
+        "trading_volume_usd": 29037.934304345697,
+        "lp_balance": 0,
+        "roi_pct": -1.7899219933185693
+      },
+      {
+        "pool_name": "Chain1-0xad016c",
+        "market_address": "0xad016c9565a4aeec6d4cfc8a01c648ecbea1a602",
+        "chainId": 1,
+        "net_gain_usd": 562.4068013403867,
+        "peak_tvl_usd": 1703.9351182076853,
+        "trading_volume_usd": 1703.935113279094,
+        "lp_balance": 0,
+        "roi_pct": 33.00635073076986
+      },
+      {
+        "pool_name": "Chain1-0x9c560e",
+        "market_address": "0x9c560ebaf78e596cbcc27411d633a74d628dd7dc",
+        "chainId": 1,
+        "net_gain_usd": 2631.9818973710635,
+        "peak_tvl_usd": 8355.777864976104,
+        "trading_volume_usd": 8355.777864859538,
+        "lp_balance": 1292.6849367748873,
+        "roi_pct": 31.498945279567824
+      },
+      {
+        "pool_name": "Chain1-0x4f43c7",
+        "market_address": "0x4f43c77872db6ba177c270986cd30c3381af37ee",
+        "chainId": 1,
+        "net_gain_usd": 7989.480605721666,
+        "peak_tvl_usd": 16069.838913022995,
+        "trading_volume_usd": 42301.286205217875,
+        "lp_balance": 0,
+        "roi_pct": 49.71724140462286
+      },
+      {
+        "pool_name": "Chain1-0xa83174",
+        "market_address": "0xa83174f1dd8475378abca9d676dad3ce97409e0a",
+        "chainId": 1,
+        "net_gain_usd": 12.348753333652194,
+        "peak_tvl_usd": 2500.565985291476,
+        "trading_volume_usd": 2500.565985291476,
+        "lp_balance": 0,
+        "roi_pct": 0.49383833125334514
+      },
+      {
+        "pool_name": "Chain1-0x233062",
+        "market_address": "0x233062c1de76a38a4f41ab7c32e7bdb80a1dfc02",
+        "chainId": 1,
+        "net_gain_usd": 98.758069,
+        "peak_tvl_usd": 420.479937,
+        "trading_volume_usd": 420.47990996724036,
+        "lp_balance": 0,
+        "roi_pct": 23.486987204338362
+      },
+      {
+        "pool_name": "Chain1-0xb451a3",
+        "market_address": "0xb451a36c8b6b2eac77ad0737ba732818143a0e25",
+        "chainId": 1,
+        "net_gain_usd": -1788.0124363904672,
+        "peak_tvl_usd": 2291.9896567146816,
+        "trading_volume_usd": 2795.9610414254353,
+        "lp_balance": 0,
+        "roi_pct": -78.01136585203395
+      },
+      {
+        "pool_name": "Chain146-0x3f5ea5",
+        "market_address": "0x3f5ea53d1160177445b1898afbb16da111182418",
+        "chainId": 146,
+        "net_gain_usd": 19.535228000000117,
+        "peak_tvl_usd": 7028.941957,
+        "trading_volume_usd": 28542.348865834298,
+        "lp_balance": 0,
+        "roi_pct": 0.2779255842416699
+      },
+      {
+        "pool_name": "Chain42161-0x6ae790",
+        "market_address": "0x6ae79089b2cf4be441480801bb741a531d94312b",
+        "chainId": 42161,
+        "net_gain_usd": -262.5276784715319,
+        "peak_tvl_usd": 9465.413079081603,
+        "trading_volume_usd": 27657.22994634925,
+        "lp_balance": 0,
+        "roi_pct": -2.7735469786491773
+      },
+      {
+        "pool_name": "Chain1-0xdace11",
+        "market_address": "0xdace1121e10500e9e29d071f01593fd76b000f08",
+        "chainId": 1,
+        "net_gain_usd": -3779.5621827087007,
+        "peak_tvl_usd": 13091.380341572958,
+        "trading_volume_usd": 27534.520520795155,
+        "lp_balance": 0,
+        "roi_pct": -28.87061626883096
+      },
+      {
+        "pool_name": "Chain1-0x905a5a",
+        "market_address": "0x905a5a4792a0c27a2adb2777f98c577d320079ef",
+        "chainId": 1,
+        "net_gain_usd": -10.534118218279064,
+        "peak_tvl_usd": 500.37159440695547,
+        "trading_volume_usd": 990.2083747790457,
+        "lp_balance": 0,
+        "roi_pct": -2.105259038687875
+      },
+      {
+        "pool_name": "Chain1-0x3f53eb",
+        "market_address": "0x3f53eb4c57c7e7118be8566bcd503ea502639581",
+        "chainId": 1,
+        "net_gain_usd": -227.10004904433873,
+        "peak_tvl_usd": 1379.4922565682161,
+        "trading_volume_usd": 2491.1958854918494,
+        "lp_balance": 0,
+        "roi_pct": -16.46258237137909
+      },
+      {
+        "pool_name": "Chain1-0xc374f7",
+        "market_address": "0xc374f7ec85f8c7de3207a10bb1978ba104bda3b2",
+        "chainId": 1,
+        "net_gain_usd": -1206.6473454559173,
+        "peak_tvl_usd": 11259.72,
+        "trading_volume_usd": 28803.41909269125,
+        "lp_balance": 0,
+        "roi_pct": -10.716495130038023
+      },
+      {
+        "pool_name": "Chain80094-0x31ed9f",
+        "market_address": "0x31ed9f16c7bbc26ae3404b14abc68adc7611b1a6",
+        "chainId": 80094,
+        "net_gain_usd": -270.76738495326595,
+        "peak_tvl_usd": 2317.772785738951,
+        "trading_volume_usd": 4428.306054755569,
+        "lp_balance": 0,
+        "roi_pct": -11.682222977993076
+      },
+      {
+        "pool_name": "Chain1-0xeb5819",
+        "market_address": "0xeb5819b31a0378407f43aba2f3e9d16b40aa5ec7",
+        "chainId": 1,
+        "net_gain_usd": 764.9978195480576,
+        "peak_tvl_usd": 1570.4646876773093,
+        "trading_volume_usd": 3879.8056971601018,
+        "lp_balance": 0,
+        "roi_pct": 48.711558149039085
+      },
+      {
+        "pool_name": "Chain8453-0x53fb20",
+        "market_address": "0x53fb20ff03ef94ef224557cc6262e0f11c20f718",
+        "chainId": 8453,
+        "net_gain_usd": -805.4113319823881,
+        "peak_tvl_usd": 10483.324551141277,
+        "trading_volume_usd": 23096.1744860232,
+        "lp_balance": 0,
+        "roi_pct": -7.682785437513773
+      },
+      {
+        "pool_name": "Chain42161-0x65819e",
+        "market_address": "0x65819e4ee91923499934c86e93357f633033cb0b",
+        "chainId": 42161,
+        "net_gain_usd": 34.651074738576206,
+        "peak_tvl_usd": 543.4899474302415,
+        "trading_volume_usd": 1121.6309695990592,
+        "lp_balance": 0,
+        "roi_pct": 6.37566065433506
+      },
+      {
+        "pool_name": "Chain146-0x84ecc6",
+        "market_address": "0x84ecc6be573f15991736131f924f7bf571ed3b60",
+        "chainId": 146,
+        "net_gain_usd": 70.01783499999969,
+        "peak_tvl_usd": 5992.411593,
+        "trading_volume_usd": 12035.168086678223,
+        "lp_balance": 0,
+        "roi_pct": 1.1684416851771433
+      },
+      {
+        "pool_name": "Chain8453-0xe15578",
+        "market_address": "0xe15578523937ed7f08e8f7a1fa8a021e07025a08",
+        "chainId": 8453,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 799.3719998373911,
+        "trading_volume_usd": 799.3719998373911,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain1-0xeb4d30",
+        "market_address": "0xeb4d3057738b9ed930f451be473c1ccc42988384",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 953.06472708,
+        "trading_volume_usd": 953.0647270815933,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain1-0x54e28e",
+        "market_address": "0x54e28e62ea9e8d755dc6e74674eabe2abfdb004e",
+        "chainId": 1,
+        "net_gain_usd": 568.3978116058925,
+        "peak_tvl_usd": 1903.1174999999996,
+        "trading_volume_usd": 4280.639771714247,
+        "lp_balance": 0,
+        "roi_pct": 29.866669378317027
+      },
+      {
+        "pool_name": "Chain9745-0xe06c3b",
+        "market_address": "0xe06c3b972ba630ccf3392cecdbe070690b4e6b55",
+        "chainId": 9745,
+        "net_gain_usd": -3725.2999778265366,
+        "peak_tvl_usd": 20131.31391341126,
+        "trading_volume_usd": 50996.94931292813,
+        "lp_balance": 0,
+        "roi_pct": -18.505001679720383
+      },
+      {
+        "pool_name": "Chain1-0xda57ab",
+        "market_address": "0xda57abf95a7c21eb9df08fbaada182f749f6c62f",
+        "chainId": 1,
+        "net_gain_usd": 5700.684725380922,
+        "peak_tvl_usd": 5422.519063798358,
+        "trading_volume_usd": 16299.30399719655,
+        "lp_balance": 0,
+        "roi_pct": 105.129823580329
+      },
+      {
+        "pool_name": "Chain1-0xe26d7f",
+        "market_address": "0xe26d7f9409581f606242300fbfe63f56789f2169",
+        "chainId": 1,
+        "net_gain_usd": -1852.5953081976206,
+        "peak_tvl_usd": 2177.7572436831642,
+        "trading_volume_usd": 4287.719579796214,
+        "lp_balance": 0,
+        "roi_pct": -85.06895401548023
+      },
+      {
+        "pool_name": "Chain42161-0x9bc622",
+        "market_address": "0x9bc62257ffe7d0f7c52a019e6fc0af3102f8f44e",
+        "chainId": 42161,
+        "net_gain_usd": 24.716548999999937,
+        "peak_tvl_usd": 1009.525036,
+        "trading_volume_usd": 1935.4509190859385,
+        "lp_balance": 0,
+        "roi_pct": 2.448334426448037
+      },
+      {
+        "pool_name": "Chain42161-0x7d49e5",
+        "market_address": "0x7d49e5adc0eaad9c027857767638613253ef125f",
+        "chainId": 42161,
+        "net_gain_usd": 427.8192640284227,
+        "peak_tvl_usd": 5384.251596437341,
+        "trading_volume_usd": 25853.729543319787,
+        "lp_balance": 0,
+        "roi_pct": 7.945751723628643
+      },
+      {
+        "pool_name": "Chain42161-0x3be83c",
+        "market_address": "0x3be83cc235455ae1b624cf6e326505769ad8f9ea",
+        "chainId": 42161,
+        "net_gain_usd": 62.5996735937153,
+        "peak_tvl_usd": 1717.7877517591103,
+        "trading_volume_usd": 3211.459904496224,
+        "lp_balance": 0,
+        "roi_pct": 3.6442030471814544
+      },
+      {
+        "pool_name": "Chain42161-0x952083",
+        "market_address": "0x952083cde7aaa11ab8449057f7de23a970aa8472",
+        "chainId": 42161,
+        "net_gain_usd": 2272.397902006627,
+        "peak_tvl_usd": 34104.20034928323,
+        "trading_volume_usd": 126973.92525907214,
+        "lp_balance": 0,
+        "roi_pct": 6.6631027226368795
+      },
+      {
+        "pool_name": "Chain1-0x9a63fa",
+        "market_address": "0x9a63fa80b5ddfd3cab23803fdb93ad2c18f3d5aa",
+        "chainId": 1,
+        "net_gain_usd": 180.69183900000016,
+        "peak_tvl_usd": 18758.98693937561,
+        "trading_volume_usd": 41587.98587351485,
+        "lp_balance": 0,
+        "roi_pct": 0.9632281294504407
+      },
+      {
+        "pool_name": "Chain1-0xbbf399",
+        "market_address": "0xbbf399db59a845066aafce9ae55e68c505fa97b7",
+        "chainId": 1,
+        "net_gain_usd": 14.302040485422735,
+        "peak_tvl_usd": 1411.5126030873726,
+        "trading_volume_usd": 2810.424561419637,
+        "lp_balance": 0,
+        "roi_pct": 1.0132421385498205
+      },
+      {
+        "pool_name": "Chain1-0xd0354d",
+        "market_address": "0xd0354d4e7bcf345fb117cabe41acadb724eccca2",
+        "chainId": 1,
+        "net_gain_usd": -114.7306199242943,
+        "peak_tvl_usd": 1024.1797480585,
+        "trading_volume_usd": 1933.6288761927062,
+        "lp_balance": 0,
+        "roi_pct": -11.202195722165461
+      },
+      {
+        "pool_name": "Chain143-0x6f99cf",
+        "market_address": "0x6f99cf00ee7290ae78a072bb6910ef72d1129fe7",
+        "chainId": 143,
+        "net_gain_usd": 2637.0164280902623,
+        "peak_tvl_usd": 5363.072592,
+        "trading_volume_usd": 3039.4833198310444,
+        "lp_balance": 0,
+        "roi_pct": 49.16988131064742
+      },
+      {
+        "pool_name": "Chain8453-0x621d4d",
+        "market_address": "0x621d4d92e9bed484e6d2cb8a37d342c804a0908c",
+        "chainId": 8453,
+        "net_gain_usd": -3285.5776435856455,
+        "peak_tvl_usd": 5114.716056127331,
+        "trading_volume_usd": 6802.376351191797,
+        "lp_balance": 0,
+        "roi_pct": -64.23773299496433
+      },
+      {
+        "pool_name": "Chain1-0x645069",
+        "market_address": "0x64506968e80c9ed07bff60c8d9d57474effff2c9",
+        "chainId": 1,
+        "net_gain_usd": -1567.446290978376,
+        "peak_tvl_usd": 1904.4585029685425,
+        "trading_volume_usd": 2241.4698510606236,
+        "lp_balance": 0,
+        "roi_pct": -82.304040152891
+      },
+      {
+        "pool_name": "Chain1-0x7b246b",
+        "market_address": "0x7b246b8dbc2a640bf2d8221890cee8327fc23917",
+        "chainId": 1,
+        "net_gain_usd": 1.0087276507466647,
+        "peak_tvl_usd": 99.74029548618347,
+        "trading_volume_usd": 0,
+        "lp_balance": 0,
+        "roi_pct": 1.0113541832111363
+      },
+      {
+        "pool_name": "Chain8453-0xa46cac",
+        "market_address": "0xa46cac2243ecd83a6a9ad58232c1967ebd14d41b",
+        "chainId": 8453,
+        "net_gain_usd": 4248.98497276779,
+        "peak_tvl_usd": 10267.457377525656,
+        "trading_volume_usd": 16602.40027790613,
+        "lp_balance": 0,
+        "roi_pct": 41.38303005833124
+      },
+      {
+        "pool_name": "Chain1-0xfb6a09",
+        "market_address": "0xfb6a09634a3c1ac05318f85321980d1208372793",
+        "chainId": 1,
+        "net_gain_usd": -540.5831064409867,
+        "peak_tvl_usd": 3217.014640195474,
+        "trading_volume_usd": 8456.73353769341,
+        "lp_balance": 0,
+        "roi_pct": -16.803874613643025
+      },
+      {
+        "pool_name": "Chain1-0x6cb9a0",
+        "market_address": "0x6cb9a013604a567a5834fadd411165b1ca616783",
+        "chainId": 1,
+        "net_gain_usd": 587.5266605059816,
+        "peak_tvl_usd": 14087.010182592205,
+        "trading_volume_usd": 38124.857433930636,
+        "lp_balance": 0,
+        "roi_pct": 4.170698060770966
+      },
+      {
+        "pool_name": "Chain1-0x5546d0",
+        "market_address": "0x5546d0f27bed4075ea03a22c58f7016e24c94ea7",
+        "chainId": 1,
+        "net_gain_usd": 1235.7122754757056,
+        "peak_tvl_usd": 3167.9587,
+        "trading_volume_usd": 6958.210518883754,
+        "lp_balance": 0,
+        "roi_pct": 39.00657781541488
+      },
+      {
+        "pool_name": "Chain1-0x00b321",
+        "market_address": "0x00b321d89a8c36b3929f20b7955080baed706d1b",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 1013.5693943337355,
+        "trading_volume_usd": 1013.568672609074,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain42161-0xc8fd1f",
+        "market_address": "0xc8fd1f1e059d97ec71ae566dd6ca788dc92f36af",
+        "chainId": 42161,
+        "net_gain_usd": 3.0887692841072925,
+        "peak_tvl_usd": 256.2877939532491,
+        "trading_volume_usd": 515.6643571906055,
+        "lp_balance": 0,
+        "roi_pct": 1.2051956265504913
+      },
+      {
+        "pool_name": "Chain1-0x82d810",
+        "market_address": "0x82d810ededb09614144900f914e75dd76700f19d",
+        "chainId": 1,
+        "net_gain_usd": 70.52294270938155,
+        "peak_tvl_usd": 4376.076133989358,
+        "trading_volume_usd": 8745.480735550233,
+        "lp_balance": 0,
+        "roi_pct": 1.611556576029924
+      },
+      {
+        "pool_name": "Chain1-0xc9becd",
+        "market_address": "0xc9becdbc62efb867cb52222b34c187fb170379c6",
+        "chainId": 1,
+        "net_gain_usd": 223.1438834239167,
+        "peak_tvl_usd": 1174.9458336590276,
+        "trading_volume_usd": 2196.017103356177,
+        "lp_balance": 0,
+        "roi_pct": 18.991844307324353
+      },
+      {
+        "pool_name": "Chain1-0x487e1c",
+        "market_address": "0x487e1cef7805cf0225dec3dd0f3044fe0fb70611",
+        "chainId": 1,
+        "net_gain_usd": -1655.3914029602192,
+        "peak_tvl_usd": 7994.776729981101,
+        "trading_volume_usd": 15736.467362527854,
+        "lp_balance": 0,
+        "roi_pct": -20.70591160791719
+      },
+      {
+        "pool_name": "Chain1-0xa77c0d",
+        "market_address": "0xa77c0de4d26b7c97d1d42abd6733201206122e25",
+        "chainId": 1,
+        "net_gain_usd": 879.1277044682554,
+        "peak_tvl_usd": 2500.490414781969,
+        "trading_volume_usd": 2500.4902943032475,
+        "lp_balance": 0,
+        "roi_pct": 35.15821133611149
+      },
+      {
+        "pool_name": "Chain1-0x53a10f",
+        "market_address": "0x53a10f17d941d62ef7c65f7c0ffbc91be2613408",
+        "chainId": 1,
+        "net_gain_usd": 189.24511598138128,
+        "peak_tvl_usd": 4376.1513772992885,
+        "trading_volume_usd": 8894.552334033378,
+        "lp_balance": 0,
+        "roi_pct": 4.324464573210732
+      },
+      {
+        "pool_name": "Chain1-0xeab7b7",
+        "market_address": "0xeab7b7c8353ba1cb4b29cf7ae9c166efdc57835f",
+        "chainId": 1,
+        "net_gain_usd": -955.9858394840202,
+        "peak_tvl_usd": 3311.202279010074,
+        "trading_volume_usd": 3311.202279010074,
+        "lp_balance": 0,
+        "roi_pct": -28.87126061564032
+      },
+      {
+        "pool_name": "Chain1-0x1f40b9",
+        "market_address": "0x1f40b9a1d21afedbe3c49776e7790ed2139ec075",
+        "chainId": 1,
+        "net_gain_usd": 263.532240757279,
+        "peak_tvl_usd": 656.877192,
+        "trading_volume_usd": 656.877192238171,
+        "lp_balance": 0,
+        "roi_pct": 40.11895129969423
+      },
+      {
+        "pool_name": "Chain1-0x048680",
+        "market_address": "0x048680f64d6dff1748ba6d9a01f578433787e24b",
+        "chainId": 1,
+        "net_gain_usd": -30.49184801789003,
+        "peak_tvl_usd": 1024.0107694604076,
+        "trading_volume_usd": 2017.5214751637081,
+        "lp_balance": 0,
+        "roi_pct": -2.9776882164977048
+      },
+      {
+        "pool_name": "Chain42161-0xe11f97",
+        "market_address": "0xe11f9786b06438456b044b3e21712228adcaa0d1",
+        "chainId": 42161,
+        "net_gain_usd": 1746.8244815083037,
+        "peak_tvl_usd": 18300.498261793375,
+        "trading_volume_usd": 50673.71563805504,
+        "lp_balance": 0,
+        "roi_pct": 9.54522907802578
+      },
+      {
+        "pool_name": "Chain1-0xf32e58",
+        "market_address": "0xf32e58f92e60f4b0a37a69b95d642a471365eae8",
+        "chainId": 1,
+        "net_gain_usd": 2488.415944241259,
+        "peak_tvl_usd": 9085.418519657424,
+        "trading_volume_usd": 27903.540143079616,
+        "lp_balance": 0,
+        "roi_pct": 27.38911739571781
+      },
+      {
+        "pool_name": "Chain42161-0xf9f977",
+        "market_address": "0xf9f9779d8ff604732eba9ad345e6a27ef5c2a9d6",
+        "chainId": 42161,
+        "net_gain_usd": -7211.521387871439,
+        "peak_tvl_usd": 30044.069600268536,
+        "trading_volume_usd": 60477.759867006425,
+        "lp_balance": 0,
+        "roi_pct": -24.003144327048766
+      },
+      {
+        "pool_name": "Chain1-0x6d98a2",
+        "market_address": "0x6d98a2b6cdbf44939362a3e99793339ba2016af4",
+        "chainId": 1,
+        "net_gain_usd": -17.39269955264675,
+        "peak_tvl_usd": 16010.222833385873,
+        "trading_volume_usd": 133447.41219596344,
+        "lp_balance": 0,
+        "roi_pct": -0.10863496238402143
+      },
+      {
+        "pool_name": "Chain146-0x6e4e95",
+        "market_address": "0x6e4e95fab7db1f0524b4b0a05f0b9c96380b7dfa",
+        "chainId": 146,
+        "net_gain_usd": 210.18121099999988,
+        "peak_tvl_usd": 7030.118501,
+        "trading_volume_usd": 8826.730823444008,
+        "lp_balance": 0,
+        "roi_pct": 2.989725009188716
+      },
+      {
+        "pool_name": "Chain1-0x35a18c",
+        "market_address": "0x35a18cd59a214c9e797e14b1191b700eea251f6a",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 1470.1086202026213,
+        "trading_volume_usd": 1470.1086201268263,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain1-0x91bc86",
+        "market_address": "0x91bc86899c8391b6caaf26535b9cd82efe49a189",
+        "chainId": 1,
+        "net_gain_usd": -1151.5887160000002,
+        "peak_tvl_usd": 4997.824684,
+        "trading_volume_usd": 8761.867472351449,
+        "lp_balance": 0,
+        "roi_pct": -23.04179895878877
+      },
+      {
+        "pool_name": "Chain10-0x0c485f",
+        "market_address": "0x0c485feb9e6fee816652ea8f3bed2a8f59296e40",
+        "chainId": 10,
+        "net_gain_usd": -636.578831081773,
+        "peak_tvl_usd": 8958.367,
+        "trading_volume_usd": 17199.620189663347,
+        "lp_balance": 0,
+        "roi_pct": -7.105969548710976
+      },
+      {
+        "pool_name": "Chain1-0xbaa5ae",
+        "market_address": "0xbaa5aed0afd90390f00b1915744ad7e3296fb880",
+        "chainId": 1,
+        "net_gain_usd": 16.684795000000292,
+        "peak_tvl_usd": 2383.542417,
+        "trading_volume_usd": 4770.709469342104,
+        "lp_balance": 0,
+        "roi_pct": 0.6999999194895927
+      },
+      {
+        "pool_name": "Chain1-0x2a4138",
+        "market_address": "0x2a41384c28b3e327beda4ffb3d3706cad571d5fb",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 1901.7206561420826,
+        "trading_volume_usd": 1901.719856385524,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain1-0xd16cb4",
+        "market_address": "0xd16cb4138a0f09885defdbc1fe4a65a8f2fb3950",
+        "chainId": 1,
+        "net_gain_usd": 14.609431246373568,
+        "peak_tvl_usd": 442.455058087794,
+        "trading_volume_usd": 846.9762805582898,
+        "lp_balance": 0,
+        "roi_pct": 3.30190173653178
+      },
+      {
+        "pool_name": "Chain1-0x1c1b08",
+        "market_address": "0x1c1b087b612c541658e7008f56e02a75f99c91cb",
+        "chainId": 1,
+        "net_gain_usd": 88.09800217906896,
+        "peak_tvl_usd": 2358.7650637025927,
+        "trading_volume_usd": 5443.005915961154,
+        "lp_balance": 0,
+        "roi_pct": 3.734920596152126
+      },
+      {
+        "pool_name": "Chain1-0xcc781b",
+        "market_address": "0xcc781b043933c10a04409b22aada3a3d1a7f29d4",
+        "chainId": 1,
+        "net_gain_usd": 504.767525401261,
+        "peak_tvl_usd": 897.1502045222444,
+        "trading_volume_usd": 897.1502045069208,
+        "lp_balance": 0,
+        "roi_pct": 56.26343535975258
+      },
+      {
+        "pool_name": "Chain1-0x1b0896",
+        "market_address": "0x1b089668c0833baaf1c523a7ed3d6d8ccfee840b",
+        "chainId": 1,
+        "net_gain_usd": 52.84625241844003,
+        "peak_tvl_usd": 101.92843842012851,
+        "trading_volume_usd": 101.92843841559926,
+        "lp_balance": 0,
+        "roi_pct": 51.84642601961428
+      },
+      {
+        "pool_name": "Chain42161-0x24e4df",
+        "market_address": "0x24e4df37ea00c4954d668e3ce19ffdcffdec2cf6",
+        "chainId": 42161,
+        "net_gain_usd": 8709.886862415846,
+        "peak_tvl_usd": 15047.920451935346,
+        "trading_volume_usd": 37880.346385675635,
+        "lp_balance": 0,
+        "roi_pct": 57.88100017033017
+      },
+      {
+        "pool_name": "Chain1-0x307c15",
+        "market_address": "0x307c15f808914df5a5dbe17e5608f84953ffa023",
+        "chainId": 1,
+        "net_gain_usd": 17.016572982359644,
+        "peak_tvl_usd": 2497.8307259751286,
+        "trading_volume_usd": 2497.8307259751286,
+        "lp_balance": 0,
+        "roi_pct": 0.6812540499803701
+      },
+      {
+        "pool_name": "Chain1-0x13285b",
+        "market_address": "0x13285bcbc27f92b47b4edb99d744c07b48c977c0",
+        "chainId": 1,
+        "net_gain_usd": 2.9659210000003084,
+        "peak_tvl_usd": 5000.583391,
+        "trading_volume_usd": 10004.132703651761,
+        "lp_balance": 0,
+        "roi_pct": 0.05931149964098876
+      },
+      {
+        "pool_name": "Chain1-0x353d0b",
+        "market_address": "0x353d0b2efb5b3a7987fb06d30ad6160522d08426",
+        "chainId": 1,
+        "net_gain_usd": -1216.9715426419923,
+        "peak_tvl_usd": 3672.674655233226,
+        "trading_volume_usd": 5773.226560016777,
+        "lp_balance": 0,
+        "roi_pct": -33.13583850690175
+      },
+      {
+        "pool_name": "Chain42161-0x6f02c8",
+        "market_address": "0x6f02c88650837c8dfe89f66723c4743e9cf833cd",
+        "chainId": 42161,
+        "net_gain_usd": 3341.028985394546,
+        "peak_tvl_usd": 19761.278305572432,
+        "trading_volume_usd": 42830.309867574724,
+        "lp_balance": 0,
+        "roi_pct": 16.906947686944008
+      },
+      {
+        "pool_name": "Chain1-0x9c7387",
+        "market_address": "0x9c73879f795cefa1d5239de08d1b6aba2d2d1434",
+        "chainId": 1,
+        "net_gain_usd": -3732.973768576609,
+        "peak_tvl_usd": 4890.294613131115,
+        "trading_volume_usd": 9273.21288219769,
+        "lp_balance": 0,
+        "roi_pct": -76.33433287542759
+      },
+      {
+        "pool_name": "Chain1-0xf4c449",
+        "market_address": "0xf4c449d6a2d1840625211769779ada42857d04dd",
+        "chainId": 1,
+        "net_gain_usd": -707.8136314055812,
+        "peak_tvl_usd": 999.6701543527233,
+        "trading_volume_usd": 1291.5266772982072,
+        "lp_balance": 0,
+        "roi_pct": -70.80471776852072
+      },
+      {
+        "pool_name": "Chain143-0x475b98",
+        "market_address": "0x475b98c83aedbfdd0a0abaa930ec8cb501ac93b1",
+        "chainId": 143,
+        "net_gain_usd": 2084.4261762551423,
+        "peak_tvl_usd": 14989.904771,
+        "trading_volume_usd": 14989.904771116122,
+        "lp_balance": 5.604420245e-09,
+        "roi_pct": 13.905533144464979
+      },
+      {
+        "pool_name": "Chain1-0x70b70a",
+        "market_address": "0x70b70ac0445c3ef04e314dfda6caafd825428221",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 820.47096682,
+        "trading_volume_usd": 820.4691441223835,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain56-0x1d9d27",
+        "market_address": "0x1d9d27f0b89181cf1593ac2b36a37b444eb66bee",
+        "chainId": 56,
+        "net_gain_usd": -56.356925373124724,
+        "peak_tvl_usd": 1853.764711381255,
+        "trading_volume_usd": 7353.69108137349,
+        "lp_balance": 0,
+        "roi_pct": -3.040133681859373
+      },
+      {
+        "pool_name": "Chain1-0x621870",
+        "market_address": "0x62187066fd9c24559ffb54b0495a304ade26d50b",
+        "chainId": 1,
+        "net_gain_usd": 96.3700918809183,
+        "peak_tvl_usd": 1099.634961065632,
+        "trading_volume_usd": 2260.680219646494,
+        "lp_balance": 0,
+        "roi_pct": 8.763825750640754
+      },
+      {
+        "pool_name": "Chain1-0xd3ed08",
+        "market_address": "0xd3ed08461881b961fd5f2997908401cad42b60cf",
+        "chainId": 1,
+        "net_gain_usd": -3630.487355414187,
+        "peak_tvl_usd": 6954.61382800261,
+        "trading_volume_usd": 10265.816107012684,
+        "lp_balance": 0,
+        "roi_pct": -52.20257292786127
+      },
+      {
+        "pool_name": "Chain1-0x235319",
+        "market_address": "0x2353193fa14a6477a4523e2c078e4063022fcf66",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 543.0279741390248,
+        "trading_volume_usd": 543.0279413293921,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain1-0xb4460e",
+        "market_address": "0xb4460e76d99ecad95030204d3c25fb33c4833997",
+        "chainId": 1,
+        "net_gain_usd": 109.60826388563422,
+        "peak_tvl_usd": 627.352944985096,
+        "trading_volume_usd": 1765.5261893720872,
+        "lp_balance": 0,
+        "roi_pct": 17.47154687992071
+      },
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": 7.005535436865543,
+        "peak_tvl_usd": 2567.8207106875584,
+        "trading_volume_usd": 3164.69047152815,
+        "lp_balance": 0.48346631856533934,
+        "roi_pct": 0.2728202715909143
+      },
+      {
+        "pool_name": "Chain1-0x85667e",
+        "market_address": "0x85667e484a32d884010cf16427d90049ccf46e97",
+        "chainId": 1,
+        "net_gain_usd": -983.2685497637508,
+        "peak_tvl_usd": 2990.2027913192233,
+        "trading_volume_usd": 4983.664444025666,
+        "lp_balance": 0,
+        "roi_pct": -32.883005547926416
+      },
+      {
+        "pool_name": "Chain1-0x1bcbdb",
+        "market_address": "0x1bcbdb8c8652345a5acf04e6e74f70086c68fefc",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 2795.645198857881,
+        "trading_volume_usd": 2795.5379239684416,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain42161-0x1c3330",
+        "market_address": "0x1c3330f1886d8b7eec8af75c66fb6fd6ccbe28b5",
+        "chainId": 42161,
+        "net_gain_usd": -63.26306857390131,
+        "peak_tvl_usd": 1362.6353728969605,
+        "trading_volume_usd": 2660.381109012399,
+        "lp_balance": 0,
+        "roi_pct": -4.6426997149944915
+      },
+      {
+        "pool_name": "Chain42161-0x279b44",
+        "market_address": "0x279b44e48226d40ec389129061cb0b56c5c09e46",
+        "chainId": 42161,
+        "net_gain_usd": 136.40208376434276,
+        "peak_tvl_usd": 13116.0242494024,
+        "trading_volume_usd": 26338.939311519403,
+        "lp_balance": 0,
+        "roi_pct": 1.0399651690988416
+      },
+      {
+        "pool_name": "Chain1-0x2084b3",
+        "market_address": "0x2084b373979415bc93190071af3390f92dcdd189",
+        "chainId": 1,
+        "net_gain_usd": 281.567766276,
+        "peak_tvl_usd": 1486.385478701,
+        "trading_volume_usd": 1486.3828164759811,
+        "lp_balance": 0,
+        "roi_pct": 18.94311874750493
+      },
+      {
+        "pool_name": "Chain42161-0x60712e",
+        "market_address": "0x60712e3c9136cf411c561b4e948d4d26637561e7",
+        "chainId": 42161,
+        "net_gain_usd": -571.3244001818454,
+        "peak_tvl_usd": 5307.266843943869,
+        "trading_volume_usd": 7512.3482745286265,
+        "lp_balance": 0,
+        "roi_pct": -10.764945818275267
+      },
+      {
+        "pool_name": "Chain1-0xbeab09",
+        "market_address": "0xbeab098b510f758cd35122ee345957b8eccbb322",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 17024.562355250815,
+        "trading_volume_usd": 17024.562355250815,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain1-0x45f163",
+        "market_address": "0x45f163e583d34b8e276445dd3da9ae077d137d72",
+        "chainId": 1,
+        "net_gain_usd": 304.36189370718375,
+        "peak_tvl_usd": 2229.8215757963626,
+        "trading_volume_usd": 8541.558727904352,
+        "lp_balance": 0,
+        "roi_pct": 13.649607529628616
+      },
+      {
+        "pool_name": "Chain42161-0x5e03c9",
+        "market_address": "0x5e03c94fc5fb2e21882000a96df0b63d2c4312e2",
+        "chainId": 42161,
+        "net_gain_usd": -1290.4121047617716,
+        "peak_tvl_usd": 5795.314440764359,
+        "trading_volume_usd": 22193.919616570434,
+        "lp_balance": 0,
+        "roi_pct": -22.26647264702303
+      },
+      {
+        "pool_name": "Chain1-0x07b171",
+        "market_address": "0x07b1711d4af74af661dde3b774741993b79fc59c",
+        "chainId": 1,
+        "net_gain_usd": 135.84458746184532,
+        "peak_tvl_usd": 12307.913689917548,
+        "trading_volume_usd": 22378.298978121536,
+        "lp_balance": 0,
+        "roi_pct": 1.103717420224738
+      },
+      {
+        "pool_name": "Chain56-0x080f52",
+        "market_address": "0x080f52a881ba96eee2268682733c857c560e5dd4",
+        "chainId": 56,
+        "net_gain_usd": -338.07602250234555,
+        "peak_tvl_usd": 11269.6948152,
+        "trading_volume_usd": 22159.885828724156,
+        "lp_balance": 0,
+        "roi_pct": -2.9998684795471617
+      },
+      {
+        "pool_name": "Chain1-0xe45d2c",
+        "market_address": "0xe45d2ce15abba3c67b9ff1e7a69225c855d3da82",
+        "chainId": 1,
+        "net_gain_usd": -1037.6915403170754,
+        "peak_tvl_usd": 1193.030149159593,
+        "trading_volume_usd": 1348.3672034765711,
+        "lp_balance": 0,
+        "roi_pct": -86.97949008648752
+      },
+      {
+        "pool_name": "Chain1-0xfabeef",
+        "market_address": "0xfabeefc5369aa5270b401f4ee062d17fb5f1ec2a",
+        "chainId": 1,
+        "net_gain_usd": 148.21211978439501,
+        "peak_tvl_usd": 9224.237063568266,
+        "trading_volume_usd": 16032.145732571778,
+        "lp_balance": 0,
+        "roi_pct": 1.606768329597345
+      },
+      {
+        "pool_name": "Chain42161-0x08a152",
+        "market_address": "0x08a152834de126d2ef83d612ff36e4523fd0017f",
+        "chainId": 42161,
+        "net_gain_usd": -61.588166848684295,
+        "peak_tvl_usd": 6951.736756708098,
+        "trading_volume_usd": 18046.584420469124,
+        "lp_balance": 0,
+        "roi_pct": -0.8859392840106413
+      },
+      {
+        "pool_name": "Chain1-0x6d520a",
+        "market_address": "0x6d520a943a4da0784917a2e71defe95248a1daa1",
+        "chainId": 1,
+        "net_gain_usd": -1275.220421788106,
+        "peak_tvl_usd": 3811.971209325484,
+        "trading_volume_usd": 3811.9710928974264,
+        "lp_balance": 0,
+        "roi_pct": -33.453044416192014
+      },
+      {
+        "pool_name": "Chain42161-0x58f50d",
+        "market_address": "0x58f50de493b6be3585558f95f208de489c296e24",
+        "chainId": 42161,
+        "net_gain_usd": -95.56598930840204,
+        "peak_tvl_usd": 2518.2025254041628,
+        "trading_volume_usd": 4939.443312904931,
+        "lp_balance": 0,
+        "roi_pct": -3.79500807994242
+      },
+      {
+        "pool_name": "Chain9745-0x7209d2",
+        "market_address": "0x7209d228cd585f4b77a031f7b902f989439ac319",
+        "chainId": 9745,
+        "net_gain_usd": 62.766776000001826,
+        "peak_tvl_usd": 18274.648447,
+        "trading_volume_usd": 36437.67826138755,
+        "lp_balance": 0,
+        "roi_pct": 0.343463657766318
+      },
+      {
+        "pool_name": "Chain42161-0x35f3db",
+        "market_address": "0x35f3db08a6e9cb4391348b0b404f493e7ae264c0",
+        "chainId": 42161,
+        "net_gain_usd": -945.3883393710958,
+        "peak_tvl_usd": 6377.6172647470175,
+        "trading_volume_usd": 11802.282837276936,
+        "lp_balance": 0,
+        "roi_pct": -14.823535187613626
+      },
+      {
+        "pool_name": "Chain1-0x07c5b1",
+        "market_address": "0x07c5b1f5265591a8e0e541466654b07dd2d1a6fd",
+        "chainId": 1,
+        "net_gain_usd": -807.5442142665946,
+        "peak_tvl_usd": 5349.968318009652,
+        "trading_volume_usd": 9892.39242175271,
+        "lp_balance": 0,
+        "roi_pct": -15.094373765694098
+      },
+      {
+        "pool_name": "Chain42161-0x0a2129",
+        "market_address": "0x0a21291a184cf36ad3b0a0def4a17c12cbd66a14",
+        "chainId": 42161,
+        "net_gain_usd": 211.32311699999985,
+        "peak_tvl_usd": 10881.90379,
+        "trading_volume_usd": 22147.840683564613,
+        "lp_balance": 0,
+        "roi_pct": 1.941968253700209
+      },
+      {
+        "pool_name": "Chain1-0x9471d9",
+        "market_address": "0x9471d9c5b57b59d42b739b00389a6d520c33a7a9",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 889.23696857,
+        "trading_volume_usd": 889.2349271880079,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain146-0x30d30b",
+        "market_address": "0x30d30b975025835869541e4fca35ec4964eb992e",
+        "chainId": 146,
+        "net_gain_usd": 74.78805257632115,
+        "peak_tvl_usd": 0,
+        "trading_volume_usd": 0,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      }
+    ]
+  },
+  {
+    "wallet": "0x0263b4bcf9de6d24c4381e4f4902223f30d7696c",
+    "total_gain_usd": 1.5542998945427995,
+    "total_peak_tvl": 254.80797415022792,
+    "aggregate_roi_pct": 0.6099887178673719,
+    "pools_count": 1,
+    "pools": [
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": 1.5542998945427995,
+        "peak_tvl_usd": 254.80797415022792,
+        "trading_volume_usd": 1274.6272119568685,
+        "lp_balance": 0.06425682122973202,
+        "roi_pct": 0.6099887178673719
+      }
+    ]
+  },
+  {
+    "wallet": "0x03d0958903b9f04c845ae21342c79c42bb5102e8",
+    "total_gain_usd": 28.39837202539128,
+    "total_peak_tvl": 844.1478250170833,
+    "aggregate_roi_pct": 3.3641467979635644,
+    "pools_count": 4,
+    "pools": [
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": 23.93804842616827,
+        "peak_tvl_usd": 323.62796282178414,
+        "trading_volume_usd": 323.62796282125055,
+        "lp_balance": 0.07300352421926302,
+        "roi_pct": 7.3967799993075705
+      },
+      {
+        "pool_name": "NVDA",
+        "market_address": "0x206a5cd00e9ffabb8ca564076b64799a78df19b9",
+        "chainId": 4663,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 199.74006519529928,
+        "trading_volume_usd": 199.74006519529928,
+        "lp_balance": 0.2860399553295506,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain1-0xf80b67",
+        "market_address": "0xf80b67a32df07960c731794769309e3d30e9717f",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 320.779797,
+        "trading_volume_usd": 320.77979664093084,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain1-0x13285b",
+        "market_address": "0x13285bcbc27f92b47b4edb99d744c07b48c977c0",
+        "chainId": 1,
+        "net_gain_usd": 4.460323599223009,
+        "peak_tvl_usd": 0,
+        "trading_volume_usd": 0,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      }
+    ]
+  },
+  {
+    "wallet": "0x03e814f66a8254be82436f881cd24ba03d848cf0",
+    "total_gain_usd": -1.6243385988389187,
+    "total_peak_tvl": 2068.80448564015,
+    "aggregate_roi_pct": -0.07851580998173928,
+    "pools_count": 1,
+    "pools": [
+      {
+        "pool_name": "NVDA",
+        "market_address": "0x206a5cd00e9ffabb8ca564076b64799a78df19b9",
+        "chainId": 4663,
+        "net_gain_usd": -1.6243385988389187,
+        "peak_tvl_usd": 2068.80448564015,
+        "trading_volume_usd": 4786.346081548421,
+        "lp_balance": 0,
+        "roi_pct": -0.07851580998173928
+      }
+    ]
+  },
+  {
+    "wallet": "0x03eacf88f8d1f0ff862c33377b45e2b6806fd7e7",
+    "total_gain_usd": 15.962458753224258,
+    "total_peak_tvl": 4873.930238319526,
+    "aggregate_roi_pct": 0.3275069189075617,
+    "pools_count": 7,
+    "pools": [
+      {
+        "pool_name": "Chain80094-0x850a9f",
+        "market_address": "0x850a9f099de3081fe88f8be6207492c52754acb5",
+        "chainId": 80094,
+        "net_gain_usd": -0.21484895422021819,
+        "peak_tvl_usd": 88.29048930169223,
+        "trading_volume_usd": 112.69902118713306,
+        "lp_balance": 0,
+        "roi_pct": -0.24334325918850724
+      },
+      {
+        "pool_name": "Chain8453-0xf5e6cf",
+        "market_address": "0xf5e6cf47ee975600786248cae0a80ab99daf0350",
+        "chainId": 8453,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 208.69728422115648,
+        "trading_volume_usd": 208.69728422115648,
+        "lp_balance": 109.33273895706013,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 196.84009530903373,
+        "trading_volume_usd": 196.8400953090337,
+        "lp_balance": 0.05775316975501898,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain1-0x4ccf6d",
+        "market_address": "0x4ccf6deb3d1895373f604b418ff55d8adae8b846",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 2015.579234,
+        "trading_volume_usd": 2015.5792343168614,
+        "lp_balance": 7.84014784e-10,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain8453-0x6ae9cf",
+        "market_address": "0x6ae9cf67d57e49c55f900933f5dcfc4b63461d6e",
+        "chainId": 8453,
+        "net_gain_usd": -5.307182700495055,
+        "peak_tvl_usd": 214.1106899258388,
+        "trading_volume_usd": 422.80797414699526,
+        "lp_balance": 0,
+        "roi_pct": -2.478709821697037
+      },
+      {
+        "pool_name": "Chain1-0x9afe7a",
+        "market_address": "0x9afe7a057a09cf5da748d952078c9c99938b4329",
+        "chainId": 1,
+        "net_gain_usd": 18.926407000000083,
+        "peak_tvl_usd": 2000.104398,
+        "trading_volume_usd": 4015.683634740335,
+        "lp_balance": 0,
+        "roi_pct": 0.9462709556023926
+      },
+      {
+        "pool_name": "Chain8453-0xe15578",
+        "market_address": "0xe15578523937ed7f08e8f7a1fa8a021e07025a08",
+        "chainId": 8453,
+        "net_gain_usd": 2.55808340793945,
+        "peak_tvl_usd": 150.3080475618047,
+        "trading_volume_usd": 302.34818001124785,
+        "lp_balance": 0,
+        "roi_pct": 1.7018938436330893
+      }
+    ]
+  },
+  {
+    "wallet": "0x0433b29e11c794a7b077b9d4d08a5b4be0bfbf8f",
+    "total_gain_usd": 0.0,
+    "total_peak_tvl": 1158.1511641392208,
+    "aggregate_roi_pct": 0.0,
+    "pools_count": 1,
+    "pools": [
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 1158.1511641392208,
+        "trading_volume_usd": 1158.1511641392208,
+        "lp_balance": 0.4078818142596219,
+        "roi_pct": 0.0
+      }
+    ]
+  },
+  {
+    "wallet": "0x049864e7cca8f854097e5176ce7586f0c88ce095",
+    "total_gain_usd": -2375.0408322849635,
+    "total_peak_tvl": 31155.279473271723,
+    "aggregate_roi_pct": -7.6232371284697455,
+    "pools_count": 15,
+    "pools": [
+      {
+        "pool_name": "Chain42161-0x8e101c",
+        "market_address": "0x8e101c690390de722163d4dc3f76043bebbbcadd",
+        "chainId": 42161,
+        "net_gain_usd": 10.33766236767103,
+        "peak_tvl_usd": 498.1709202521495,
+        "trading_volume_usd": 987.1260785229174,
+        "lp_balance": 0,
+        "roi_pct": 2.075123606660665
+      },
+      {
+        "pool_name": "Chain9745-0x0d7d9a",
+        "market_address": "0x0d7d9abee602c7f0a242ea7e200e47c372acba84",
+        "chainId": 9745,
+        "net_gain_usd": 51.84594888960437,
+        "peak_tvl_usd": 152.82394923026666,
+        "trading_volume_usd": 152.82394923024415,
+        "lp_balance": 0,
+        "roi_pct": 33.925277517521664
+      },
+      {
+        "pool_name": "Chain999-0x181c91",
+        "market_address": "0x181c9118a16e7ac4bb6ea545adaa119dcaf7e307",
+        "chainId": 999,
+        "net_gain_usd": -4.884187999999982,
+        "peak_tvl_usd": 1298.089568,
+        "trading_volume_usd": 3862.6106665710386,
+        "lp_balance": 0,
+        "roi_pct": -0.3762597066029254
+      },
+      {
+        "pool_name": "Chain42161-0x5e03c9",
+        "market_address": "0x5e03c94fc5fb2e21882000a96df0b63d2c4312e2",
+        "chainId": 42161,
+        "net_gain_usd": -95.92348128865487,
+        "peak_tvl_usd": 670.7578325776615,
+        "trading_volume_usd": 670.7578325776615,
+        "lp_balance": 0,
+        "roi_pct": -14.300762008254104
+      },
+      {
+        "pool_name": "Chain42161-0x551c42",
+        "market_address": "0x551c423c441db0b691b5630f04d2080caee25963",
+        "chainId": 42161,
+        "net_gain_usd": 71.13450276854931,
+        "peak_tvl_usd": 1394.2151869050329,
+        "trading_volume_usd": 1394.2151869050329,
+        "lp_balance": 0,
+        "roi_pct": 5.102117910970271
+      },
+      {
+        "pool_name": "Chain1-0x6d98a2",
+        "market_address": "0x6d98a2b6cdbf44939362a3e99793339ba2016af4",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 4143.323985826666,
+        "trading_volume_usd": 4143.32398581851,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain42161-0x6f02c8",
+        "market_address": "0x6f02c88650837c8dfe89f66723c4743e9cf833cd",
+        "chainId": 42161,
+        "net_gain_usd": -668.7206612603561,
+        "peak_tvl_usd": 765.1936274173737,
+        "trading_volume_usd": 765.1921579415633,
+        "lp_balance": 0,
+        "roi_pct": -87.39234584550499
+      },
+      {
+        "pool_name": "Chain9745-0x15735f",
+        "market_address": "0x15735f2f53c5cd25a57dff83b11c93eceaf72073",
+        "chainId": 9745,
+        "net_gain_usd": -219.88060299579297,
+        "peak_tvl_usd": 1430.4481988032242,
+        "trading_volume_usd": 2384.329089176621,
+        "lp_balance": 0,
+        "roi_pct": -15.371448136308238
+      },
+      {
+        "pool_name": "Chain1-0xb9b784",
+        "market_address": "0xb9b7840ec34094ce1269c38ba7a6ac7407f9c4e3",
+        "chainId": 1,
+        "net_gain_usd": -757.4598688195895,
+        "peak_tvl_usd": 929.635919739224,
+        "trading_volume_usd": 929.635919739224,
+        "lp_balance": 0,
+        "roi_pct": -81.47919553625549
+      },
+      {
+        "pool_name": "Chain999-0x61e4a4",
+        "market_address": "0x61e4a41853550dc09dc296088ac83d770cd45c5a",
+        "chainId": 999,
+        "net_gain_usd": 922.9292998343608,
+        "peak_tvl_usd": 7455.819703499012,
+        "trading_volume_usd": 23116.52329561397,
+        "lp_balance": 0,
+        "roi_pct": 12.378642946545913
+      },
+      {
+        "pool_name": "Chain1-0x3f53eb",
+        "market_address": "0x3f53eb4c57c7e7118be8566bcd503ea502639581",
+        "chainId": 1,
+        "net_gain_usd": -5.935374914115127,
+        "peak_tvl_usd": 500.237006482979,
+        "trading_volume_usd": 500.2369646246381,
+        "lp_balance": 0,
+        "roi_pct": -1.1865125604850835
+      },
+      {
+        "pool_name": "Chain999-0x74bd27",
+        "market_address": "0x74bd27939416bbe5d184d9a974d2c7358f637433",
+        "chainId": 999,
+        "net_gain_usd": 113.50989400000005,
+        "peak_tvl_usd": 2000.342868,
+        "trading_volume_usd": 4700.668733165977,
+        "lp_balance": 0,
+        "roi_pct": 5.674521894013624
+      },
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 186.91294849558446,
+        "trading_volume_usd": 186.91294849558446,
+        "lp_balance": 0.05931969720594199,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "sNUKE",
+        "market_address": "0x8547b391a65deb89c41a4c3b2eb1502d0bbc566a",
+        "chainId": 4663,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 144.9354769958855,
+        "trading_volume_usd": 144.9354769958855,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain999-0x8867d2",
+        "market_address": "0x8867d2b7adb8609c51810237ecc9a25a2f601b97",
+        "chainId": 999,
+        "net_gain_usd": -1791.9939628666402,
+        "peak_tvl_usd": 9584.372281046664,
+        "trading_volume_usd": 22012.898617596475,
+        "lp_balance": 0,
+        "roi_pct": -18.697040456268095
+      }
+    ]
+  },
+  {
+    "wallet": "0x05997dc1614282deb3b5ab52e0d73a1a4f6b6cfd",
+    "total_gain_usd": 2.690591851189751,
+    "total_peak_tvl": 72966.71430315368,
+    "aggregate_roi_pct": 0.0036874236107318614,
+    "pools_count": 11,
+    "pools": [
+      {
+        "pool_name": "Chain1-0x79f06a",
+        "market_address": "0x79f06a8dc564717a9ad418049d0be9a60f2646c0",
+        "chainId": 1,
+        "net_gain_usd": -67.77848900000001,
+        "peak_tvl_usd": 103.865531,
+        "trading_volume_usd": 115.53925277401022,
+        "lp_balance": 0,
+        "roi_pct": -65.25599816170006
+      },
+      {
+        "pool_name": "Chain1-0xf342d4",
+        "market_address": "0xf342d4bde4ec5b4bba94c17ab4c92ee3792abd5e",
+        "chainId": 1,
+        "net_gain_usd": -26.379669411785223,
+        "peak_tvl_usd": 103.6241528265456,
+        "trading_volume_usd": 174.37080809135875,
+        "lp_balance": 0,
+        "roi_pct": -25.45706641958427
+      },
+      {
+        "pool_name": "Chain1-0x4ccf6d",
+        "market_address": "0x4ccf6deb3d1895373f604b418ff55d8adae8b846",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 499.832114,
+        "trading_volume_usd": 499.8321139577268,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 247.8395104297401,
+        "trading_volume_usd": 247.83951042974007,
+        "lp_balance": 0.06768233619456768,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain143-0x22c296",
+        "market_address": "0x22c2967cc989c313c8c3f205468a11f40f0a95f7",
+        "chainId": 143,
+        "net_gain_usd": 96.11506907218445,
+        "peak_tvl_usd": 3025.922677,
+        "trading_volume_usd": 3025.922676717382,
+        "lp_balance": 0.001480991277176203,
+        "roi_pct": 3.1763888020918007
+      },
+      {
+        "pool_name": "Chain1-0x3f53eb",
+        "market_address": "0x3f53eb4c57c7e7118be8566bcd503ea502639581",
+        "chainId": 1,
+        "net_gain_usd": 4.841924159737834,
+        "peak_tvl_usd": 104.50187066259657,
+        "trading_volume_usd": 104.50187066254891,
+        "lp_balance": 0,
+        "roi_pct": 4.633337306822835
+      },
+      {
+        "pool_name": "Chain1-0x5e5724",
+        "market_address": "0x5e572498e9f83650f0ff24194999bddb4b390928",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 10086.272024867285,
+        "trading_volume_usd": 10086.272024867285,
+        "lp_balance": 4630.1537870474385,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain1-0x50dce0",
+        "market_address": "0x50dce085af29caba28f7308bea57c4043757b491",
+        "chainId": 1,
+        "net_gain_usd": 27.16407603105262,
+        "peak_tvl_usd": 54995.49956736751,
+        "trading_volume_usd": 109865.59612847934,
+        "lp_balance": 0,
+        "roi_pct": 0.0493932708035093
+      },
+      {
+        "pool_name": "Chain143-0x88c5d8",
+        "market_address": "0x88c5d8a908834e44b421cb67aec9a931782f9538",
+        "chainId": 143,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 299.893714,
+        "trading_volume_usd": 299.8937139422918,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain1-0x91bc86",
+        "market_address": "0x91bc86899c8391b6caaf26535b9cd82efe49a189",
+        "chainId": 1,
+        "net_gain_usd": -31.272318999999932,
+        "peak_tvl_usd": 2999.574477,
+        "trading_volume_usd": 5946.269128246202,
+        "lp_balance": 0,
+        "roi_pct": -1.0425585108750721
+      },
+      {
+        "pool_name": "Chain1-0xdf2e3e",
+        "market_address": "0xdf2e3e0250f679d6284a39a0c1a16a850a9d7aa6",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 499.888664,
+        "trading_volume_usd": 499.8886635908979,
+        "lp_balance": 0.000231350622150851,
+        "roi_pct": 0.0
+      }
+    ]
+  },
+  {
+    "wallet": "0x05ddefa49cffd3bcc725177f29b92b589404026f",
+    "total_gain_usd": 0.0,
+    "total_peak_tvl": 4952.845359835294,
+    "aggregate_roi_pct": 0.0,
+    "pools_count": 1,
+    "pools": [
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 4952.845359835294,
+        "trading_volume_usd": 4952.8453598352935,
+        "lp_balance": 1.2811243549510951,
+        "roi_pct": 0.0
+      }
+    ]
+  },
+  {
+    "wallet": "0x06467e6565dba253163a35cfab1c7e95a5c9c833",
+    "total_gain_usd": 0.0,
+    "total_peak_tvl": 7804.315231338473,
+    "aggregate_roi_pct": 0.0,
+    "pools_count": 1,
+    "pools": [
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 7804.315231338473,
+        "trading_volume_usd": 7804.3152313384735,
+        "lp_balance": 2.2440222865858743,
+        "roi_pct": 0.0
+      }
+    ]
+  },
+  {
+    "wallet": "0x06691a22b31b0878b879642527fd7ea038066595",
+    "total_gain_usd": -2523.7846882408153,
+    "total_peak_tvl": 30797.533779887402,
+    "aggregate_roi_pct": -8.19476230232758,
+    "pools_count": 4,
+    "pools": [
+      {
+        "pool_name": "Chain5000-0x7dc07c",
+        "market_address": "0x7dc07c575a0c512422dcab82ce9ed74db58be30c",
+        "chainId": 5000,
+        "net_gain_usd": -164.14138859824857,
+        "peak_tvl_usd": 3000.4783704946976,
+        "trading_volume_usd": 5820.715111104323,
+        "lp_balance": 0,
+        "roi_pct": -5.47050731017888
+      },
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": -1752.466253134629,
+        "peak_tvl_usd": 9349.922594251784,
+        "trading_volume_usd": 16946.988994246738,
+        "lp_balance": 0,
+        "roi_pct": -18.74310974736864
+      },
+      {
+        "pool_name": "Chain1-0xf32e58",
+        "market_address": "0xf32e58f92e60f4b0a37a69b95d642a471365eae8",
+        "chainId": 1,
+        "net_gain_usd": -607.3820395079376,
+        "peak_tvl_usd": 18347.10779514092,
+        "trading_volume_usd": 36081.05888328234,
+        "lp_balance": 0,
+        "roi_pct": -3.3105056463929303
+      },
+      {
+        "pool_name": "Chain42161-0x9bc622",
+        "market_address": "0x9bc62257ffe7d0f7c52a019e6fc0af3102f8f44e",
+        "chainId": 42161,
+        "net_gain_usd": 0.20499300000000548,
+        "peak_tvl_usd": 100.02502,
+        "trading_volume_usd": 200.22262732957728,
+        "lp_balance": 0,
+        "roi_pct": 0.2049417235807656
+      }
+    ]
+  },
+  {
+    "wallet": "0x0708f8dc9bf6fee0f70b4796ffe040f6e4121f86",
+    "total_gain_usd": -22.584855930215003,
+    "total_peak_tvl": 284.0285154197095,
+    "aggregate_roi_pct": -7.951615666772513,
+    "pools_count": 1,
+    "pools": [
+      {
+        "pool_name": "microduck",
+        "market_address": "0xdd34d9471667107f9b45e2204add3dd4da54e5a6",
+        "chainId": 4663,
+        "net_gain_usd": -22.584855930215003,
+        "peak_tvl_usd": 284.0285154197095,
+        "trading_volume_usd": 544.4052243436565,
+        "lp_balance": 0,
+        "roi_pct": -7.951615666772513
+      }
+    ]
+  },
+  {
+    "wallet": "0x0893519f3a8421136f672961235b88a614364921",
+    "total_gain_usd": 0.0,
+    "total_peak_tvl": 1223.8068940429164,
+    "aggregate_roi_pct": 0.0,
+    "pools_count": 1,
+    "pools": [
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 1223.8068940429164,
+        "trading_volume_usd": 1223.8068940429164,
+        "lp_balance": 0.35356688348000986,
+        "roi_pct": 0.0
+      }
+    ]
+  },
+  {
+    "wallet": "0x08a743041f7b809226d7390ed6b62e37c6b56aad",
+    "total_gain_usd": 626.1525709730907,
+    "total_peak_tvl": 2352.98750494204,
+    "aggregate_roi_pct": 26.61096030718253,
+    "pools_count": 2,
+    "pools": [
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 1975.7635510052246,
+        "trading_volume_usd": 1975.7635510052246,
+        "lp_balance": 0.2828760091879744,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain8453-0xa46cac",
+        "market_address": "0xa46cac2243ecd83a6a9ad58232c1967ebd14d41b",
+        "chainId": 8453,
+        "net_gain_usd": 626.1525709730907,
+        "peak_tvl_usd": 377.2239539368154,
+        "trading_volume_usd": 1380.6004788467214,
+        "lp_balance": 0,
+        "roi_pct": 165.98961026689483
+      }
+    ]
+  },
+  {
+    "wallet": "0x08a9a36482d6332a86bf424ba5779388205131fe",
+    "total_gain_usd": 0.0,
+    "total_peak_tvl": 996.1665169192752,
+    "aggregate_roi_pct": 0.0,
+    "pools_count": 1,
+    "pools": [
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 996.1665169192752,
+        "trading_volume_usd": 996.1665169192752,
+        "lp_balance": 0.2914305838212916,
+        "roi_pct": 0.0
+      }
+    ]
+  },
+  {
+    "wallet": "0x091e3b88f487982641d11868b798fbc83a78dbfa",
+    "total_gain_usd": -247.01839892808,
+    "total_peak_tvl": 4770.48481957595,
+    "aggregate_roi_pct": -5.178056492590151,
+    "pools_count": 1,
+    "pools": [
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": -247.01839892808,
+        "peak_tvl_usd": 4770.48481957595,
+        "trading_volume_usd": 9293.892949106435,
+        "lp_balance": 0,
+        "roi_pct": -5.178056492590151
+      }
+    ]
+  },
+  {
+    "wallet": "0x096eb2ebd3d6908432dc092c38714e1969725f3d",
+    "total_gain_usd": -92.97950262952719,
+    "total_peak_tvl": 2499.57734995823,
+    "aggregate_roi_pct": -3.719808976148746,
+    "pools_count": 6,
+    "pools": [
+      {
+        "pool_name": "Chain1-0x45f163",
+        "market_address": "0x45f163e583d34b8e276445dd3da9ae077d137d72",
+        "chainId": 1,
+        "net_gain_usd": -7.1211754834170335,
+        "peak_tvl_usd": 99.93404014991486,
+        "trading_volume_usd": 125.63024532791687,
+        "lp_balance": 0,
+        "roi_pct": -7.125875700346235
+      },
+      {
+        "pool_name": "Chain42161-0x5e03c9",
+        "market_address": "0x5e03c94fc5fb2e21882000a96df0b63d2c4312e2",
+        "chainId": 42161,
+        "net_gain_usd": 38.1541004916864,
+        "peak_tvl_usd": 390.7207092324993,
+        "trading_volume_usd": 390.72070888422036,
+        "lp_balance": 0,
+        "roi_pct": 9.765057134195237
+      },
+      {
+        "pool_name": "Chain8453-0xa46cac",
+        "market_address": "0xa46cac2243ecd83a6a9ad58232c1967ebd14d41b",
+        "chainId": 8453,
+        "net_gain_usd": -10.785930224752688,
+        "peak_tvl_usd": 787.7034824134938,
+        "trading_volume_usd": 787.7034416144518,
+        "lp_balance": 0,
+        "roi_pct": -1.3692881224423439
+      },
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": -113.22649741304386,
+        "peak_tvl_usd": 1007.0967709787457,
+        "trading_volume_usd": 1900.9560537736666,
+        "lp_balance": 0,
+        "roi_pct": -11.242861726485812
+      },
+      {
+        "pool_name": "Chain1-0x07b171",
+        "market_address": "0x07b1711d4af74af661dde3b774741993b79fc59c",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 100.52203739431441,
+        "trading_volume_usd": 100.52203739428302,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain1-0xf4c449",
+        "market_address": "0xf4c449d6a2d1840625211769779ada42857d04dd",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 113.60030978926227,
+        "trading_volume_usd": 113.60030969500015,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      }
+    ]
+  },
+  {
+    "wallet": "0x09a72958044f48e117235ad88af8a75818f81384",
+    "total_gain_usd": 1033.4921583510165,
+    "total_peak_tvl": 91749.12302651658,
+    "aggregate_roi_pct": 1.1264327377301744,
+    "pools_count": 9,
+    "pools": [
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 1053.2473812056342,
+        "trading_volume_usd": 1053.2473812056342,
+        "lp_balance": 0.3567964393553121,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain42161-0x2092fa",
+        "market_address": "0x2092fa5d02276b3136a50f3c2c3a6ed45413183e",
+        "chainId": 42161,
+        "net_gain_usd": 823.0715043624115,
+        "peak_tvl_usd": 58007.82307492773,
+        "trading_volume_usd": 228753.0278349803,
+        "lp_balance": 0,
+        "roi_pct": 1.4188974188865249
+      },
+      {
+        "pool_name": "Chain1-0xa83174",
+        "market_address": "0xa83174f1dd8475378abca9d676dad3ce97409e0a",
+        "chainId": 1,
+        "net_gain_usd": 0.9090172466598194,
+        "peak_tvl_usd": 220.19892693881738,
+        "trading_volume_usd": 441.2429268264603,
+        "lp_balance": 0,
+        "roi_pct": 0.41281638348418986
+      },
+      {
+        "pool_name": "Chain1-0xafb7d6",
+        "market_address": "0xafb7d6d1e9bca5b675adc9b4f52f0cdfddec9654",
+        "chainId": 1,
+        "net_gain_usd": 0.6717101627081213,
+        "peak_tvl_usd": 221.0478168558205,
+        "trading_volume_usd": 442.6442567713632,
+        "lp_balance": 0,
+        "roi_pct": 0.30387550180884504
+      },
+      {
+        "pool_name": "Chain42161-0x8e101c",
+        "market_address": "0x8e101c690390de722163d4dc3f76043bebbbcadd",
+        "chainId": 42161,
+        "net_gain_usd": 0.23563581016048027,
+        "peak_tvl_usd": 12.643239291999528,
+        "trading_volume_usd": 37.66093880928455,
+        "lp_balance": 0,
+        "roi_pct": 1.863729735065502
+      },
+      {
+        "pool_name": "Chain42161-0x573813",
+        "market_address": "0x573813d3f0bfaf847a04ef12739be4e38675b3c7",
+        "chainId": 42161,
+        "net_gain_usd": 0.7720780000000309,
+        "peak_tvl_usd": 499.192334,
+        "trading_volume_usd": 1496.2116214530608,
+        "lp_balance": 0,
+        "roi_pct": 0.15466543602811633
+      },
+      {
+        "pool_name": "Chain42161-0xfad63f",
+        "market_address": "0xfad63f0a2ff618edde23561dff212edfeddbe89d",
+        "chainId": 42161,
+        "net_gain_usd": 14.715737999999945,
+        "peak_tvl_usd": 4990.560758,
+        "trading_volume_usd": 14980.255624715823,
+        "lp_balance": 0,
+        "roi_pct": 0.2948714325621671
+      },
+      {
+        "pool_name": "Chain1-0x6d520a",
+        "market_address": "0x6d520a943a4da0784917a2e71defe95248a1daa1",
+        "chainId": 1,
+        "net_gain_usd": 4.509977204902466,
+        "peak_tvl_usd": 3431.3705644551974,
+        "trading_volume_usd": 13722.661275094251,
+        "lp_balance": 0,
+        "roi_pct": 0.13143369741584643
+      },
+      {
+        "pool_name": "Chain1-0x6d8c4d",
+        "market_address": "0x6d8c4de7071d5aee27fc3a810764e62a4a00ceb9",
+        "chainId": 1,
+        "net_gain_usd": 188.60649756417402,
+        "peak_tvl_usd": 23313.03893084138,
+        "trading_volume_usd": 50238.077971822044,
+        "lp_balance": 0,
+        "roi_pct": 0.8090172118859285
+      }
+    ]
+  },
+  {
+    "wallet": "0x0a787a5d6a18282246e4e01e0bffe2e0dd893615",
+    "total_gain_usd": -3513.3946509667585,
+    "total_peak_tvl": 9719.241292068165,
+    "aggregate_roi_pct": -36.1488571523996,
+    "pools_count": 9,
+    "pools": [
+      {
+        "pool_name": "Chain1-0xa36b60",
+        "market_address": "0xa36b60a14a1a5247912584768c6e53e1a269a9f7",
+        "chainId": 1,
+        "net_gain_usd": 257.6883308432541,
+        "peak_tvl_usd": 497.54439043065076,
+        "trading_volume_usd": 497.54439026369954,
+        "lp_balance": 0,
+        "roi_pct": 51.79202816862458
+      },
+      {
+        "pool_name": "Chain1-0x172998",
+        "market_address": "0x1729981345aa5cacdc19ea9eeffea90cf1c6e28b",
+        "chainId": 1,
+        "net_gain_usd": -628.1333165249399,
+        "peak_tvl_usd": 689.4257625551601,
+        "trading_volume_usd": 689.4212524508553,
+        "lp_balance": 0,
+        "roi_pct": -91.10963799741727
+      },
+      {
+        "pool_name": "Chain999-0x61e4a4",
+        "market_address": "0x61e4a41853550dc09dc296088ac83d770cd45c5a",
+        "chainId": 999,
+        "net_gain_usd": 369.2285701308337,
+        "peak_tvl_usd": 1656.0644108094607,
+        "trading_volume_usd": 3116.095108336342,
+        "lp_balance": 0,
+        "roi_pct": 22.29554404531645
+      },
+      {
+        "pool_name": "Chain999-0x976fb3",
+        "market_address": "0x976fb34e06c933bdd97cb1e8b868e04442edaa8d",
+        "chainId": 999,
+        "net_gain_usd": -213.4709546271575,
+        "peak_tvl_usd": 1681.3830633791372,
+        "trading_volume_usd": 2301.256122114243,
+        "lp_balance": 0,
+        "roi_pct": -12.696152309167259
+      },
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": -40.16324284600523,
+        "peak_tvl_usd": 311.40665667991385,
+        "trading_volume_usd": 807.2614830883431,
+        "lp_balance": 0.07320801509790709,
+        "roi_pct": -12.897361692331419
+      },
+      {
+        "pool_name": "Chain1-0xa9355a",
+        "market_address": "0xa9355a5d306c67027c54de0e5a72df76befa5694",
+        "chainId": 1,
+        "net_gain_usd": -864.46410604253,
+        "peak_tvl_usd": 1146.9028167958948,
+        "trading_volume_usd": 808.0398853435039,
+        "lp_balance": 0,
+        "roi_pct": -75.37378872759119
+      },
+      {
+        "pool_name": "Chain42161-0xe11f97",
+        "market_address": "0xe11f9786b06438456b044b3e21712228adcaa0d1",
+        "chainId": 42161,
+        "net_gain_usd": -760.774496833169,
+        "peak_tvl_usd": 1189.7468407574117,
+        "trading_volume_usd": 1520.506394176754,
+        "lp_balance": 0,
+        "roi_pct": -63.94423340925602
+      },
+      {
+        "pool_name": "Chain1-0xe26d7f",
+        "market_address": "0xe26d7f9409581f606242300fbfe63f56789f2169",
+        "chainId": 1,
+        "net_gain_usd": -1520.8516930146388,
+        "peak_tvl_usd": 1635.748366336113,
+        "trading_volume_usd": 1635.743544305041,
+        "lp_balance": 0,
+        "roi_pct": -92.97589557868065
+      },
+      {
+        "pool_name": "Chain999-0x8867d2",
+        "market_address": "0x8867d2b7adb8609c51810237ecc9a25a2f601b97",
+        "chainId": 999,
+        "net_gain_usd": -112.4537420524055,
+        "peak_tvl_usd": 911.0189843244219,
+        "trading_volume_usd": 2458.1323222252586,
+        "lp_balance": 0,
+        "roi_pct": -12.343732017373606
+      }
+    ]
+  },
+  {
+    "wallet": "0x0b9432bc8de5f6219a260bf3203fca5ce463b14a",
+    "total_gain_usd": -121.1453480743549,
+    "total_peak_tvl": 427.02831580583467,
+    "aggregate_roi_pct": -28.369394625680616,
+    "pools_count": 1,
+    "pools": [
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": -121.1453480743549,
+        "peak_tvl_usd": 427.02831580583467,
+        "trading_volume_usd": 732.706539918744,
+        "lp_balance": 0,
+        "roi_pct": -28.369394625680616
+      }
+    ]
+  },
+  {
+    "wallet": "0x0c01769d5cc1bc1d0540f7896cea87aa5325ad2a",
+    "total_gain_usd": -1.3185965176905892,
+    "total_peak_tvl": 16.88803695932957,
+    "aggregate_roi_pct": -7.807873235155068,
+    "pools_count": 1,
+    "pools": [
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": -1.3185965176905892,
+        "peak_tvl_usd": 16.88803695932957,
+        "trading_volume_usd": 42.34284600925151,
+        "lp_balance": 0.003902143098924549,
+        "roi_pct": -7.807873235155068
+      }
+    ]
+  },
+  {
+    "wallet": "0x0cc6660bdd148cf36ebfe6d582da5b7301b12654",
+    "total_gain_usd": -4624.802003249128,
+    "total_peak_tvl": 50966.91607378452,
+    "aggregate_roi_pct": -9.07412564761389,
+    "pools_count": 4,
+    "pools": [
+      {
+        "pool_name": "Chain8453-0x621d4d",
+        "market_address": "0x621d4d92e9bed484e6d2cb8a37d342c804a0908c",
+        "chainId": 8453,
+        "net_gain_usd": -26.74423429446899,
+        "peak_tvl_usd": 10630.85538724917,
+        "trading_volume_usd": 27459.3812485874,
+        "lp_balance": 0,
+        "roi_pct": -0.25157180038914345
+      },
+      {
+        "pool_name": "Chain146-0x004f76",
+        "market_address": "0x004f76045b42ef3e89814b12b37e69da19c8a212",
+        "chainId": 146,
+        "net_gain_usd": -2.7611610000011644,
+        "peak_tvl_usd": 16121.156539,
+        "trading_volume_usd": 32052.698108349134,
+        "lp_balance": 0,
+        "roi_pct": -0.017127561495488337
+      },
+      {
+        "pool_name": "sNUKE",
+        "market_address": "0x8547b391a65deb89c41a4c3b2eb1502d0bbc566a",
+        "chainId": 4663,
+        "net_gain_usd": -4593.650952486269,
+        "peak_tvl_usd": 5686.024508878909,
+        "trading_volume_usd": 6777.452990124636,
+        "lp_balance": 0,
+        "roi_pct": -80.78844798001022
+      },
+      {
+        "pool_name": "Chain146-0xd0e59a",
+        "market_address": "0xd0e59a083cc31356d29d9b6d2574024e945468a3",
+        "chainId": 146,
+        "net_gain_usd": -1.6456554683892066,
+        "peak_tvl_usd": 18528.879638656446,
+        "trading_volume_usd": 37087.541343119134,
+        "lp_balance": 0,
+        "roi_pct": -0.008881570286397172
+      }
+    ]
+  },
+  {
+    "wallet": "0x0d9efb67ba1f6a923380eebdf5cf8aeeca55eaf2",
+    "total_gain_usd": -349.1898155851671,
+    "total_peak_tvl": 10045.95735486614,
+    "aggregate_roi_pct": -3.4759237298177834,
+    "pools_count": 12,
+    "pools": [
+      {
+        "pool_name": "Chain1-0x6d8c4d",
+        "market_address": "0x6d8c4de7071d5aee27fc3a810764e62a4a00ceb9",
+        "chainId": 1,
+        "net_gain_usd": 68.44623065038053,
+        "peak_tvl_usd": 4997.47995223206,
+        "trading_volume_usd": 10035.767159603009,
+        "lp_balance": 0,
+        "roi_pct": 1.3696149120079992
+      },
+      {
+        "pool_name": "Chain1-0x7972de",
+        "market_address": "0x7972de1c2f9f11f622a188fbae8c0a943880424f",
+        "chainId": 1,
+        "net_gain_usd": 55.927624848441,
+        "peak_tvl_usd": 1001.023033,
+        "trading_volume_usd": 2903.6197316368493,
+        "lp_balance": 0,
+        "roi_pct": 5.587046751644624
+      },
+      {
+        "pool_name": "Chain42161-0x4ed098",
+        "market_address": "0x4ed09847377c30aa4e74ad071e719c5814ad9ead",
+        "chainId": 42161,
+        "net_gain_usd": -18.14749,
+        "peak_tvl_usd": 103.652656,
+        "trading_volume_usd": 182.12333338631475,
+        "lp_balance": 0,
+        "roi_pct": -17.50798358702936
+      },
+      {
+        "pool_name": "Chain1-0x4a5067",
+        "market_address": "0x4a5067c3ff1abb7449244025b0e37feaf77d8e3e",
+        "chainId": 1,
+        "net_gain_usd": 37.19259757578611,
+        "peak_tvl_usd": 498.039322,
+        "trading_volume_usd": 1026.2236040196292,
+        "lp_balance": 0,
+        "roi_pct": 7.46780343094799
+      },
+      {
+        "pool_name": "Chain1-0xa83174",
+        "market_address": "0xa83174f1dd8475378abca9d676dad3ce97409e0a",
+        "chainId": 1,
+        "net_gain_usd": -294.2110811990916,
+        "peak_tvl_usd": 499.04342768124695,
+        "trading_volume_usd": 632.9324814607015,
+        "lp_balance": 0,
+        "roi_pct": -58.955005692813664
+      },
+      {
+        "pool_name": "Chain42161-0x330857",
+        "market_address": "0x3308574370f19ea639f4671838e01cfb77d8db70",
+        "chainId": 42161,
+        "net_gain_usd": 1.6348933091445805,
+        "peak_tvl_usd": 963.1204825152662,
+        "trading_volume_usd": 1927.6335362500276,
+        "lp_balance": 0,
+        "roi_pct": 0.16974961480155898
+      },
+      {
+        "pool_name": "Chain1-0xcb6f35",
+        "market_address": "0xcb6f35008f4de72733db10d1f24200fa2ec44eb3",
+        "chainId": 1,
+        "net_gain_usd": -155.2176852816881,
+        "peak_tvl_usd": 502.3442700528186,
+        "trading_volume_usd": 502.34426970925364,
+        "lp_balance": 0,
+        "roi_pct": -30.89866741495187
+      },
+      {
+        "pool_name": "Chain1-0x22fcdf",
+        "market_address": "0x22fcdf7be34a72bddbf4a6eeeb489b1f29062f0b",
+        "chainId": 1,
+        "net_gain_usd": 5.796963,
+        "peak_tvl_usd": 204.771451,
+        "trading_volume_usd": 204.7714513208807,
+        "lp_balance": 0,
+        "roi_pct": 2.83094297163524
+      },
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": -4.3014345341442235,
+        "peak_tvl_usd": 495.9537638337909,
+        "trading_volume_usd": 987.5983263763269,
+        "lp_balance": 0,
+        "roi_pct": -0.867305553020415
+      },
+      {
+        "pool_name": "Chain56-0xd765fd",
+        "market_address": "0xd765fd428ce4bbb79054e4a6d6e837475b9284c2",
+        "chainId": 56,
+        "net_gain_usd": -17.706985699218933,
+        "peak_tvl_usd": 200.92896721157697,
+        "trading_volume_usd": 369.25647137397544,
+        "lp_balance": 0,
+        "roi_pct": -8.812559953375755
+      },
+      {
+        "pool_name": "Chain1-0xc5f938",
+        "market_address": "0xc5f938a8ef5f3bf9e72f5aa094baf5e03f4727d3",
+        "chainId": 1,
+        "net_gain_usd": -32.64362931652421,
+        "peak_tvl_usd": 499.15468933937757,
+        "trading_volume_usd": 985.287734079508,
+        "lp_balance": 0,
+        "roi_pct": -6.539782158458228
+      },
+      {
+        "pool_name": "Chain999-0xfb5986",
+        "market_address": "0xfb598678e5b452a4eab874e63ba299da3251e9b2",
+        "chainId": 999,
+        "net_gain_usd": 4.040181061747786,
+        "peak_tvl_usd": 80.44534,
+        "trading_volume_usd": 158.47917673133458,
+        "lp_balance": 0,
+        "roi_pct": 5.022268613381193
+      }
+    ]
+  },
+  {
+    "wallet": "0x0f38d0b7bd81edc710fe1ec5a43ae81ccc494b8d",
+    "total_gain_usd": 72.75891371296629,
+    "total_peak_tvl": 333.5616033856245,
+    "aggregate_roi_pct": 21.81273653036469,
+    "pools_count": 2,
+    "pools": [
+      {
+        "pool_name": "sNUKE",
+        "market_address": "0x8547b391a65deb89c41a4c3b2eb1502d0bbc566a",
+        "chainId": 4663,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 7.6132316464048255,
+        "trading_volume_usd": 7.613231646404826,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": 72.75891371296629,
+        "peak_tvl_usd": 325.9483717392197,
+        "trading_volume_usd": 884.8724989903442,
+        "lp_balance": 0,
+        "roi_pct": 22.322220333463807
+      }
+    ]
+  },
+  {
+    "wallet": "0x0f50b117d8fb284b820b8a708a186a527fb5f0fa",
+    "total_gain_usd": 97.30536097758872,
+    "total_peak_tvl": 13834.915549243911,
+    "aggregate_roi_pct": 0.7033318030113059,
+    "pools_count": 37,
+    "pools": [
+      {
+        "pool_name": "Chain1-0x6d520a",
+        "market_address": "0x6d520a943a4da0784917a2e71defe95248a1daa1",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 35.3147881579537,
+        "trading_volume_usd": 35.314785158888235,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain1-0x839163",
+        "market_address": "0x83916356556f51dcbcb226202c3efeefc88d5eaa",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 46.53140383,
+        "trading_volume_usd": 46.53140382988081,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain196-0xcfb506",
+        "market_address": "0xcfb506cb34dd340e80d3df8764182a5187636032",
+        "chainId": 196,
+        "net_gain_usd": -5.122756999999692,
+        "peak_tvl_usd": 4641.752206985157,
+        "trading_volume_usd": 0,
+        "lp_balance": 0,
+        "roi_pct": -0.1103625693825425
+      },
+      {
+        "pool_name": "Chain42161-0xfad63f",
+        "market_address": "0xfad63f0a2ff618edde23561dff212edfeddbe89d",
+        "chainId": 42161,
+        "net_gain_usd": 0.809772,
+        "peak_tvl_usd": 2.973527,
+        "trading_volume_usd": 2.973526638054625,
+        "lp_balance": 0,
+        "roi_pct": 27.23271051515591
+      },
+      {
+        "pool_name": "Chain1-0xd7e080",
+        "market_address": "0xd7e0809998693fd87e81d51de1619fd0ee658031",
+        "chainId": 1,
+        "net_gain_usd": 6.362101017826752,
+        "peak_tvl_usd": 168.41049738891084,
+        "trading_volume_usd": 168.40950364029567,
+        "lp_balance": 0,
+        "roi_pct": 3.777734236562899
+      },
+      {
+        "pool_name": "Chain1-0x461bc2",
+        "market_address": "0x461bc2ac3f80801bc11b0f20d63b73fef60c8076",
+        "chainId": 1,
+        "net_gain_usd": -0.035219829151684874,
+        "peak_tvl_usd": 501.16580658786535,
+        "trading_volume_usd": 1004.4247905976763,
+        "lp_balance": 0,
+        "roi_pct": -0.007027580231675296
+      },
+      {
+        "pool_name": "Chain1-0x3a4204",
+        "market_address": "0x3a4204255257698e379245ef94274ef3b2907296",
+        "chainId": 1,
+        "net_gain_usd": 11.695746999999908,
+        "peak_tvl_usd": 1521.198214,
+        "trading_volume_usd": 3013.708120333801,
+        "lp_balance": 0,
+        "roi_pct": 0.7688509552772791
+      },
+      {
+        "pool_name": "Chain42161-0x8e101c",
+        "market_address": "0x8e101c690390de722163d4dc3f76043bebbbcadd",
+        "chainId": 42161,
+        "net_gain_usd": 8.526080985508129,
+        "peak_tvl_usd": 26.09691873662677,
+        "trading_volume_usd": 60.71991845876164,
+        "lp_balance": 0,
+        "roi_pct": 32.67083394616184
+      },
+      {
+        "pool_name": "Chain999-0x97d985",
+        "market_address": "0x97d985a71131afc02c320b636a268df34c6f42a4",
+        "chainId": 999,
+        "net_gain_usd": 5.144663609833885,
+        "peak_tvl_usd": 14.50267585173029,
+        "trading_volume_usd": 20.100342951959174,
+        "lp_balance": 0,
+        "roi_pct": 35.47389228326498
+      },
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": -35.92917134132227,
+        "peak_tvl_usd": 250.1427518794053,
+        "trading_volume_usd": 553.8430166390194,
+        "lp_balance": 0.03000102253848924,
+        "roi_pct": -14.363466888956209
+      },
+      {
+        "pool_name": "sNUKE",
+        "market_address": "0x8547b391a65deb89c41a4c3b2eb1502d0bbc566a",
+        "chainId": 4663,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 96.5327136847113,
+        "trading_volume_usd": 96.5327136847113,
+        "lp_balance": 0.8313379932062245,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain9745-0x0d7d9a",
+        "market_address": "0x0d7d9abee602c7f0a242ea7e200e47c372acba84",
+        "chainId": 9745,
+        "net_gain_usd": 19.40011446721113,
+        "peak_tvl_usd": 72.29785836140232,
+        "trading_volume_usd": 72.29785836140128,
+        "lp_balance": 0,
+        "roi_pct": 26.833594945833518
+      },
+      {
+        "pool_name": "Chain1-0x00b321",
+        "market_address": "0x00b321d89a8c36b3929f20b7955080baed706d1b",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 28.889424567781738,
+        "trading_volume_usd": 28.88941791858863,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain1-0x23f0de",
+        "market_address": "0x23f0decc26eceeafa5cc900f8b47d99ff94ddd2b",
+        "chainId": 1,
+        "net_gain_usd": 0.030687573281640325,
+        "peak_tvl_usd": 268.79412347600584,
+        "trading_volume_usd": 519.4981223384921,
+        "lp_balance": 0,
+        "roi_pct": 0.011416757511210872
+      },
+      {
+        "pool_name": "Chain1-0xafdc92",
+        "market_address": "0xafdc922d0059147486cc1f0f32e3a2354b0d35cc",
+        "chainId": 1,
+        "net_gain_usd": 0.6375174307047295,
+        "peak_tvl_usd": 497.8791633706312,
+        "trading_volume_usd": 1432.2931856431478,
+        "lp_balance": 0,
+        "roi_pct": 0.12804661805662848
+      },
+      {
+        "pool_name": "Chain1-0xcae628",
+        "market_address": "0xcae62858db831272a03768f5844cbe1b40bb381f",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 9.62823683,
+        "trading_volume_usd": 9.628236825223786,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain8453-0x0a3ff4",
+        "market_address": "0x0a3ff49732b13e11b91f1c8d61c6c9c10bf5a36c",
+        "chainId": 8453,
+        "net_gain_usd": -2.0599779999999406,
+        "peak_tvl_usd": 300.78861,
+        "trading_volume_usd": 602.9763976183809,
+        "lp_balance": 0,
+        "roi_pct": -0.6848590443633955
+      },
+      {
+        "pool_name": "NVDA",
+        "market_address": "0x206a5cd00e9ffabb8ca564076b64799a78df19b9",
+        "chainId": 4663,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 99.85274427810499,
+        "trading_volume_usd": 99.85274427810499,
+        "lp_balance": 0.14225357350976303,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain8453-0xad4e0e",
+        "market_address": "0xad4e0efc7b641591dc1a94efc5d352d098516d2e",
+        "chainId": 8453,
+        "net_gain_usd": 2.3958750000000326,
+        "peak_tvl_usd": 300.905689,
+        "trading_volume_usd": 595.1912793507553,
+        "lp_balance": 0,
+        "roi_pct": 0.7962212372794428
+      },
+      {
+        "pool_name": "Chain1-0xa8f21c",
+        "market_address": "0xa8f21c9d0afb46382ead7c33e79f00ef9666e122",
+        "chainId": 1,
+        "net_gain_usd": 1.7546966937971358,
+        "peak_tvl_usd": 39.986029,
+        "trading_volume_usd": 60.05062126866485,
+        "lp_balance": 0,
+        "roi_pct": 4.388274449051031
+      },
+      {
+        "pool_name": "Chain1-0x858517",
+        "market_address": "0x8585177b041cd3c3fbec607fb620230259cd70db",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 14.54785984307326,
+        "trading_volume_usd": 14.547859843067275,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain1-0x172998",
+        "market_address": "0x1729981345aa5cacdc19ea9eeffea90cf1c6e28b",
+        "chainId": 1,
+        "net_gain_usd": 9.087741422180466,
+        "peak_tvl_usd": 168.24394574925688,
+        "trading_volume_usd": 168.2421916516913,
+        "lp_balance": 0,
+        "roi_pct": 5.401526564126368
+      },
+      {
+        "pool_name": "Chain8453-0x10c2b2",
+        "market_address": "0x10c2b26cb728b672f78c5badda8c5376d08cbfd0",
+        "chainId": 8453,
+        "net_gain_usd": -0.9491082070078198,
+        "peak_tvl_usd": 549.3152915060119,
+        "trading_volume_usd": 1130.9272689071263,
+        "lp_balance": 0,
+        "roi_pct": -0.1727802268904128
+      },
+      {
+        "pool_name": "Chain1-0x71d857",
+        "market_address": "0x71d857c437c56562a27aa087bc3fe529b35b6948",
+        "chainId": 1,
+        "net_gain_usd": 0.34272000000012237,
+        "peak_tvl_usd": 1508.43285,
+        "trading_volume_usd": 3003.635424722564,
+        "lp_balance": 0,
+        "roi_pct": 0.02272026892016588
+      },
+      {
+        "pool_name": "Chain1-0x688b8e",
+        "market_address": "0x688b8eea04b9756da290c962bfba988b11fc66df",
+        "chainId": 1,
+        "net_gain_usd": 5.60545,
+        "peak_tvl_usd": 8.848543,
+        "trading_volume_usd": 8.848543,
+        "lp_balance": 0,
+        "roi_pct": 63.348847375211946
+      },
+      {
+        "pool_name": "Chain1-0x08bf93",
+        "market_address": "0x08bf93c8f85977c64069dd34c5da7b1c636e104f",
+        "chainId": 1,
+        "net_gain_usd": 0.7618554663892905,
+        "peak_tvl_usd": 480.3464321137616,
+        "trading_volume_usd": 956.2024523635749,
+        "lp_balance": 0,
+        "roi_pct": 0.15860541797651126
+      },
+      {
+        "pool_name": "Chain8453-0x6ae9cf",
+        "market_address": "0x6ae9cf67d57e49c55f900933f5dcfc4b63461d6e",
+        "chainId": 8453,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 9.767241373701102,
+        "trading_volume_usd": 9.767241373700825,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain1-0xed29a8",
+        "market_address": "0xed29a86ac1d85199232da55043f6307448973c91",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 9.996720115218075,
+        "trading_volume_usd": 9.996720115199999,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain42161-0x4ed098",
+        "market_address": "0x4ed09847377c30aa4e74ad071e719c5814ad9ead",
+        "chainId": 42161,
+        "net_gain_usd": 5.84577,
+        "peak_tvl_usd": 23.31545,
+        "trading_volume_usd": 23.31545063275473,
+        "lp_balance": 0,
+        "roi_pct": 25.072516292844444
+      },
+      {
+        "pool_name": "Chain1-0x307c15",
+        "market_address": "0x307c15f808914df5a5dbe17e5608f84953ffa023",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 65.0745543136499,
+        "trading_volume_usd": 65.07455431361859,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain143-0x475b98",
+        "market_address": "0x475b98c83aedbfdd0a0abaa930ec8cb501ac93b1",
+        "chainId": 143,
+        "net_gain_usd": 9.977248707070775,
+        "peak_tvl_usd": 1408.254854,
+        "trading_volume_usd": 2805.7875176476296,
+        "lp_balance": 0,
+        "roi_pct": 0.70848317538061
+      },
+      {
+        "pool_name": "Chain1-0x56c420",
+        "market_address": "0x56c4200915d74a7cae45dfa57ab33725b0439193",
+        "chainId": 1,
+        "net_gain_usd": 5.909887272818518,
+        "peak_tvl_usd": 487.637435124087,
+        "trading_volume_usd": 968.8061595152545,
+        "lp_balance": 0,
+        "roi_pct": 1.2119429000184645
+      },
+      {
+        "pool_name": "Chain1-0x645069",
+        "market_address": "0x64506968e80c9ed07bff60c8d9d57474effff2c9",
+        "chainId": 1,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 26.77060639289693,
+        "trading_volume_usd": 26.770606392896926,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain80094-0x227d4a",
+        "market_address": "0x227d4a2e5734b500fa0bed940e4df54bdda25636",
+        "chainId": 80094,
+        "net_gain_usd": 0.6833700017517331,
+        "peak_tvl_usd": 0.8489867747453499,
+        "trading_volume_usd": 0.8489867747453452,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain80094-0x02293d",
+        "market_address": "0x02293d88656860a840ed457d38f51e3e6bee8461",
+        "chainId": 80094,
+        "net_gain_usd": 36.881985518387694,
+        "peak_tvl_usd": 30.111201945577445,
+        "trading_volume_usd": 30.11120194538001,
+        "lp_balance": 0,
+        "roi_pct": 122.48592927325738
+      },
+      {
+        "pool_name": "PFE",
+        "market_address": "0x892defbf510d9baa96dbd2a51b13e879a857a79b",
+        "chainId": 4663,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 99.29764740767125,
+        "trading_volume_usd": 99.29764740767125,
+        "lp_balance": 1.6377410913359771,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain1-0x45f163",
+        "market_address": "0x45f163e583d34b8e276445dd3da9ae077d137d72",
+        "chainId": 1,
+        "net_gain_usd": 9.548311188308189,
+        "peak_tvl_usd": 20.462546597976562,
+        "trading_volume_usd": 20.462546577137953,
+        "lp_balance": 0,
+        "roi_pct": 46.66237969252748
+      }
+    ]
+  },
+  {
+    "wallet": "0x111145d2b3a7b8a11176878cfaa9a27fda104ccf",
+    "total_gain_usd": 0.0,
+    "total_peak_tvl": 11803.312286154898,
+    "aggregate_roi_pct": 0.0,
+    "pools_count": 2,
+    "pools": [
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 1249.3457366109878,
+        "trading_volume_usd": 1249.3457366109878,
+        "lp_balance": 0.39861629492194106,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "sNUKE",
+        "market_address": "0x8547b391a65deb89c41a4c3b2eb1502d0bbc566a",
+        "chainId": 4663,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 10553.966549543911,
+        "trading_volume_usd": 10553.966549543911,
+        "lp_balance": 97.86417543688468,
+        "roi_pct": 0.0
+      }
+    ]
+  },
+  {
+    "wallet": "0x11a2893e19085d250041533603d5793c1a55a661",
+    "total_gain_usd": 7.195745550578038,
+    "total_peak_tvl": 8476.489210232281,
+    "aggregate_roi_pct": 0.084890635404712,
+    "pools_count": 1,
+    "pools": [
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": 7.195745550578038,
+        "peak_tvl_usd": 8476.489210232281,
+        "trading_volume_usd": 16945.782674913986,
+        "lp_balance": 2.463747209788873,
+        "roi_pct": 0.084890635404712
+      }
+    ]
+  },
+  {
+    "wallet": "0x11b928f86e79048c93edd2c48e24986d7d36f655",
+    "total_gain_usd": -479.9584027836247,
+    "total_peak_tvl": 11795.565580158594,
+    "aggregate_roi_pct": -4.0689732045656735,
+    "pools_count": 3,
+    "pools": [
+      {
+        "pool_name": "Chain1-0x307c15",
+        "market_address": "0x307c15f808914df5a5dbe17e5608f84953ffa023",
+        "chainId": 1,
+        "net_gain_usd": 66.91342545463249,
+        "peak_tvl_usd": 5075.383109077076,
+        "trading_volume_usd": 10207.611332466036,
+        "lp_balance": 0,
+        "roi_pct": 1.3183916172743901
+      },
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": -576.2813511010878,
+        "peak_tvl_usd": 1648.245429393473,
+        "trading_volume_usd": 2718.88789675497,
+        "lp_balance": 0,
+        "roi_pct": -34.96332165247683
+      },
+      {
+        "pool_name": "Chain1-0x9eaaed",
+        "market_address": "0x9eaaeda23177b7168c55a3a0f937f67919733449",
+        "chainId": 1,
+        "net_gain_usd": 29.409522862830624,
+        "peak_tvl_usd": 5071.937041688045,
+        "trading_volume_usd": 10162.304460587009,
+        "lp_balance": 0,
+        "roi_pct": 0.5798479480542316
+      }
+    ]
+  },
+  {
+    "wallet": "0x11c9ac11ce9913e26faa7a9ee5b07c92b0c8c372",
+    "total_gain_usd": 96388.65788923412,
+    "total_peak_tvl": 353184.89392543206,
+    "aggregate_roi_pct": 27.29127421559107,
+    "pools_count": 6,
+    "pools": [
+      {
+        "pool_name": "sNET",
+        "market_address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "chainId": 4663,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 81957.0376083939,
+        "trading_volume_usd": 81957.0376083939,
+        "lp_balance": 22.120523209529768,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain146-0xd14117",
+        "market_address": "0xd14117baf6ec5d12be68cd06e763a4b82c9b6d1d",
+        "chainId": 146,
+        "net_gain_usd": 1326.0755694581774,
+        "peak_tvl_usd": 108277.2862088463,
+        "trading_volume_usd": 217575.26945220906,
+        "lp_balance": 0,
+        "roi_pct": 1.224703366595677
+      },
+      {
+        "pool_name": "Chain1-0xa0ab94",
+        "market_address": "0xa0ab94debb3cc9a7ea77f3205ba4ab23276fed08",
+        "chainId": 1,
+        "net_gain_usd": -79.4485278721967,
+        "peak_tvl_usd": 27215.050355376592,
+        "trading_volume_usd": 61152.303159876086,
+        "lp_balance": 0,
+        "roi_pct": -0.29192864549119196
+      },
+      {
+        "pool_name": "Chain146-0x7e2bcd",
+        "market_address": "0x7e2bcdb749d90aa1e9e7262872ac8b1e062b2c4d",
+        "chainId": 146,
+        "net_gain_usd": 97496.90689675721,
+        "peak_tvl_usd": 109297.98324336275,
+        "trading_volume_usd": 315574.93842758716,
+        "lp_balance": 0,
+        "roi_pct": 89.20284162944775
+      },
+      {
+        "pool_name": "Chain42161-0x2ad746",
+        "market_address": "0x2ad746fa3faa0ad586021a633d10f4e2785a0349",
+        "chainId": 42161,
+        "net_gain_usd": -2483.9295422051405,
+        "peak_tvl_usd": 26437.536509452566,
+        "trading_volume_usd": 50285.57149555858,
+        "lp_balance": 0,
+        "roi_pct": -9.395465198949335
+      },
+      {
+        "pool_name": "Chain146-0x30d30b",
+        "market_address": "0x30d30b975025835869541e4fca35ec4964eb992e",
+        "chainId": 146,
+        "net_gain_usd": 129.0534930960698,
+        "peak_tvl_usd": 0,
+        "trading_volume_usd": 0,
+        "lp_balance": 0,
+        "roi_pct": 0.0
+      }
+    ]
+  },
+  {
+    "wallet": "0x1217868bec81ffc5bd27d72480c11892b132dab6",
+    "total_gain_usd": -1563.1563261624347,
+    "total_peak_tvl": 38175.641174651806,
+    "aggregate_roi_pct": -4.094643280543911,
+    "pools_count": 9,
+    "pools": [
+      {
+        "pool_name": "Chain80094-0x227d4a",
+        "market_address": "0x227d4a2e5734b500fa0bed940e4df54bdda25636",
+        "chainId": 80094,
+        "net_gain_usd": -1395.7776644253545,
+        "peak_tvl_usd": 3129.193495984224,
+        "trading_volume_usd": 4203.878731972657,
+        "lp_balance": 0,
+        "roi_pct": -44.60502893849782
+      },
+      {
+        "pool_name": "Chain8453-0xa46cac",
+        "market_address": "0xa46cac2243ecd83a6a9ad58232c1967ebd14d41b",
+        "chainId": 8453,
+        "net_gain_usd": 15.493951390884305,
+        "peak_tvl_usd": 745.8226111963959,
+        "trading_volume_usd": 2022.2695083755611,
+        "lp_balance": 0,
+        "roi_pct": 2.0774311690590883
+      },
+      {
+        "pool_name": "Chain42161-0x6b92fe",
+        "market_address": "0x6b92feb89ed16aa971b096e247fe234db4aaa262",
+        "chainId": 42161,
+        "net_gain_usd": -21.531905186665647,
+        "peak_tvl_usd": 2335.648309317879,
+        "trading_volume_usd": 4649.473324819341,
+        "lp_balance": 0,
+        "roi_pct": -0.9218813081047288
+      },
+      {
+        "pool_name": "Chain80094-0x02293d",
+        "market_address": "0x02293d88656860a840ed457d38f51e3e6bee8461",
+        "chainId": 80094,
+        "net_gain_usd": 1792.8896821041003,
+        "peak_tvl_usd": 4639.478592612624,
+        "trading_volume_usd": 9755.46682061,
+        "lp_balance": 0,
+        "roi_pct": 38.6442063760978
+      },
+      {
+        "pool_name": "Chain80094-0x5200c9",
+        "market_address": "0x5200c9900436f649b4659dfc79213837dcccaab1",
+        "chainId": 80094,
+        "net_gain_usd": -0.3302350502509497,
+        "peak_tvl_usd": 9.772102897843283,
+        "trading_volume_usd": 19.212770890050322,
+        "lp_balance": 0,
+        "roi_pct": -3.3793652574394506
+      },
+      {
+        "pool_name": "Chain80094-0x850a9f",
+        "market_address": "0x850a9f099de3081fe88f8be6207492c52754acb5",
+        "chainId": 80094,
+        "net_gain_usd": -2133.122434709106,
+        "peak_tvl_usd": 6256.457241119973,
+        "trading_volume_usd": 10267.081832532182,
+        "lp_balance": 0,
+        "roi_pct": -34.0947336887298
+      },
+      {
+        "pool_name": "Chain42161-0xf9f977",
+        "market_address": "0xf9f9779d8ff604732eba9ad345e6a27ef5c2a9d6",
+        "chainId": 42161,
+        "net_gain_usd": -112.19742432047292,
+        "peak_tvl_usd": 19674.719297427997,
+        "trading_volume_usd": 39237.12081319279,
+        "lp_balance": 0,
+        "roi_pct": -0.5702618808652588
+      },
+      {
+        "pool_name": "sNUKE",
+        "market_address": "0x8547b391a65deb89c41a4c3b2eb1502d0bbc566a",
+        "chainId": 4663,
+        "net_gain_usd": 0,
+        "peak_tvl_usd": 448.06601403246924,
+        "trading_volume_usd": 448.0660140324692,
+        "lp_balance": 14.671090370560929,
+        "roi_pct": 0.0
+      },
+      {
+        "pool_name": "Chain56-0x9daa28",
+        "market_address": "0x9daa2878a8739e66e08e7ad35316c5143c0ea7c7",
+        "chainId": 56,
+        "net_gain_usd": 291.41970403443077,
+        "peak_tvl_usd": 936.4835100624011,
+        "trading_volume_usd": 2164.386724159233,
+        "lp_balance": 0,
+        "roi_pct": 31.11850885820856
+      }
+    ]
+  }
+]

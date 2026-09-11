@@ -40,9 +40,10 @@ Adapted from the Boros Quantitative Trading Framework for **Pendle V2 Autonomous
   2. **Discounted PT Carry:** Guaranteed fixed capital growth to maturity (e.g. $216.52 $\to$ $218.62).
   3. **Gas Minimization:** Robinhood Chain L2 fees must remain $< 0.1\%$ of generated alpha.
 
-### 2. Zero-Noise Operations
+### 2. Zero-Noise Operations & Alert-Only Telegram Scope
 - Terminal stdout is reserved for high-signal events (fills, on-chain confirmations, drift alerts, heartbeats).
 - Routine status belongs in persistent markdown artifacts ([`portfolio_manager_view.md`](file:///Users/tin/.gemini/antigravity-ide/brain/70ed835e-5848-4729-a254-0318f19d3a0e/portfolio_manager_view.md)), not transient console spam.
+- **Telegram Policy (Strict - Alert Only):** Never build interactive Telegram bot assistants or conversational polling handlers. The bot must strictly remain a one-way, push-only alerting system (fills, drifts, gas spikes, lifecycle heartbeats, and on-chain execution receipts).
 
 ---
 

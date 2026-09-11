@@ -95,6 +95,14 @@ WATCHLIST = {
         "accounting": "0x92fd66527192e3e61d4ddd13322aa222de86f9b5",
         "expiry": "2026-11-19",
         "edge_buffer_bps": 2
+    },
+    "SHROOM": {
+        "market": "0x49e5d9de386b5ff5cc344748977a412d07191256",
+        "yt": "0xaed999467896127c83ef0e08cf41d0b29705494d",
+        "pt": "0x46d64dc152279e645e4fccecef0aae4e2ebdc077",
+        "accounting": "0xab093def657f15df31b33922a95e047add645b29",
+        "expiry": "2026-09-24",
+        "edge_buffer_bps": 20
     }
 }
 

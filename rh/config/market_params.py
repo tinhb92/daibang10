@@ -15,14 +15,15 @@ MARKETS_CONFIG_FILE = os.path.join(CONFIG_DIR, "markets.json")
 # -----------------------------------------------------------------------------
 # DEFAULT FALLBACK INVARIANTS
 # -----------------------------------------------------------------------------
-DEFAULT_SUPPORTED_MARKETS = ["NVDA", "sNET", "sNUKE", "PFE", "SGOV"]
+DEFAULT_SUPPORTED_MARKETS = ["NVDA", "sNET", "sNUKE", "PFE", "SGOV", "SHROOM"]
 
 DEFAULT_MIN_SHORT_RATES: Dict[str, float] = {
     "NVDA": 9.65,    # Band floor [9.65%, 10.40%], Klarman base hurdle ≥ 8.00%
     "sNET": 11334.00,# Hyper-yield band floor [11334%, 13334%]
     "sNUKE": 95.50,  # Band floor [95.53%, 116.76%]
     "PFE": 3.76,     # Band floor [3.76%, 4.17%] (sub-hurdle caution)
-    "SGOV": 0.87     # Band floor [0.87%, 0.96%]
+    "SGOV": 0.87,    # Band floor [0.87%, 0.96%]
+    "SHROOM": 63.58  # Band floor [63.58%, 64.38%]
 }
 
 DEFAULT_MAX_LONG_RATES: Dict[str, float] = {
@@ -30,7 +31,8 @@ DEFAULT_MAX_LONG_RATES: Dict[str, float] = {
     "sNET": 13334.00,# Hyper-yield ceiling
     "sNUKE": 116.76, # Band ceiling
     "PFE": 4.17,     # Band ceiling
-    "SGOV": 0.96     # Band ceiling
+    "SGOV": 0.96,    # Band ceiling
+    "SHROOM": 64.38  # Band ceiling
 }
 
 DEFAULT_EDGE_BUFFERS_BPS: Dict[str, int] = {
@@ -38,7 +40,8 @@ DEFAULT_EDGE_BUFFERS_BPS: Dict[str, int] = {
     "sNET": 200,     # 2.00% buffer
     "sNUKE": 50,     # 0.50% buffer
     "PFE": 10,       # 0.10% buffer
-    "SGOV": 2        # 0.02% buffer
+    "SGOV": 2,       # 0.02% buffer
+    "SHROOM": 20     # 0.20% buffer
 }
 
 DEFAULT_GAS_GUARDRAILS: Dict[str, Any] = {

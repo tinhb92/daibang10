@@ -4,7 +4,8 @@
     "sNET",
     "sNUKE",
     "PFE",
-    "SGOV"
+    "SGOV",
+    "SHROOM"
   ],
   "default_target_market": "NVDA",
   "min_short_rates": {
@@ -12,21 +13,24 @@
     "sNET": 11333.29,
     "sNUKE": 95.53,
     "PFE": 8.0,
-    "SGOV": 0.87
+    "SGOV": 0.87,
+    "SHROOM": 63.58
   },
   "max_long_rates": {
     "NVDA": 10.4,
     "sNET": 13333.29,
     "sNUKE": 116.76,
     "PFE": 4.17,
-    "SGOV": 0.96
+    "SGOV": 0.96,
+    "SHROOM": 64.38
   },
   "edge_buffers_bps": {
     "NVDA": 20,
     "sNET": 200,
     "sNUKE": 50,
     "PFE": 10,
-    "SGOV": 2
+    "SGOV": 2,
+    "SHROOM": 20
   },
   "min_dte_cliff_days": 7,
   "gas_guardrails": {
@@ -106,6 +110,20 @@
       "base_hurdle_floor": 4.5,
       "max_long_ceiling": 1.5,
       "edge_buffer_bps": 2,
+      "min_dte_threshold": 7
+    },
+    "SHROOM": {
+      "symbol": "PT-SHROOM-24SEP2026",
+      "marketAddress": "0x49e5d9de386b5ff5cc344748977a412d07191256",
+      "ptAddress": "0x46d64dc152279e645e4fccecef0aae4e2ebdc077",
+      "ytAddress": "0xaed999467896127c83ef0e08cf41d0b29705494d",
+      "accountingAsset": "0xab093def657f15df31b33922a95e047add645b29",
+      "assetName": "SHROOM Yield Pool",
+      "expiry": "2026-09-24T00:00:00.000Z",
+      "decimals": 18,
+      "base_hurdle_floor": 20.0,
+      "max_long_ceiling": 100.0,
+      "edge_buffer_bps": 20,
       "min_dte_threshold": 7
     }
   }

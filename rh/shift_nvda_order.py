@@ -71,6 +71,15 @@ SUPPORTED_MARKETS = {
         "default_apy": 0.90,
         "dte_days": 68.5,
         "spot_fallback": 101.0
+    },
+    "SHROOM": {
+        "market": "0x49e5d9de386b5ff5cc344748977a412d07191256",
+        "yt": "0xaed999467896127c83ef0e08cf41d0b29705494d",
+        "token": "0xab093def657f15df31b33922a95e047add645b29",
+        "default_amount": 1000.0,
+        "default_apy": 63.95,
+        "dte_days": 12.1,
+        "spot_fallback": 0.0148
     }
 }
 
@@ -255,7 +264,7 @@ def submit_order_to_pendle(create_payload):
 
 def main():
     parser = argparse.ArgumentParser(description="Cancel & Shift Limit Order into Incentive Band (Robinhood Chain)")
-    parser.add_argument("--market", type=str, default="NVDA", choices=["NVDA", "sNUKE", "SGOV"], help="Target market (default: NVDA)")
+    parser.add_argument("--market", type=str, default="NVDA", choices=["NVDA", "sNUKE", "SGOV", "SHROOM"], help="Target market (default: NVDA)")
     parser.add_argument("--dry-run", action="store_true", help="Simulate without submitting on-chain tx or new order (default)")
     parser.add_argument("--execute", action="store_true", help="Execute on-chain cancellation and post new order")
     parser.add_argument("--target-apy", type=float, default=None, help="Target implied APY in percent (default: market baseline)")

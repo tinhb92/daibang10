@@ -28,12 +28,20 @@ Your mandate:
     - PT: `0x9f1e57d8984d9ae2b081ed6fceff2fb60cb785f1`
     - YT: `0x7eee53b86290e58179ed96bea7887a37e8a1b7b9`
     - Underlying / Accounting: `0x92fd66527192e3e61d4ddd13322aa222de86f9b5`
+  - **SHROOM (24-SEP-2026):** `0x49e5d9de386b5ff5cc344748977a412d07191256`
+    - PT: `0x46d64dc152279e645e4fccecef0aae4e2ebdc077`
+    - YT: `0xaed999467896127c83ef0e08cf41d0b29705494d`
+    - Underlying / Accounting: `0xab093def657f15df31b33922a95e047add645b29`
 
 ---
 
 ## Operating Protocols & Manager Responsibilities
 
 ### 0. Mandatory Execution Safety & Autonomy Protocols
+- **Telegram Bot Scope (Strict - Alert Only):**
+  - Telegram (`@pendleV2_bot`) is strictly a **one-way push notification and alert dispatcher**.
+  - **DO NOT develop interactive Telegram bot assistant features, polling command workers, conversational bots, or command reply handlers any more.**
+  - Telegram is solely reserved for clean, high-signal alerts: order fills, out-of-band drifts, gas spikes, hourly heartbeats, and on-chain execution receipts.
 - **Read-Only Bots & Documentation (.md): Full Autonomous Execution:**
   - Read-only monitoring daemons (e.g. `rh/monitor_nvda_moves.py`), radar scripts, and documentation/markdown files (`AGENTS.md`, `patterns.md`, manager views) can be updated, modified, and restarted autonomously without stopping to ask permission.
 - **On-Chain Actions & Live Orders: STRICT PERMISSION REQUIRED:**

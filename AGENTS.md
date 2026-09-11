@@ -61,10 +61,12 @@ The desk strictly adheres to the 4 core principles defined in [patterns.md](file
 ### Desk Module Structure
 - [`rh/shift_nvda_order.py`](file:///Users/tin/eagle/daibang10/rh/shift_nvda_order.py): NVDA limit order cancel & shift automation with integrated gas economics check. Defaults to `--dry-run`.
 - [`rh/monitor_portfolio.py`](file:///Users/tin/eagle/daibang10/rh/monitor_portfolio.py): Portfolio balances, active orders, and gas runway tracking.
-- [`rh/gas_governor.py`](file:///Users/tin/eagle/daibang10/rh/gas_governor.py): Gas metrics, runway calculation, and economic viability evaluation.
+- [`rh/gas_governor.py`](file:///Users/tin/eagle/daibang10/rh/gas_governor.py): Gas metrics, runway calculation, economic viability evaluation, and 10x ceiling enforcement.
+- [`rh/alerter.py`](file:///Users/tin/eagle/daibang10/rh/alerter.py): Telegram dispatcher for operational & gas spike alerts via `@pendleV2_bot` (`8609659416:AAEBGuiFu3SjmVABHG-TSDwZzxOFxzr31EU`).
 
-### Mandatory Gas Hurdle Rule
+### Mandatory Gas Hurdle & Ceiling Rules
+- **10x Gas Ceiling Guard (Strict):** Allow up to **$10\times$ baseline** ($720,000$ gas units or $\approx \$0.22 \text{ USD}$). Any operation estimating above either limit **MUST BE IGNORED & ABORTED**, triggering an immediate Telegram alert.
 - **Minimum 5x Ratio:** Never cancel and shift an order unless the expected incremental PENDLE reward over the holding period is at least **$5\times$ the on-chain cancellation gas fee**.
-- **Runway Guard:** Alert if native ETH drops below `0.002 ETH`.
+- **Runway Guard:** Alert to Telegram if native ETH drops below `0.002 ETH`.
 
 

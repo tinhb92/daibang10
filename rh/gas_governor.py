@@ -13,6 +13,44 @@ ROUTER_ADDRESS = "0x000000000000c9B3E2C3Ec88B1B4c0cD853f4321"
 AVG_CANCEL_GAS_UNITS = 72000
 MIN_REWARD_TO_GAS_RATIO = 5.0  # Projected incentive must exceed 5x gas cost
 
+# Hard 10x Safety Ceiling Guard
+MAX_ALLOWED_GAS_UNITS = 720000     # 10x of 72,000 baseline
+MAX_ALLOWED_GAS_COST_USD = 0.2200   # 10x of $0.022 USD baseline
+
+def check_and_enforce_gas_ceiling(gas_units: int, gas_cost_usd: float, market_name: str = "NVDA") -> bool:
+    """
+    Strict 10x Gas Ceiling Guard:
+    Baseline: 72,000 gas units (~$0.022 USD).
+    Ceiling:  720,000 gas units (~$0.220 USD).
+    If estimated gas exceeds either threshold, the operation MUST be ignored
+    and an alert dispatched to Telegram.
+    Returns: True if within allowable ceiling; False if breached and ignored.
+    """
+    if gas_units > MAX_ALLOWED_GAS_UNITS or gas_cost_usd > MAX_ALLOWED_GAS_COST_USD:
+        breach_reason = []
+        if gas_units > MAX_ALLOWED_GAS_UNITS:
+            breach_reason.append(f"Gas Units ({gas_units:,}) > 10x ceiling ({MAX_ALLOWED_GAS_UNITS:,})")
+        if gas_cost_usd > MAX_ALLOWED_GAS_COST_USD:
+            breach_reason.append(f"Gas Cost (${gas_cost_usd:.4f}) > 10x ceiling (${MAX_ALLOWED_GAS_COST_USD:.4f})")
+            
+        alert_msg = (
+            f"🚨 <b>[GAS SPIKE BREACH: ACTION IGNORED]</b>\n\n"
+            f"• <b>Market:</b> {market_name} (Robinhood Chain 4663)\n"
+            f"• <b>Estimated Gas:</b> {gas_units:,} units\n"
+            f"• <b>Estimated Cost:</b> ${gas_cost_usd:.4f} USD\n"
+            f"• <b>Breach Details:</b> {'; '.join(breach_reason)}\n"
+            f"• <b>Action Taken:</b> <b>EXECUTION ABORTED & IGNORED</b>\n"
+            f"• <b>Policy:</b> Hard 10x ceiling on 72,000 units ($0.022 USD) to prevent fee burning."
+        )
+        try:
+            from alerter import send_telegram_alert
+            send_telegram_alert(alert_msg)
+        except Exception as e:
+            print(f"Failed to dispatch Telegram gas alert: {e}")
+            
+        return False
+    return True
+
 def get_gas_metrics(w3: Web3, maker_address: str, eth_price_usd: float = 2500.0):
     """
     Evaluates current gas balance, transaction cost, and remaining runway.

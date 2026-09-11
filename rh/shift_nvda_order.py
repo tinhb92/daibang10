@@ -21,7 +21,14 @@ from eth_account.messages import encode_typed_data
 
 # Ensure rh package imports work
 sys.path.append(os.path.dirname(__file__))
-from gas_governor import get_gas_metrics, evaluate_shift_economic_viability
+from gas_governor import (
+    get_gas_metrics,
+    evaluate_shift_economic_viability,
+    check_and_enforce_gas_ceiling,
+    AVG_CANCEL_GAS_UNITS,
+    MAX_ALLOWED_GAS_UNITS,
+    MAX_ALLOWED_GAS_COST_USD
+)
 
 CHAIN_ID = 4663
 RPC_URL = "https://rpc.mainnet.chain.robinhood.com"
@@ -285,9 +292,18 @@ def main():
 
         gas_price = w3.eth.gas_price
         tx_cost_eth = (gas_est * gas_price) / 1e18
+        tx_cost_usd = tx_cost_eth * 2500.0
         print(f"  - Router:       {to_addr}")
-        print(f"  - Est Gas:      {gas_est} units")
-        print(f"  - Est Cost:     {tx_cost_eth:.8f} ETH (~${tx_cost_eth * 2500:.4f} USD)")
+        print(f"  - Est Gas:      {gas_est:,} units (Ceiling: {MAX_ALLOWED_GAS_UNITS:,})")
+        print(f"  - Est Cost:     {tx_cost_eth:.8f} ETH (~${tx_cost_usd:.4f} USD, Ceiling: ${MAX_ALLOWED_GAS_COST_USD:.2f})")
+
+        # 10x Safety Ceiling Guard: abort and alert if above 10x of baseline
+        is_safe = check_and_enforce_gas_ceiling(gas_est, tx_cost_usd, market_name="NVDA (Oct 2026)")
+        if not is_safe:
+            print(f"\n🚨 [GAS CEILING EXCEEDED] Cancel tx cost exceeds 10x baseline limit!")
+            print(f"   Hard Limit: {MAX_ALLOWED_GAS_UNITS:,} units / ${MAX_ALLOWED_GAS_COST_USD:.2f} USD.")
+            print(f"   Action: IGNORED. Dispatched alert to Telegram.")
+            sys.exit(1)
 
     # 4. Generate New Order
     print(f"\n[Step 2: Generate New Shifted Order]")

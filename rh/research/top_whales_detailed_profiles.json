@@ -1,0 +1,572 @@
+[
+  {
+    "rank": 1,
+    "name": "The Short-Yield Titan",
+    "address": "0xb1350ae77f1f7d977fab077ea71c6011e74b9306",
+    "lifetime_reward_pendle": 14244.310290538253,
+    "current_epoch_reward_pendle": 17.8051974191316,
+    "current_resting_usd": 136583.4115896898,
+    "current_incentivized_usd": 136583.4115896898,
+    "placed_market_count": 2,
+    "incentivized_market_count": 2,
+    "total_active_orders_found": 10,
+    "participated_markets": [
+      {
+        "chainId": 1,
+        "marketAddress": "0x9c560ebaf78e596cbcc27411d633a74d628dd7dc",
+        "long": {
+          "userMakingAmountInRange": 7350338.523529251,
+          "totalMakingAmountInRange": 21265018.897113726
+        },
+        "short": {
+          "userMakingAmountInRange": 1885026.969535046,
+          "totalMakingAmountInRange": 9629592.916459657
+        }
+      },
+      {
+        "chainId": 143,
+        "marketAddress": "0x6f99cf00ee7290ae78a072bb6910ef72d1129fe7",
+        "long": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 13628504.659398
+        },
+        "short": {
+          "userMakingAmountInRange": 8423925.033706,
+          "totalMakingAmountInRange": 16926692.041426
+        }
+      }
+    ],
+    "history_epochs_count": 4
+  },
+  {
+    "rank": 2,
+    "name": "The Cross-Chain Yield King",
+    "address": "0xc693b4ffb338579467a541b2bf267b1955870920",
+    "lifetime_reward_pendle": 13147.13009532989,
+    "current_epoch_reward_pendle": 11.12544600847658,
+    "current_resting_usd": 371505.18226526654,
+    "current_incentivized_usd": 341719.0450828882,
+    "placed_market_count": 7,
+    "incentivized_market_count": 7,
+    "total_active_orders_found": 13,
+    "participated_markets": [
+      {
+        "chainId": 143,
+        "marketAddress": "0x2142267022ecde6745de9f577e3ba4549ad23abc",
+        "long": {
+          "userMakingAmountInRange": 18549.67253198552,
+          "totalMakingAmountInRange": 5271496.816631633
+        },
+        "short": {
+          "userMakingAmountInRange": 30496.554065135693,
+          "totalMakingAmountInRange": 1398801.9425516217
+        }
+      },
+      {
+        "chainId": 143,
+        "marketAddress": "0x6f99cf00ee7290ae78a072bb6910ef72d1129fe7",
+        "long": {
+          "userMakingAmountInRange": 198064.745936,
+          "totalMakingAmountInRange": 13628504.659398
+        },
+        "short": {
+          "userMakingAmountInRange": 5200.105544,
+          "totalMakingAmountInRange": 16923483.978006
+        }
+      },
+      {
+        "chainId": 143,
+        "marketAddress": "0x475b98c83aedbfdd0a0abaa930ec8cb501ac93b1",
+        "long": {
+          "userMakingAmountInRange": 113165.333799,
+          "totalMakingAmountInRange": 5090653.016151
+        },
+        "short": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 5403460.372252
+        }
+      },
+      {
+        "chainId": 143,
+        "marketAddress": "0xc945210f85b55946eb970f427e4b9150fff600de",
+        "long": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 56890.932827829965
+        },
+        "short": {
+          "userMakingAmountInRange": 7736.971813627922,
+          "totalMakingAmountInRange": 62225.234564250924
+        }
+      },
+      {
+        "chainId": 1,
+        "marketAddress": "0x9c560ebaf78e596cbcc27411d633a74d628dd7dc",
+        "long": {
+          "userMakingAmountInRange": 6123344.86462674,
+          "totalMakingAmountInRange": 21265018.897113726
+        },
+        "short": {
+          "userMakingAmountInRange": 58913.956670249674,
+          "totalMakingAmountInRange": 9629592.916459657
+        }
+      },
+      {
+        "chainId": 1,
+        "marketAddress": "0x4a5067c3ff1abb7449244025b0e37feaf77d8e3e",
+        "long": {
+          "userMakingAmountInRange": 13596.19352,
+          "totalMakingAmountInRange": 1387950.13091
+        },
+        "short": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 460855.652204
+        }
+      },
+      {
+        "chainId": 1,
+        "marketAddress": "0x8308e53f584a7e5f0c581059d9ba971c0bec9454",
+        "long": {
+          "userMakingAmountInRange": 127220.94871595748,
+          "totalMakingAmountInRange": 1444362.2903962645
+        },
+        "short": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 0
+        }
+      }
+    ],
+    "history_epochs_count": 4
+  },
+  {
+    "rank": 3,
+    "name": "The Monad & HyperEVM Arbitrageur",
+    "address": "0x804528cbf2d6d27f3b0b35bddd7cbafbe06e83ba",
+    "lifetime_reward_pendle": 4888.177833413286,
+    "current_epoch_reward_pendle": 9.658512912944387,
+    "current_resting_usd": 44850.85513212838,
+    "current_incentivized_usd": 44850.85513212838,
+    "placed_market_count": 1,
+    "incentivized_market_count": 1,
+    "total_active_orders_found": 1,
+    "participated_markets": [
+      {
+        "chainId": 1,
+        "marketAddress": "0x9c560ebaf78e596cbcc27411d633a74d628dd7dc",
+        "long": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 21265018.897113726
+        },
+        "short": {
+          "userMakingAmountInRange": 4056326.7595388275,
+          "totalMakingAmountInRange": 9629592.916459657
+        }
+      }
+    ],
+    "history_epochs_count": 4
+  },
+  {
+    "rank": 4,
+    "name": "The Delta-Neutral Market Maker",
+    "address": "0x9c80a96a06cb6f7943a462dde7ac215011fa8ace",
+    "lifetime_reward_pendle": 4747.374791161001,
+    "current_epoch_reward_pendle": 16.07169696320939,
+    "current_resting_usd": 61509.218510383005,
+    "current_incentivized_usd": 61509.218510383005,
+    "placed_market_count": 10,
+    "incentivized_market_count": 10,
+    "total_active_orders_found": 38,
+    "participated_markets": [
+      {
+        "chainId": 143,
+        "marketAddress": "0x6f99cf00ee7290ae78a072bb6910ef72d1129fe7",
+        "long": {
+          "userMakingAmountInRange": 567336.639808,
+          "totalMakingAmountInRange": 13628504.659398
+        },
+        "short": {
+          "userMakingAmountInRange": 1305954.728772,
+          "totalMakingAmountInRange": 16923483.978006
+        }
+      },
+      {
+        "chainId": 1,
+        "marketAddress": "0x66ec657c59cdcaf171ab43b83da3942758bf8a97",
+        "long": {
+          "userMakingAmountInRange": 124727.87393039593,
+          "totalMakingAmountInRange": 245747.31102380986
+        },
+        "short": {
+          "userMakingAmountInRange": 801724.027762301,
+          "totalMakingAmountInRange": 4843261.840798962
+        }
+      },
+      {
+        "chainId": 1,
+        "marketAddress": "0xb6fe0f0811931a38aa97534bac3c147437223e38",
+        "long": {
+          "userMakingAmountInRange": 12792.21100730515,
+          "totalMakingAmountInRange": 141030.21890889364
+        },
+        "short": {
+          "userMakingAmountInRange": 116549.38111652533,
+          "totalMakingAmountInRange": 116549.38111652533
+        }
+      },
+      {
+        "chainId": 1,
+        "marketAddress": "0xc5f938a8ef5f3bf9e72f5aa094baf5e03f4727d3",
+        "long": {
+          "userMakingAmountInRange": 235618.47582133408,
+          "totalMakingAmountInRange": 5733664.501473912
+        },
+        "short": {
+          "userMakingAmountInRange": 91970.27676522355,
+          "totalMakingAmountInRange": 5298167.277457336
+        }
+      },
+      {
+        "chainId": 1,
+        "marketAddress": "0xbeab098b510f758cd35122ee345957b8eccbb322",
+        "long": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 19226179.28699499
+        },
+        "short": {
+          "userMakingAmountInRange": 57146.400304846444,
+          "totalMakingAmountInRange": 815182.82859135
+        }
+      },
+      {
+        "chainId": 143,
+        "marketAddress": "0x2142267022ecde6745de9f577e3ba4549ad23abc",
+        "long": {
+          "userMakingAmountInRange": 2904388.10015287,
+          "totalMakingAmountInRange": 5271496.816631633
+        },
+        "short": {
+          "userMakingAmountInRange": 1724.477511630939,
+          "totalMakingAmountInRange": 1398801.9425516217
+        }
+      },
+      {
+        "chainId": 1,
+        "marketAddress": "0x13285bcbc27f92b47b4edb99d744c07b48c977c0",
+        "long": {
+          "userMakingAmountInRange": 63249.44555007402,
+          "totalMakingAmountInRange": 2830282.6884256615
+        },
+        "short": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 2593396.6925422978
+        }
+      },
+      {
+        "chainId": 143,
+        "marketAddress": "0x475b98c83aedbfdd0a0abaa930ec8cb501ac93b1",
+        "long": {
+          "userMakingAmountInRange": 373319.136185,
+          "totalMakingAmountInRange": 5090653.016151
+        },
+        "short": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 5403460.372252
+        }
+      },
+      {
+        "chainId": 143,
+        "marketAddress": "0x88c5d8a908834e44b421cb67aec9a931782f9538",
+        "long": {
+          "userMakingAmountInRange": 304117.637305,
+          "totalMakingAmountInRange": 2670548.244708
+        },
+        "short": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 9027488.513849
+        }
+      },
+      {
+        "chainId": 9745,
+        "marketAddress": "0x14c3fc8096cb5b34c2780c6a5977a3d354b9e961",
+        "long": {
+          "userMakingAmountInRange": 230044.0543403914,
+          "totalMakingAmountInRange": 230044.0543403914
+        },
+        "short": {
+          "userMakingAmountInRange": 267226.2717797393,
+          "totalMakingAmountInRange": 1387421.9668313982
+        }
+      }
+    ],
+    "history_epochs_count": 4
+  },
+  {
+    "rank": 5,
+    "name": "The Arbitrum CLOB Monopoly",
+    "address": "0xa8236ead24b2a3085a6e5f11a23b39eee03ae300",
+    "lifetime_reward_pendle": 4436.1231440068295,
+    "current_epoch_reward_pendle": 17.87961514687894,
+    "current_resting_usd": 85598.50750585942,
+    "current_incentivized_usd": 85598.50750585942,
+    "placed_market_count": 4,
+    "incentivized_market_count": 4,
+    "total_active_orders_found": 7,
+    "participated_markets": [
+      {
+        "chainId": 42161,
+        "marketAddress": "0xf86119a39f8654f38acbbd5488bd83f3f51983c8",
+        "long": {
+          "userMakingAmountInRange": 316102.90822059463,
+          "totalMakingAmountInRange": 546458.8439802143
+        },
+        "short": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 20926.859495722616
+        }
+      },
+      {
+        "chainId": 42161,
+        "marketAddress": "0x46f545683d8494ef4c54b7ea40ca762c620846ef",
+        "long": {
+          "userMakingAmountInRange": 497273.0910752036,
+          "totalMakingAmountInRange": 1095763.9729651648
+        },
+        "short": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 172368.3436922496
+        }
+      },
+      {
+        "chainId": 42161,
+        "marketAddress": "0xa8a0dea40174cfc30fea9e3a77f182ab33f46e25",
+        "long": {
+          "userMakingAmountInRange": 2048555.6711107406,
+          "totalMakingAmountInRange": 4341954.139024728
+        },
+        "short": {
+          "userMakingAmountInRange": 347216.94395720644,
+          "totalMakingAmountInRange": 708029.8054998289
+        }
+      },
+      {
+        "chainId": 42161,
+        "marketAddress": "0xcbf629c8d396b1261f81f55175afa010e94787d8",
+        "long": {
+          "userMakingAmountInRange": 1420420.2600920792,
+          "totalMakingAmountInRange": 2191998.225238097
+        },
+        "short": {
+          "userMakingAmountInRange": 1958921.197934864,
+          "totalMakingAmountInRange": 5984035.401532238
+        }
+      }
+    ],
+    "history_epochs_count": 4
+  },
+  {
+    "rank": 41,
+    "name": "The Robinhood Chain Goliath",
+    "address": "0x743d7b30661d65b41960bf6b5d1bb93cf7972a73",
+    "lifetime_reward_pendle": 1302.5819834984086,
+    "current_epoch_reward_pendle": 2.196944708681365,
+    "current_resting_usd": 41159.869205385156,
+    "current_incentivized_usd": 18298.13067847336,
+    "placed_market_count": 16,
+    "incentivized_market_count": 8,
+    "total_active_orders_found": 21,
+    "participated_markets": [
+      {
+        "chainId": 1,
+        "marketAddress": "0x47ad2cd1dd15739a7a035b9d3b7828d916fef77e",
+        "long": {
+          "userMakingAmountInRange": 238016.84206031563,
+          "totalMakingAmountInRange": 1600417.8906638974
+        },
+        "short": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 557708.0678189895
+        }
+      },
+      {
+        "chainId": 1,
+        "marketAddress": "0xac028348c46d3455899a2b9b50077c11960eaddb",
+        "long": {
+          "userMakingAmountInRange": 137084.43101202173,
+          "totalMakingAmountInRange": 247793.26656041245
+        },
+        "short": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 295367.72187952267
+        }
+      },
+      {
+        "chainId": 1,
+        "marketAddress": "0xfcf009cb3135da12a6eb1f73f3ee05392a7bc947",
+        "long": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 32965.55051799809
+        },
+        "short": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 285185.4089779111
+        }
+      },
+      {
+        "chainId": 56,
+        "marketAddress": "0xe2a8b724885bdc8412a4f12f8aad461de6071b2a",
+        "long": {
+          "userMakingAmountInRange": 241.24116342681987,
+          "totalMakingAmountInRange": 318.491889587238
+        },
+        "short": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 0
+        }
+      },
+      {
+        "chainId": 1,
+        "marketAddress": "0x90b70c407f1077f8eb92bf423b44cd92329b737a",
+        "long": {
+          "userMakingAmountInRange": 118686.408375675,
+          "totalMakingAmountInRange": 916603.240423414
+        },
+        "short": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 399358.0843198499
+        }
+      },
+      {
+        "chainId": 9745,
+        "marketAddress": "0x14c3fc8096cb5b34c2780c6a5977a3d354b9e961",
+        "long": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 230044.0543403914
+        },
+        "short": {
+          "userMakingAmountInRange": 304226.9186958288,
+          "totalMakingAmountInRange": 1387421.9668313982
+        }
+      },
+      {
+        "chainId": 999,
+        "marketAddress": "0x350f58890323c71348a7c58335154938aaf9fdca",
+        "long": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 0
+        },
+        "short": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 48.27948743584942
+        }
+      },
+      {
+        "chainId": 1,
+        "marketAddress": "0x50d746e1c7987396b47b0a95ebd94bccaaf7a2d9",
+        "long": {
+          "userMakingAmountInRange": 8387.161969067036,
+          "totalMakingAmountInRange": 13604.520710642544
+        },
+        "short": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 0
+        }
+      },
+      {
+        "chainId": 1,
+        "marketAddress": "0x440a67f76f569b67a993aeaff58d198705ec5fe4",
+        "long": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 23483.829037046187
+        },
+        "short": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 0
+        }
+      },
+      {
+        "chainId": 1,
+        "marketAddress": "0x1f34887b270bfaf56cf7973572654874c8ed740e",
+        "long": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 133994.20088902788
+        },
+        "short": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 0
+        }
+      },
+      {
+        "chainId": 1,
+        "marketAddress": "0xdf2e3e0250f679d6284a39a0c1a16a850a9d7aa6",
+        "long": {
+          "userMakingAmountInRange": 47557.664379389425,
+          "totalMakingAmountInRange": 54777.20654979414
+        },
+        "short": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 66726.94000489156
+        }
+      },
+      {
+        "chainId": 4663,
+        "marketAddress": "0x892defbf510d9baa96dbd2a51b13e879a857a79b",
+        "long": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 0
+        },
+        "short": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 0
+        }
+      },
+      {
+        "chainId": 143,
+        "marketAddress": "0xea492a66e98a46426f03f5c3505ee89d96520813",
+        "long": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 0
+        },
+        "short": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 0
+        }
+      },
+      {
+        "chainId": 4663,
+        "marketAddress": "0xd6e26e957b3207a5c618213d928647ec84150ca0",
+        "long": {
+          "userMakingAmountInRange": 5966.218562803197,
+          "totalMakingAmountInRange": 67180.97279935295
+        },
+        "short": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 0.09931649578798436
+        }
+      },
+      {
+        "chainId": 4663,
+        "marketAddress": "0x49e5d9de386b5ff5cc344748977a412d07191256",
+        "long": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 0
+        },
+        "short": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 0
+        }
+      },
+      {
+        "chainId": 4663,
+        "marketAddress": "0xdd34d9471667107f9b45e2204add3dd4da54e5a6",
+        "long": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 0
+        },
+        "short": {
+          "userMakingAmountInRange": 0,
+          "totalMakingAmountInRange": 0
+        }
+      }
+    ],
+    "history_epochs_count": 4
+  }
+]

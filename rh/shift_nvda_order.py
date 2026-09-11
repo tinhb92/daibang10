@@ -17,9 +17,15 @@ import json
 import argparse
 import urllib.request
 from datetime import datetime, timezone
-from web3 import Web3
-from eth_account import Account
-from eth_account.messages import encode_typed_data
+try:
+    from web3 import Web3
+    from eth_account import Account
+    from eth_account.messages import encode_typed_data
+except ImportError:
+    print("\n[!] Error: Required Web3 dependencies not found.")
+    print("    Please activate the workspace conda environment before running:")
+    print("    >>> conda activate jlab\n")
+    sys.exit(1)
 
 # Ensure rh and root package imports work
 RH_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -34,15 +40,19 @@ from gas_governor import (
     check_and_enforce_gas_ceiling,
     AVG_CANCEL_GAS_UNITS,
     MAX_ALLOWED_GAS_UNITS,
+    MIN_REWARD_TO_GAS_RATIO,
     MAX_ALLOWED_GAS_COST_USD
 )
-from rh.config.market_params import validate_order_safety
+from config.market_params import (
+    validate_order_safety,
+    normalize_market_key
+)
 from alerter import send_telegram_alert
 
 CHAIN_ID = 4663
-RPC_URL = "https://rpc.mainnet.chain.robinhood.com"
-BASE_API = "https://api-v2.pendle.finance/core"
 ROUTER_ADDRESS = "0x000000000000c9B3E2C3Ec88B1B4c0cD853f4321"
+BASE_API = "https://api-v2.pendle.finance/core"
+RPC_URL = "https://rpc.mainnet.chain.robinhood.com"
 
 SUPPORTED_MARKETS = {
     "NVDA": {
@@ -80,6 +90,24 @@ SUPPORTED_MARKETS = {
         "default_apy": 63.95,
         "dte_days": 12.1,
         "spot_fallback": 0.0148
+    },
+    "PFE": {
+        "market": "0x892defbf510d9baa96dbd2a51b13e879a857a79b",
+        "yt": "0x7600d0a61f83d7e4c4154c4664b19be6d9acf180",
+        "token": "0x7066a64c24e4206cd62e83bf198c1e7eb361f51e",
+        "default_amount": 1.0,
+        "default_apy": 4.74,
+        "dte_days": 89.0,
+        "spot_fallback": 27.62
+    },
+    "sNET": {
+        "market": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+        "yt": "0xfb2d72fc9c378a73b4e03abac48194367447fa5a",
+        "token": "0xb773ec2c326b7f98a5a83fc098825492f020a4c7",
+        "default_amount": 0.05,
+        "default_apy": 12000.0,
+        "dte_days": 5.5,
+        "spot_fallback": 512.45
     }
 }
 
@@ -264,11 +292,12 @@ def submit_order_to_pendle(create_payload):
 
 def main():
     parser = argparse.ArgumentParser(description="Cancel & Shift Limit Order into Incentive Band (Robinhood Chain)")
-    parser.add_argument("--market", type=str, default="NVDA", choices=["NVDA", "sNUKE", "SGOV", "SHROOM"], help="Target market (default: NVDA)")
+    parser.add_argument("--market", type=str, default="NVDA", choices=["NVDA", "sNUKE", "SGOV", "SHROOM", "PFE", "sNET"], help="Target market (default: NVDA)")
     parser.add_argument("--dry-run", action="store_true", help="Simulate without submitting on-chain tx or new order (default)")
     parser.add_argument("--execute", action="store_true", help="Execute on-chain cancellation and post new order")
     parser.add_argument("--target-apy", type=float, default=None, help="Target implied APY in percent (default: market baseline)")
     parser.add_argument("--amount", type=float, default=None, help="Amount of underlying/SY to order (default: market baseline)")
+    parser.add_argument("--horizon-days", type=float, default=7.0, help="Projected holding horizon in days for gas amortization (default: 7.0 days)")
     args = parser.parse_args()
 
     # Default to safe dry-run unless --execute is explicitly supplied
@@ -278,10 +307,13 @@ def main():
     m_key = args.market.upper()
     if m_key == "SNUKE":
         m_key = "sNUKE"
+    elif m_key == "SNET":
+        m_key = "sNET"
     m_cfg = SUPPORTED_MARKETS[m_key]
 
     target_apy = args.target_apy if args.target_apy is not None else m_cfg["default_apy"]
     amount = args.amount if args.amount is not None else m_cfg["default_amount"]
+    horizon_days = max(0.1, args.horizon_days)
 
     pk = load_private_key()
     acct = Account.from_key(pk)
@@ -330,32 +362,36 @@ def main():
         print(f"  - Order {oid[:14]}... | Rate: {apy:.2f}% | Size: {cur_making:.4f} {m_key} ({status})")
         order_ids_to_cancel.append(oid)
 
-    # Gas Economics Breakeven Evaluation
+    # Gas Economics Breakeven Evaluation over Horizon
     spot_price = m_cfg.get("spot_fallback", 100.0)
     order_size_usd = amount * spot_price
     new_incentive_apr = band["buyPtApr"]
+    projected_holding_hours = horizon_days * 24.0
+
     econ = evaluate_shift_economic_viability(
         order_size_usd=order_size_usd,
         current_incentive_apr=current_incentive_apr,
         new_incentive_apr=new_incentive_apr,
         gas_cost_usd=gas_metrics["cost_per_cancel_usd"],
-        projected_holding_hours=24.0
+        projected_holding_hours=projected_holding_hours
     )
 
-    print(f"\n[Gas Economics Evaluation]")
+    print(f"\n[Gas Economics Evaluation ({horizon_days:.1f}-Day Horizon)]")
     print(f"  - Order Notional:   ${order_size_usd:.2f} USD")
     print(f"  - Gas Cost to Shift:${econ['gas_cost_usd']:.4f} USD")
-    print(f"  - 24h Reward Delta: ${econ['expected_reward_usd']:.4f} USD")
+    print(f"  - 24h Reward Delta: ${econ['reward_24h_usd']:.4f} USD (24h Ratio: {econ['reward_to_gas_ratio_24h']:.1f}x)")
+    print(f"  - {horizon_days:.1f}d Horizon Est:  ${econ['expected_reward_usd']:.4f} USD")
     print(f"  - Reward/Gas Ratio: {econ['reward_to_gas_ratio']:.1f}x (Hurdle: {econ['min_required_ratio']}x)")
-    print(f"  - Breakeven Time:   {econ['hours_to_breakeven']:.2f} hours")
+    print(f"  - Breakeven Time:   {econ['hours_to_breakeven']:.2f} hours (5.0x hurdle cleared in: {econ['days_to_5x_hurdle']:.1f} days)")
 
     if not econ["is_viable"]:
-        print("⚠️ Warning: Shift fails economic hurdle (gas cost too high relative to reward gain).")
+        print(f"⚠️ Warning: Shift fails economic hurdle ({econ['reward_to_gas_ratio']:.1f}x < {econ['min_required_ratio']}x hurdle over {horizon_days:.1f} days).")
+        print(f"   Required: Minimum ${econ['min_notional_horizon']:.2f} USD notional or {econ['days_to_5x_hurdle']:.1f} days holding to clear 5.0x hurdle.")
         if args.execute:
             print("Aborting to preserve capital from gas erosion.")
             sys.exit(1)
     else:
-        print("✅ Shift is economically sound: Rewards strongly dominate gas cost.")
+        print(f"✅ Shift is economically sound: Rewards dominate gas cost ({econ['reward_to_gas_ratio']:.1f}x >= {econ['min_required_ratio']}x hurdle over {horizon_days:.1f}d horizon).")
 
     # Quantitative Safety Constraint Check (Seth Klarman, Ajit Jain, Gas Ceiling)
     is_safe, reason, violations = validate_order_safety(

@@ -83,32 +83,48 @@ def evaluate_shift_economic_viability(
     current_incentive_apr: float,
     new_incentive_apr: float,
     gas_cost_usd: float,
-    projected_holding_hours: float = 24.0
+    projected_holding_hours: float = 168.0  # Default to 7 days (institutional resting horizon)
 ):
     """
     Determines if cancelling and shifting an order is economically justified.
     In Boros: Shift cost is $0.
-    In Robinhood: Shift costs gas_cost_usd ($0.02 - $0.05).
+    In Robinhood: Shift costs gas_cost_usd ($0.015 - $0.035).
     """
     # Incremental APR gain
     incremental_apr = max(0.0, (new_incentive_apr - current_incentive_apr) / 100.0)
     
-    # Expected incremental reward over the holding period
+    # Expected incremental reward over the projected holding period
     expected_incremental_reward_usd = (order_size_usd * incremental_apr * (projected_holding_hours / 8760.0))
+    reward_24h_usd = (order_size_usd * incremental_apr * (24.0 / 8760.0))
     
-    # Breakeven ratio
+    # Hurdle ratio over projected holding period
     ratio = expected_incremental_reward_usd / gas_cost_usd if gas_cost_usd > 0 else float("inf")
-    is_viable = ratio >= MIN_REWARD_TO_GAS_RATIO or (current_incentive_apr == 0.0 and order_size_usd >= 10.0)
+    ratio_24h = reward_24h_usd / gas_cost_usd if gas_cost_usd > 0 else float("inf")
+    
+    is_viable = ratio >= MIN_REWARD_TO_GAS_RATIO
 
-    hours_to_breakeven = (gas_cost_usd / (order_size_usd * incremental_apr / 8760.0)) if (order_size_usd * incremental_apr) > 0 else float("inf")
+    hourly_rate = (order_size_usd * incremental_apr / 8760.0) if (order_size_usd * incremental_apr) > 0 else 0.0
+    hours_to_breakeven = (gas_cost_usd / hourly_rate) if hourly_rate > 0 else float("inf")
+    hours_to_5x_hurdle = (gas_cost_usd * MIN_REWARD_TO_GAS_RATIO / hourly_rate) if hourly_rate > 0 else float("inf")
+
+    # Min size required to clear 5.0x hurdle over holding horizon and 24h
+    min_notional_horizon = (gas_cost_usd * MIN_REWARD_TO_GAS_RATIO) / (incremental_apr * (projected_holding_hours / 8760.0)) if incremental_apr > 0 else float("inf")
+    min_notional_24h = (gas_cost_usd * MIN_REWARD_TO_GAS_RATIO) / (incremental_apr * (24.0 / 8760.0)) if incremental_apr > 0 else float("inf")
 
     return {
         "is_viable": is_viable,
         "expected_reward_usd": expected_incremental_reward_usd,
+        "reward_24h_usd": reward_24h_usd,
         "gas_cost_usd": gas_cost_usd,
         "reward_to_gas_ratio": ratio,
+        "reward_to_gas_ratio_24h": ratio_24h,
         "hours_to_breakeven": hours_to_breakeven,
-        "min_required_ratio": MIN_REWARD_TO_GAS_RATIO
+        "hours_to_5x_hurdle": hours_to_5x_hurdle,
+        "days_to_5x_hurdle": hours_to_5x_hurdle / 24.0 if hours_to_5x_hurdle != float("inf") else float("inf"),
+        "min_required_ratio": MIN_REWARD_TO_GAS_RATIO,
+        "projected_holding_hours": projected_holding_hours,
+        "min_notional_horizon": min_notional_horizon,
+        "min_notional_24h": min_notional_24h
     }
 
 if __name__ == "__main__":

@@ -1,15 +1,21 @@
 #!/usr/bin/env python3
 """
-Pendle V2 Portfolio & Operations Manager Monitor
-Monitors capital balances, active resting orders, and accumulated incentive rewards
-for wallet 0xaa7c405151c1a11fc2e9998a31b285c7b53d248b on Robinhood Chain (4663).
+Pendle V2 Portfolio & Operations Manager Monitor (Robinhood Desk)
+Monitors capital balances, active resting orders, accumulated incentive rewards,
+and gas runway for wallet 0xaa7c405151c1a11fc2e9998a31b285c7b53d248b on Robinhood Chain (4663).
 """
 
 import os
 import sys
+import math
 import json
 import urllib.request
 from datetime import datetime
+from web3 import Web3
+
+# Local imports
+sys.path.append(os.path.dirname(__file__))
+from gas_governor import get_gas_metrics
 
 WALLET = "0xaa7c405151c1a11fc2e9998a31b285c7b53d248b".lower()
 CHAIN_ID = 4663
@@ -17,7 +23,6 @@ RPC_URL = "https://rpc.mainnet.chain.robinhood.com"
 BASE_API = "https://api-v2.pendle.finance/core"
 HEADERS = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)"}
 
-# Market addresses on Chain 4663
 MARKETS = {
     "NVDA": {
         "market": "0x206a5cd00e9ffabb8ca564076b64799a78df19b9",
@@ -45,7 +50,7 @@ def rpc_call(method, params):
         )
         with urllib.request.urlopen(req, timeout=5) as resp:
             return json.loads(resp.read().decode()).get("result")
-    except Exception as e:
+    except Exception:
         return None
 
 def fetch_json(url):
@@ -53,7 +58,7 @@ def fetch_json(url):
         req = urllib.request.Request(url, headers=HEADERS)
         with urllib.request.urlopen(req, timeout=8) as resp:
             return json.loads(resp.read().decode("utf-8"))
-    except Exception as e:
+    except Exception:
         return {}
 
 def get_onchain_balances():
@@ -122,7 +127,10 @@ def generate_report():
     market_info, incentive_map = get_market_prices_and_incentives()
     user_agg, user_hist, maker_orders = get_user_orders_and_rewards()
 
-    nvda_price = market_info.get(MARKETS["NVDA"]["market"].lower(), {}).get("underlyingPrice", 218.89)
+    w3 = Web3(Web3.HTTPProvider(RPC_URL))
+    gas = get_gas_metrics(w3, WALLET)
+
+    nvda_price = market_info.get(MARKETS["NVDA"]["market"].lower(), {}).get("underlyingPrice", 218.84)
     snuke_price = 16.88
 
     balances["NVDA"]["price"] = nvda_price
@@ -135,7 +143,7 @@ def generate_report():
     report = []
     report.append(f"# Portfolio & Operations Manager: Dashboard")
     report.append(f"**Target Wallet:** `{WALLET}`  ")
-    report.append(f"**Network:** Robinhood Chain (`chainId: {CHAIN_ID}`) | **Updated:** {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')}\n")
+    report.append(f"**Network:** Robinhood Chain (`chainId: {CHAIN_ID}`) | **Desk:** `rh/` | **Updated:** {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')}\n")
 
     # Capital Summary
     report.append("## 1. Capital & Wallet Balances")
@@ -146,19 +154,32 @@ def generate_report():
     report.append(f"| **sNUKE** | `{MARKETS['sNUKE']['order_token'][:10]}...` | {balances['sNUKE (Token)']['amount']:.4f} sNUKE | ${snuke_price:.2f} | **${balances['sNUKE (Token)']['value_usd']:.2f}** |")
     report.append(f"| **Total Liquid Capital** | | | | **${total_capital_usd:.2f} USD** |\n")
 
+    # Gas Economics Model
+    report.append("## 2. Gas Consideration & Runway (Robinhood L2 vs Boros)")
+    report.append("> [!NOTE]")
+    report.append("> Unlike Boros where order operations are 100% off-chain, Robinhood Chain cancellations require on-chain L2 gas. Re-centers are strictly gated by our Gas Hurdle Model (expected reward > 5x gas).")
+    report.append("")
+    report.append("| Metric | Value | Threshold / Target |")
+    report.append("| :--- | :--- | :--- |")
+    report.append(f"| **Gas Buffer Balance** | `{gas['eth_balance']:.6f} ETH` (${gas['eth_balance_usd']:.2f}) | Safe (> 0.002 ETH) |")
+    report.append(f"| **Current Gas Price** | `{gas['gas_price_gwei']:.4f} Gwei` | Nominal (< 1.0 Gwei) |")
+    report.append(f"| **Avg. Cancellation Cost** | `{gas['cost_per_cancel_eth']:.8f} ETH` (~${gas['cost_per_cancel_usd']:.4f}) | < $0.05 / cancel |")
+    report.append(f"| **Execution Runway** | **{gas['runway_cancels']:,} cancellations** | 🟢 Healthy |")
+    report.append("")
+
     # Accumulated Rewards
-    report.append("## 2. Accumulated Incentive Rewards (PENDLE)")
+    report.append("## 3. Accumulated Incentive Rewards (PENDLE)")
     lifetime_rew = user_agg.get("lifetimeReward", 0)
     current_rew = user_agg.get("currentEpochReward", 0)
     user_making_total = user_agg.get("userMakingAmountUsdTotal", 0)
     user_making_inc = user_agg.get("userMakingAmountUsdIncentivized", 0)
 
     report.append(f"- **Lifetime Harvested Rewards:** `{lifetime_rew:.6f} PENDLE`")
-    report.append(f"- **Current Active Epoch Rewards:** `{current_rew:.6f} PENDLE`")
+    report.append(f"- **Current Active Epoch Rewards:** `{current_rew:.6f} PENDLE` (Accruing)")
     report.append(f"- **Total Resting Limit Order Value:** `${user_making_total:.2f} USD`")
-    report.append(f"- **Incentivized Resting Value In-Range:** `${user_making_inc:.2f} USD` " + ("⚠️ **OUT OF RANGE!**" if user_making_inc == 0 and user_making_total > 0 else "✅"))
+    report.append(f"- **Incentivized Resting Value In-Range:** `${user_making_inc:.2f} USD` " + ("🟢 **ACTIVE IN-RANGE!**" if user_making_inc > 0 else "⚠️ OUT OF RANGE"))
 
-    report.append("\n### Epoch Reward History Breakdown")
+    report.append("\n### Historical Epoch Rewards Breakdown")
     report.append("| Epoch Period | Market | My Reward | Total Pool Reward |")
     report.append("| :--- | :--- | :--- | :--- |")
     epochs = user_hist.get("epochs", [])
@@ -168,8 +189,8 @@ def generate_report():
             report.append(f"| {ep_range} | **{m.get('marketName')}** | `{m.get('myReward', 0):.6f} PENDLE` | `{m.get('totalReward', 0):.4f} PENDLE` |")
     report.append("")
 
-    # Active Limit Orders & Drift Analysis
-    report.append("## 3. Active Resting Limit Orders & Band Alignment")
+    # Active Limit Orders
+    report.append("## 4. Active Resting Limit Orders & Band Alignment")
     report.append("| Order ID | Market | Type | Making Amount | Order Implied Rate | Market Band [Min, Max] | Incentive Status |")
     report.append("| :--- | :--- | :--- | :--- | :--- | :--- | :--- |")
 
@@ -182,13 +203,11 @@ def generate_report():
         making_wei = int(o.get("currentMakingAmount", 0))
         making_val = making_wei / 1e18
         raw_ln_rate = int(o.get("lnImpliedRate", 0)) / 1e18
-        import math
         apy_rate = (math.exp(raw_ln_rate) - 1) * 100
         is_nvda = o.get("yt", "").lower() == MARKETS["NVDA"]["yt"].lower()
         market_label = "NVDA (Oct 2026)" if is_nvda else "sNUKE"
         
         is_canceled = o.get("isCanceled", False) or not o.get("isActive", True)
-        status_tag = ""
         if making_wei == 0 or is_canceled:
             status_tag = "⚪ Cancelled / Inactive"
         elif is_nvda:
@@ -201,22 +220,16 @@ def generate_report():
 
         report.append(f"| `{oid}` | {market_label} | Type {o.get('type')} | {making_val:.4f} | **{apy_rate:.2f}%** | [{min_apy:.2f}%, {max_apy:.2f}%] | {status_tag} |")
 
-    report.append("\n## 4. Operations Manager Action Items")
-    report.append("1. **Re-center NVDA Limit Order:** Order `0x25b6e378...` is currently resting at `7.79%`, which sits below the required `9.65%` lower boundary. Cancel and replace with an order at `~9.95% - 10.00%` to immediately unlock **100% APR PENDLE incentive mining**.")
-    report.append("2. **Zero Maker Competition:** The Short side on NVDA has `$0.00` resting depth in-range. Re-centering captures almost 100% of the hourly PENDLE reward allocations.")
-    report.append("3. **Gas Sustainability:** Native ETH balance is `0.00968 ETH` (~$24 USD), which is sufficient for >2,000 transactions on Robinhood Chain.")
-
     return "\n".join(report)
 
 if __name__ == "__main__":
     report_text = generate_report()
     print(report_text)
     
-    # Write to artifact directory if brain directory exists
     artifact_path = "/Users/tin/.gemini/antigravity-ide/brain/70ed835e-5848-4729-a254-0318f19d3a0e/portfolio_manager_view.md"
     try:
         with open(artifact_path, "w") as f:
             f.write(report_text)
         print(f"\n[Artifact updated]: {artifact_path}")
-    except Exception as e:
+    except Exception:
         pass

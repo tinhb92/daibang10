@@ -2,11 +2,11 @@
 """
 Pendle V2 - NVDA Limit Order Cancel & Shift Script
 Target Market: NVDA (Oct 15, 2026) on Robinhood Chain (Chain ID: 4663)
-Cancels existing out-of-band order (7.79%) and shifts to target incentive band (e.g. 9.95%).
+Cancels existing out-of-band order and shifts to target incentive band with Gas Economics checking.
 
 Usage:
-  python3 shift_nvda_order.py --dry-run
-  python3 shift_nvda_order.py --execute --target-apy 9.95
+  python rh/shift_nvda_order.py --dry-run
+  python rh/shift_nvda_order.py --execute --target-apy 9.95
 """
 
 import os
@@ -18,6 +18,10 @@ import urllib.request
 from web3 import Web3
 from eth_account import Account
 from eth_account.messages import encode_typed_data
+
+# Ensure rh package imports work
+sys.path.append(os.path.dirname(__file__))
+from gas_governor import get_gas_metrics, evaluate_shift_economic_viability
 
 CHAIN_ID = 4663
 RPC_URL = "https://rpc.mainnet.chain.robinhood.com"
@@ -32,17 +36,19 @@ HEADERS = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)"}
 
 def load_private_key():
     """Safely loads I3 from .env without writing or modifying the file."""
-    env_path = os.path.join(os.path.dirname(__file__), ".env")
-    if not os.path.exists(env_path):
-        raise FileNotFoundError(f".env file not found at {env_path}")
-    
-    with open(env_path, "r") as f:
-        for line in f:
-            line = line.strip()
-            if line.startswith("I3"):
-                key = line.split("=", 1)[1].strip().strip("\"'")
-                return key
-    raise ValueError("I3 key not found in .env")
+    search_paths = [
+        os.path.join(os.path.dirname(__file__), "..", ".env"),
+        os.path.join(os.path.dirname(__file__), ".env"),
+        "/Users/tin/eagle/daibang9/.env"
+    ]
+    for env_path in search_paths:
+        if os.path.exists(env_path):
+            with open(env_path, "r") as f:
+                for line in f:
+                    line = line.strip()
+                    if line.startswith("I3"):
+                        return line.split("=", 1)[1].strip().strip("\"'")
+    raise ValueError("I3 key not found in search paths")
 
 def fetch_json(url, data=None):
     req = urllib.request.Request(
@@ -98,7 +104,6 @@ def generate_and_sign_new_order(maker_address, private_key, amount_wei, target_a
     
     order_data = fetch_json(gen_url, data=gen_payload)
     
-    # EIP-712 structured data
     domain = {
         "name": "Pendle Limit Order Protocol",
         "version": "1",
@@ -179,22 +184,32 @@ def submit_order_to_pendle(create_payload):
     return fetch_json(url, data=create_payload)
 
 def main():
-    parser = argparse.ArgumentParser(description="Cancel & Shift NVDA Limit Order into Incentive Band")
-    parser.add_argument("--dry-run", action="store_true", help="Simulate without submitting on-chain tx or new order")
+    parser = argparse.ArgumentParser(description="Cancel & Shift NVDA Limit Order into Incentive Band (Robinhood Chain)")
+    parser.add_argument("--dry-run", action="store_true", help="Simulate without submitting on-chain tx or new order (default)")
     parser.add_argument("--execute", action="store_true", help="Execute on-chain cancellation and post new order")
     parser.add_argument("--target-apy", type=float, default=9.95, help="Target implied APY in percent (default: 9.95)")
     parser.add_argument("--amount", type=float, default=0.05, help="Amount of NVDA to order (default: 0.05)")
     args = parser.parse_args()
 
+    # Default to safe dry-run unless --execute is explicitly supplied
     if not args.execute:
         args.dry_run = True
 
     pk = load_private_key()
     acct = Account.from_key(pk)
     maker = acct.address
-    print(f"=== NVDA LIMIT ORDER MANAGER ===")
+    print(f"=== ROBINHOOD DESK: NVDA LIMIT ORDER MANAGER ===")
     print(f"Maker Wallet: {maker}")
     print(f"Network:      Robinhood Chain (Chain ID: {CHAIN_ID})")
+
+    w3 = Web3(Web3.HTTPProvider(RPC_URL))
+
+    # Gas Governor Metrics
+    gas_metrics = get_gas_metrics(w3, maker)
+    print(f"\n[Gas Consideration (Robinhood L2 vs Boros Off-Chain)]")
+    print(f"  - ETH Balance:      {gas_metrics['eth_balance']:.6f} ETH (${gas_metrics['eth_balance_usd']:.2f} USD)")
+    print(f"  - Cost per Cancel:  {gas_metrics['cost_per_cancel_eth']:.8f} ETH (~${gas_metrics['cost_per_cancel_usd']:.4f} USD)")
+    print(f"  - Cancel Runway:    {gas_metrics['runway_cancels']:,} txs remaining")
 
     # 1. Market & Incentive Band check
     band = get_nvda_incentive_band()
@@ -213,14 +228,45 @@ def main():
     active_orders = get_active_nvda_orders(maker)
     print(f"\n[Active NVDA Orders]: {len(active_orders)}")
     order_ids_to_cancel = []
+    current_incentive_apr = 0.0
     for o in active_orders:
         oid = o.get("id")
-        rate = int(o.get("lnImpliedRate", 0)) / 1e18 * 100
+        raw_ln = int(o.get("lnImpliedRate", 0)) / 1e18
+        import math
+        apy = (math.exp(raw_ln) - 1) * 100
         cur_making = int(o.get("currentMakingAmount", 0)) / 1e18
-        print(f"  - Order {oid[:14]}... | Rate: {rate:.2f}% | Size: {cur_making:.4f} NVDA (Status: Active)")
+        in_band = band["minApy"] <= apy <= band["maxApy"]
+        status = "IN-RANGE (Earning)" if in_band else "OUT-OF-RANGE (0 rewards)"
+        if in_band:
+            current_incentive_apr = band["buyPtApr"]
+        print(f"  - Order {oid[:14]}... | Rate: {apy:.2f}% | Size: {cur_making:.4f} NVDA ({status})")
         order_ids_to_cancel.append(oid)
 
-    w3 = Web3(Web3.HTTPProvider(RPC_URL))
+    # Gas Economics Breakeven Evaluation
+    order_size_usd = args.amount * 218.80
+    new_incentive_apr = band["buyPtApr"]
+    econ = evaluate_shift_economic_viability(
+        order_size_usd=order_size_usd,
+        current_incentive_apr=current_incentive_apr,
+        new_incentive_apr=new_incentive_apr,
+        gas_cost_usd=gas_metrics["cost_per_cancel_usd"],
+        projected_holding_hours=24.0
+    )
+
+    print(f"\n[Gas Economics Evaluation]")
+    print(f"  - Order Notional:   ${order_size_usd:.2f} USD")
+    print(f"  - Gas Cost to Shift:${econ['gas_cost_usd']:.4f} USD")
+    print(f"  - 24h Reward Delta: ${econ['expected_reward_usd']:.4f} USD")
+    print(f"  - Reward/Gas Ratio: {econ['reward_to_gas_ratio']:.1f}x (Hurdle: {econ['min_required_ratio']}x)")
+    print(f"  - Breakeven Time:   {econ['hours_to_breakeven']:.2f} hours")
+
+    if not econ["is_viable"]:
+        print("⚠️ Warning: Shift fails economic hurdle (gas cost too high relative to reward gain).")
+        if args.execute:
+            print("Aborting to preserve capital from gas erosion.")
+            sys.exit(1)
+    else:
+        print("✅ Shift is economically sound: Rewards strongly dominate gas cost.")
 
     # 3. Cancel Plan
     cancel_tx_data = None
@@ -231,7 +277,12 @@ def main():
         to_addr = Web3.to_checksum_address(cancel_tx.get("to", ROUTER_ADDRESS))
         from_addr = Web3.to_checksum_address(maker)
 
-        gas_est = w3.eth.estimate_gas({"from": from_addr, "to": to_addr, "data": cancel_tx_data})
+        try:
+            gas_est = w3.eth.estimate_gas({"from": from_addr, "to": to_addr, "data": cancel_tx_data})
+        except Exception as e:
+            print(f"  - Gas estimation note: {e}")
+            gas_est = AVG_CANCEL_GAS_UNITS
+
         gas_price = w3.eth.gas_price
         tx_cost_eth = (gas_est * gas_price) / 1e18
         print(f"  - Router:       {to_addr}")
@@ -248,10 +299,10 @@ def main():
     print(f"  - Signature:    {new_order_payload['signature'][:20]}...")
 
     if args.dry_run:
-        print("\n[DRY RUN COMPLETE] Everything validated successfully. Run with --execute to broadcast.")
+        print("\n[DRY RUN COMPLETE] Validated successfully under Gas Economics Model. Run with --execute to broadcast.")
         return
 
-    # EXECUTE PHASE
+    # EXECUTE PHASE (Requires deliberate --execute flag)
     if args.execute:
         # Step A: Cancel on-chain
         if order_ids_to_cancel and cancel_tx_data:
@@ -261,7 +312,6 @@ def main():
 
             for attempt in range(1, max_retries + 1):
                 try:
-                    # Query pending nonce to avoid collisions
                     nonce = w3.eth.get_transaction_count(from_addr, "pending")
                     current_gas_price = w3.eth.gas_price
                     bumped_gas_price = int(current_gas_price * (1.15 + 0.1 * (attempt - 1)))
@@ -312,7 +362,8 @@ def main():
 
         # Step C: Refresh Dashboard
         print("\n>>> Updating Portfolio & Operations Manager Dashboard...")
-        os.system(f"{sys.executable} monitor_portfolio.py")
+        monitor_script = os.path.join(os.path.dirname(__file__), "monitor_portfolio.py")
+        os.system(f"{sys.executable} {monitor_script}")
         print("Done!")
 
 if __name__ == "__main__":

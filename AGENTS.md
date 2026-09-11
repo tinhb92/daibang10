@@ -48,3 +48,23 @@ The desk strictly adheres to the 4 core principles defined in [patterns.md](file
 3. **The Ajit Jain Razor:** Underwrite risk only when the premium is overwhelming (e.g. zero maker competition); sit in 100% cash rather than writing mispriced yield options. Respect the final 7-day maturity cliff.
 4. **Empirical Realism (The Poker Hand History Doctrine):** Maintain a living archive of real execution case studies (frictions, fills, and codifications) in `patterns.md`.
 
+---
+
+## Robinhood Desk (`rh/`) & Gas Considerations (Different from Boros)
+
+### Why Gas is a Critical Factor on Robinhood Chain
+- **Boros (Arbitrum CLOB):** Order creation, cancellation, and shifts are **100% off-chain** via signed HTTP requests. Cancels cost $0.00 in gas.
+- **Pendle V2 on Robinhood Chain (`rh/`):** Order creation is off-chain (EIP-712), but **cancellation is an on-chain transaction** (`cancelBatch` on `PendleLimitRouter`).
+  - Gas cost per cancel: `~72,000 gas units` ($\sim 0.000009 \text{ ETH}$ or $\approx \$0.022 \text{ USD}$).
+  - Frequent re-centering on small order sizes can quickly erode or exceed the mining yield.
+
+### Desk Module Structure
+- [`rh/shift_nvda_order.py`](file:///Users/tin/eagle/daibang10/rh/shift_nvda_order.py): NVDA limit order cancel & shift automation with integrated gas economics check. Defaults to `--dry-run`.
+- [`rh/monitor_portfolio.py`](file:///Users/tin/eagle/daibang10/rh/monitor_portfolio.py): Portfolio balances, active orders, and gas runway tracking.
+- [`rh/gas_governor.py`](file:///Users/tin/eagle/daibang10/rh/gas_governor.py): Gas metrics, runway calculation, and economic viability evaluation.
+
+### Mandatory Gas Hurdle Rule
+- **Minimum 5x Ratio:** Never cancel and shift an order unless the expected incremental PENDLE reward over the holding period is at least **$5\times$ the on-chain cancellation gas fee**.
+- **Runway Guard:** Alert if native ETH drops below `0.002 ETH`.
+
+

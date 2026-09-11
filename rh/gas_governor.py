@@ -6,7 +6,10 @@ Pendle V2 on Robinhood Chain requires an on-chain L2 transaction for cancellatio
 This governor enforces gas-efficiency hurdles to ensure gas costs never erode yield.
 """
 
-from web3 import Web3
+try:
+    from web3 import Web3
+except ImportError:
+    Web3 = None
 
 # Base parameters on Robinhood Chain
 ROUTER_ADDRESS = "0x000000000000c9B3E2C3Ec88B1B4c0cD853f4321"

@@ -235,10 +235,21 @@ if __name__ == "__main__":
     report_text = generate_report()
     print(report_text)
     
-    artifact_path = "/Users/tin/.gemini/antigravity-ide/brain/70ed835e-5848-4729-a254-0318f19d3a0e/portfolio_manager_view.md"
+    # Write to repository root portfolio_manager_view.md
+    root_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "portfolio_manager_view.md")
     try:
-        with open(artifact_path, "w") as f:
+        with open(root_path, "w") as f:
             f.write(report_text)
-        print(f"\n[Artifact updated]: {artifact_path}")
+        print(f"\n[Persistent Manager View Updated]: {root_path}")
+    except Exception as e:
+        print(f"Warning: Failed to save portfolio_manager_view.md: {e}")
+
+    # Also update artifact path if GEMINI artifact dir exists
+    conv_id = "70ed835e-5848-4729-a254-0318f19d3a0e"
+    artifact_path = f"/Users/tin/.gemini/antigravity-ide/brain/{conv_id}/portfolio_manager_view.md"
+    try:
+        if os.path.exists(os.path.dirname(artifact_path)):
+            with open(artifact_path, "w") as f:
+                f.write(report_text)
     except Exception:
         pass

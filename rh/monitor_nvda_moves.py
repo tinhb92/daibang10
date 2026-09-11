@@ -3,15 +3,16 @@
 Pendle V2 - Robinhood Chain Multi-Market Big Move & Order Fill Monitor
 Monitors active watch markets on Robinhood Chain (4663):
   1. NVDA (15-OCT-2026): 0x206a5cd00e9ffabb8ca564076b64799a78df19b9
-  2. sNET (17-SEP-2026): 0x23c68474e3cd533a2f952a0fb998f1867e57d27f (YT Focus)
+  2. sNET (17-SEP-2026): 0x23c68474e3cd533a2f952a0fb998f1867e57d27f
   3. sNUKE (24-SEP-2026): 0x8547b391a65deb89c41a4c3b2eb1502d0bbc566a
   4. PFE (10-DEC-2026):  0x892defbf510d9baa96dbd2a51b13e879a857a79b
 
-Features:
-  - Immediate START alert dispatched upon launching the daemon.
-  - Periodic HEARTBEAT alert (hourly default) reporting market health, resting orders, and gas runway.
-  - Clean STOP alert dispatched upon shutdown (SIGINT, SIGTERM, kill).
-  - Continuous Big Move radar (Implied APY spikes, spot jumps, liquidity shocks, band drift, order fills).
+Noise Reduction & Signal Optimization:
+  - High-Signal Priority: Limit order fills and out-of-band drifts are dispatched immediately.
+  - Position-Aware Filtering: Sensitive alerts for markets with active capital; high macro thresholds for background markets.
+  - Relative APY Scaling: Avoids spamming on minor basis wiggles in hyper-yield pools (e.g. sNET 13,000%).
+  - Cooldown & Debouncing: 30-minute cooldown and anchored baselines prevent oscillation ping-pongs.
+  - Structured Heartbeat: 1-hour heartbeat ping reporting health, resting orders, and gas runway.
 
 Usage:
   python rh/monitor_nvda_moves.py --loop --interval 60 --heartbeat-interval 3600
@@ -49,6 +50,7 @@ WALLET = "0xaa7c405151c1a11fc2e9998a31b285c7b53d248b".lower()
 BASE_API = "https://api-v2.pendle.finance/core"
 HEADERS = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)"}
 STATE_FILE = os.path.join(RH_DIR, "rh_markets_state.json")
+TRACKER_FILE = os.path.join(RH_DIR, "rh_alert_tracker.json")
 
 # Monitored Markets on Robinhood Chain
 WATCHLIST = {
@@ -57,40 +59,28 @@ WATCHLIST = {
         "yt": "0x9cc22e51c6f0cb4aa1bfd1f18e85df1451ebb9b3",
         "pt": "0x4bcb25fce9618e62e9f9fba8d65af50cf867b812",
         "accounting": "0xd0601ce157db5bdc3162bbac2a2c8af5320d9eec",
-        "expiry": "2026-10-15",
-        "delta_apy_alert": 0.25,     # 25 bps shift
-        "delta_spot_pct": 1.0,       # 1.0% spot move
-        "delta_liq_pct": 5.0         # 5% liquidity shift
+        "expiry": "2026-10-15"
     },
     "sNET": {
         "market": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
         "yt": "0xfb2d72fc9c378a73b4e03abac48194367447fa5a",
         "pt": "0x72b8e8c226848ceb35ba51d193f4f962dee957c1",
         "accounting": "0xba46fc84409589f369c107e869c06809df3d9727",
-        "expiry": "2026-09-17",
-        "delta_apy_alert": 5.0,      # 500 bps shift (hyper-yield regime)
-        "delta_spot_pct": 1.5,       # 1.5% spot move
-        "delta_liq_pct": 5.0         # 5% liquidity shift
+        "expiry": "2026-09-17"
     },
     "sNUKE": {
         "market": "0x8547b391a65deb89c41a4c3b2eb1502d0bbc566a",
         "yt": "0xe32a6d0356d080d9dd8c0bd8e7ab3f464b3f1dbc",
         "pt": "0xb06180609b22973bee751a6c833db4821f8476fb",
         "accounting": "0xcd7079e32bf53093f60bf973c28e5d72937c12f2",
-        "expiry": "2026-09-24",
-        "delta_apy_alert": 1.0,      # 100 bps shift
-        "delta_spot_pct": 1.5,       # 1.5% spot move
-        "delta_liq_pct": 5.0         # 5% liquidity shift
+        "expiry": "2026-09-24"
     },
     "PFE": {
         "market": "0x892defbf510d9baa96dbd2a51b13e879a857a79b",
         "yt": "0x7600d0a61f83d7e4c4154c4664b19be6d9acf180",
         "pt": "0xf9cd484f7e7799ae32b7f9a75e60c478fd1f0b6e",
         "accounting": "0x7066a64c24e4206cd62e83bf198c1e7eb361f51e",
-        "expiry": "2026-12-10",
-        "delta_apy_alert": 0.15,     # 15 bps shift
-        "delta_spot_pct": 1.0,       # 1.0% spot move
-        "delta_liq_pct": 5.0         # 5% liquidity shift
+        "expiry": "2026-12-10"
     }
 }
 
@@ -213,6 +203,44 @@ def save_current_state(state: Dict[str, Any]):
         print(f"Error saving state: {e}")
 
 # -----------------------------------------------------------------------------
+# NOISE SUPPRESSION & COOLDOWN TRACKER
+# -----------------------------------------------------------------------------
+def load_alert_tracker() -> Dict[str, Any]:
+    if os.path.exists(TRACKER_FILE):
+        try:
+            with open(TRACKER_FILE, "r") as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return {"timestamps": {}, "baselines": {}}
+
+def save_alert_tracker(tracker: Dict[str, Any]):
+    try:
+        with open(TRACKER_FILE, "w") as f:
+            json.dump(tracker, f, indent=2)
+    except Exception as e:
+        print(f"Error saving alert tracker: {e}")
+
+ALERT_TRACKER = load_alert_tracker()
+
+def should_alert(event_key: str, cooldown_seconds: int = 1800) -> bool:
+    """Returns True if the cooldown window has elapsed for this specific alert event."""
+    now = time.time()
+    last = ALERT_TRACKER.get("timestamps", {}).get(event_key, 0)
+    return (now - last) >= cooldown_seconds
+
+def record_alert(event_key: str, baseline_val: Optional[float] = None):
+    """Records the timestamp and updated anchor baseline for an event."""
+    now = time.time()
+    ALERT_TRACKER.setdefault("timestamps", {})[event_key] = now
+    if baseline_val is not None:
+        ALERT_TRACKER.setdefault("baselines", {})[event_key] = baseline_val
+    save_alert_tracker(ALERT_TRACKER)
+
+def get_alert_baseline(event_key: str, fallback: float) -> float:
+    return ALERT_TRACKER.get("baselines", {}).get(event_key, fallback)
+
+# -----------------------------------------------------------------------------
 # LIFECYCLE ALERTS (STARTUP, HEARTBEAT, SHUTDOWN)
 # -----------------------------------------------------------------------------
 def send_startup_alert(states: Dict[str, Any], interval: int, heartbeat_interval: int):
@@ -229,7 +257,7 @@ def send_startup_alert(states: Dict[str, Any], interval: int, heartbeat_interval
             b_tag = "✅ IN-BAND" if in_b else "⚠️ OUT-OF-BAND"
             ord_str = f"Order: <code>{o['apy']:.2f}%</code> ({o['making_amt']:.3f} {k}) {b_tag}"
         else:
-            ord_str = "No resting order"
+            ord_str = "No active order"
         market_lines.append(f"  • <b>{k}:</b> Rate: <code>{s['implied_apy']:.2f}%</code> | Band: <code>{band_str}</code>\n    └─ {ord_str}")
 
     msg = (
@@ -294,7 +322,7 @@ def send_heartbeat_alert(states: Dict[str, Any], start_time: float, loop_count: 
         f"• <b>Status:</b> All systems nominal & monitoring 24/7\n"
         f"• <b>Host:</b> <code>{host}</code> | <b>Uptime:</b> <code>{uptime_str}</code> | <b>Loops:</b> {loop_count:,}\n"
         f"• <b>ETH Gas Runway:</b> <code>{gas['eth_balance']:.6f} ETH</code> (~{gas['runway_cancels']:,} cancels)\n"
-        f"• <b>Active Orders:</b> {active_order_count} active\n\n"
+        f"• <b>Active Resting Orders:</b> {active_order_count} deployed\n\n"
         f"<b>Market Radar Snapshot:</b>\n" +
         "\n".join(market_lines) +
         f"\n\n🕒 <i>Heartbeat ping at {now_str}</i>"
@@ -303,94 +331,161 @@ def send_heartbeat_alert(states: Dict[str, Any], start_time: float, loop_count: 
     send_telegram_alert(msg)
 
 # -----------------------------------------------------------------------------
-# MARKET RADAR MOVE DETECTION
+# HIGH-SIGNAL MARKET RADAR MOVE DETECTION (ZERO-NOISE OPTIMIZED)
 # -----------------------------------------------------------------------------
 def check_market_moves(m_key: str, current: Dict[str, Any], prev: Dict[str, Any]) -> list:
     m_cfg = WATCHLIST[m_key]
     alerts = []
-
-    # 1. Implied APY Shift
-    delta_implied = current["implied_apy"] - prev["implied_apy"]
-    if abs(delta_implied) >= m_cfg["delta_apy_alert"]:
-        direction = "📈 SPIKED" if delta_implied > 0 else "📉 DROPPED"
-        alerts.append(
-            f"<b>Implied APY Move ({direction}):</b>\n"
-            f"  • Current: <code>{current['implied_apy']:.2f}%</code>\n"
-            f"  • Previous: <code>{prev['implied_apy']:.2f}%</code>\n"
-            f"  • Delta: <b>{delta_implied:+.2f}%</b>"
-        )
-
-    # 2. Spot Price Jump
-    prev_spot = prev["spot_price"]
-    if prev_spot > 0:
-        pct_spot = (current["spot_price"] - prev_spot) / prev_spot * 100.0
-        if abs(pct_spot) >= m_cfg["delta_spot_pct"]:
-            direction = "🟢 SURGED" if pct_spot > 0 else "🔴 DUMPED"
-            alerts.append(
-                f"<b>Underlying Spot Price {direction}:</b>\n"
-                f"  • Current: <code>${current['spot_price']:.2f}</code>\n"
-                f"  • Previous: <code>${prev_spot:.2f}</code>\n"
-                f"  • Move: <b>{pct_spot:+.2f}%</b> (${current['spot_price'] - prev_spot:+.2f})"
-            )
-
-    # 3. Pool Liquidity Shock
-    prev_liq = prev["liquidity_usd"]
-    if prev_liq > 0:
-        pct_liq = (current["liquidity_usd"] - prev_liq) / prev_liq * 100.0
-        if abs(pct_liq) >= m_cfg["delta_liq_pct"]:
-            alerts.append(
-                f"<b>Pool Liquidity Shock:</b>\n"
-                f"  • Current: <code>${current['liquidity_usd']:,.0f}</code>\n"
-                f"  • Delta: <b>{pct_liq:+.1f}%</b> (${current['liquidity_usd'] - prev_liq:+,.0f})"
-            )
-
-    # 4. User Order Status & Band Alignment
     cur_order = current.get("order")
+    prev_order = prev.get("order") if prev else None
+    has_active_order = bool(cur_order and cur_order.get("making_amt", 0) > 0)
+
+    # -------------------------------------------------------------------------
+    # 1. CRITICAL: LIMIT ORDER FILL DETECTION (Immediate, 0 Cooldown)
+    # -------------------------------------------------------------------------
+    if cur_order and prev_order:
+        delta_filled = cur_order["net_output"] - prev_order["net_output"]
+        if delta_filled > 0:
+            alerts.append(
+                f"🎯 <b>LIMIT ORDER FILL DETECTED!</b>\n"
+                f"  • Market: <b>{m_key}</b> ({m_cfg['expiry']})\n"
+                f"  • Filled Size: <b>{delta_filled:.4f}</b>\n"
+                f"  • Total Received: <code>{cur_order['net_output']:.4f}</code>\n"
+                f"  • Remaining Making: <code>{cur_order['making_amt']:.4f}</code>"
+            )
+
+    # -------------------------------------------------------------------------
+    # 2. CRITICAL: ORDER DRIFT OUT-OF-RANGE & COMPRESSION (For Active Orders)
+    # -------------------------------------------------------------------------
     if cur_order:
         order_apy = cur_order["apy"]
         min_band = current["min_apy"]
         max_band = current["max_apy"]
         is_in_band = min_band <= order_apy <= max_band
-        prev_in_band = prev.get("min_apy", 0) <= prev.get("order", {}).get("apy", 0) <= prev.get("max_apy", 999) if prev.get("order") else True
+        prev_in_band = prev.get("min_apy", 0) <= prev.get("order", {}).get("apy", 0) <= prev.get("max_apy", 999) if prev_order else True
 
-        if not is_in_band and prev_in_band:
-            alerts.append(
-                f"🚨 <b>Order Drifted OUT-OF-RANGE!</b>\n"
-                f"  • Your Order Rate: <code>{order_apy:.2f}%</code>\n"
-                f"  • Current Band: <code>[{min_band:.2f}%, {max_band:.2f}%]</code>\n"
-                f"  • Action Required: Re-center to continue mining rewards."
-            )
+        drift_key = f"{m_key}:order_drift"
+        if not is_in_band:
+            # Immediate alert on transition, 30m reminder if still out
+            if prev_in_band or should_alert(drift_key, cooldown_seconds=1800):
+                alerts.append(
+                    f"🚨 <b>Order Drifted OUT-OF-RANGE!</b>\n"
+                    f"  • Market: <b>{m_key}</b>\n"
+                    f"  • Your Order Rate: <code>{order_apy:.2f}%</code>\n"
+                    f"  • Current Eligible Band: <code>[{min_band:.2f}%, {max_band:.2f}%]</code>\n"
+                    f"  • Action Required: Re-center to continue mining rewards."
+                )
+                record_alert(drift_key)
         elif is_in_band:
+            # Compression warning: resting within 10 bps of edge, throttled to 30 mins
+            compress_key = f"{m_key}:band_compress"
             dist_to_min = order_apy - min_band
             dist_to_max = max_band - order_apy
-            if (dist_to_min < 0.10 or dist_to_max < 0.10) and abs(delta_implied) >= 0.10:
+            if (dist_to_min < 0.10 or dist_to_max < 0.10) and should_alert(compress_key, cooldown_seconds=1800):
                 alerts.append(
                     f"⚠️ <b>Incentive Band Compression Alert:</b>\n"
+                    f"  • Market: <b>{m_key}</b>\n"
                     f"  • Order Rate: <code>{order_apy:.2f}%</code>\n"
                     f"  • Eligible Band: <code>[{min_band:.2f}%, {max_band:.2f}%]</code>\n"
-                    f"  • Resting near edge threshold."
+                    f"  • Warning: Order is resting within 10 bps of band boundary."
                 )
+                record_alert(compress_key)
 
-        # 5. Order Fill Detection
-        prev_order = prev.get("order")
-        if prev_order:
-            delta_filled = cur_order["net_output"] - prev_order["net_output"]
-            if delta_filled > 0:
-                alerts.append(
-                    f"🎯 <b>LIMIT ORDER FILL DETECTED!</b>\n"
-                    f"  • Market: {m_key} ({m_cfg['expiry']})\n"
-                    f"  • Filled Size: <b>{delta_filled:.4f}</b>\n"
-                    f"  • Total Received: <code>{cur_order['net_output']:.4f}</code>\n"
-                    f"  • Remaining Making: <code>{cur_order['making_amt']:.4f}</code>"
-                )
+    # -------------------------------------------------------------------------
+    # 3. VOLATILITY RADAR: IMPLIED APY MOVES (Position-Aware & Relative-Scaled)
+    # -------------------------------------------------------------------------
+    apy_key = f"{m_key}:apy"
+    baseline_apy = get_alert_baseline(apy_key, prev["implied_apy"] if prev else current["implied_apy"])
+    cur_apy = current["implied_apy"]
+    delta_apy = cur_apy - baseline_apy
 
-    # 6. Maker Competition Influx
-    if prev.get("short_depth", 0.0) == 0.0 and current["short_depth"] > 200.0:
+    threshold_met = False
+    if has_active_order:
+        # Active market: sensitive to genuine moves
+        if cur_apy > 100.0:
+            rel_change = abs(delta_apy) / max(baseline_apy, 1.0) * 100.0
+            threshold_met = rel_change >= 5.0  # 5% relative move
+        else:
+            threshold_met = abs(delta_apy) >= 0.50  # 50 bps absolute move
+    else:
+        # Background market: ONLY alert on major macro regime shifts
+        if cur_apy > 100.0:
+            rel_change = abs(delta_apy) / max(baseline_apy, 1.0) * 100.0
+            threshold_met = rel_change >= 15.0  # 15% relative move (e.g. >1,800% shift on sNET)
+        else:
+            threshold_met = abs(delta_apy) >= 2.0  # 200 bps move
+
+    if threshold_met and should_alert(apy_key, cooldown_seconds=1800):
+        direction = "📈 SPIKED" if delta_apy > 0 else "📉 DROPPED"
         alerts.append(
-            f"⚔️ <b>Competitor Influx on Short Side:</b>\n"
-            f"  • Short depth jumped from $0.00 to <code>${current['short_depth']:,.2f}</code>.\n"
-            f"  • Reward pool dilution active."
+            f"<b>Implied APY Move ({direction}):</b>\n"
+            f"  • Market: <b>{m_key}</b>\n"
+            f"  • Current APY: <code>{cur_apy:.2f}%</code>\n"
+            f"  • Baseline APY: <code>{baseline_apy:.2f}%</code>\n"
+            f"  • Delta: <b>{delta_apy:+.2f}%</b>"
         )
+        record_alert(apy_key, baseline_val=cur_apy)
+
+    # -------------------------------------------------------------------------
+    # 4. VOLATILITY RADAR: SPOT PRICE MOVES (Position-Aware)
+    # -------------------------------------------------------------------------
+    spot_key = f"{m_key}:spot"
+    prev_spot = prev["spot_price"] if prev else current["spot_price"]
+    baseline_spot = get_alert_baseline(spot_key, prev_spot)
+    cur_spot = current["spot_price"]
+
+    if baseline_spot > 0:
+        pct_spot = (cur_spot - baseline_spot) / baseline_spot * 100.0
+        # Active order market: 3.0% threshold | Background market: 6.0% threshold
+        spot_threshold = 3.0 if has_active_order else 6.0
+
+        if abs(pct_spot) >= spot_threshold and should_alert(spot_key, cooldown_seconds=1800):
+            direction = "🟢 SURGED" if pct_spot > 0 else "🔴 DUMPED"
+            alerts.append(
+                f"<b>Underlying Spot Price {direction}:</b>\n"
+                f"  • Market: <b>{m_key}</b>\n"
+                f"  • Current: <code>${cur_spot:.2f}</code>\n"
+                f"  • Baseline: <code>${baseline_spot:.2f}</code>\n"
+                f"  • Move: <b>{pct_spot:+.2f}%</b> (${cur_spot - baseline_spot:+.2f})"
+            )
+            record_alert(spot_key, baseline_val=cur_spot)
+
+    # -------------------------------------------------------------------------
+    # 5. POOL LIQUIDITY SHOCK (Threshold: 15% active, 25% background)
+    # -------------------------------------------------------------------------
+    liq_key = f"{m_key}:liq"
+    prev_liq = prev["liquidity_usd"] if prev else current["liquidity_usd"]
+    baseline_liq = get_alert_baseline(liq_key, prev_liq)
+    cur_liq = current["liquidity_usd"]
+
+    if baseline_liq > 0:
+        pct_liq = (cur_liq - baseline_liq) / baseline_liq * 100.0
+        liq_threshold = 15.0 if has_active_order else 25.0
+
+        if abs(pct_liq) >= liq_threshold and should_alert(liq_key, cooldown_seconds=1800):
+            alerts.append(
+                f"<b>Pool Liquidity Shock:</b>\n"
+                f"  • Market: <b>{m_key}</b>\n"
+                f"  • Current: <code>${cur_liq:,.0f}</code>\n"
+                f"  • Baseline: <code>${baseline_liq:,.0f}</code>\n"
+                f"  • Delta: <b>{pct_liq:+.1f}%</b> (${cur_liq - baseline_liq:+,.0f})"
+            )
+            record_alert(liq_key, baseline_val=cur_liq)
+
+    # -------------------------------------------------------------------------
+    # 6. COMPETITOR INFLUX ON SHORT SIDE (Throttled to 1 hour)
+    # -------------------------------------------------------------------------
+    comp_key = f"{m_key}:competitor"
+    prev_short_depth = prev.get("short_depth", 0.0) if prev else 0.0
+    if prev_short_depth == 0.0 and current["short_depth"] > 200.0:
+        if should_alert(comp_key, cooldown_seconds=3600):
+            alerts.append(
+                f"⚔️ <b>Competitor Influx on Short Side:</b>\n"
+                f"  • Market: <b>{m_key}</b>\n"
+                f"  • Short depth jumped from $0.00 to <code>${current['short_depth']:,.2f}</code>.\n"
+                f"  • Reward pool dilution active."
+            )
+            record_alert(comp_key)
 
     return alerts
 
@@ -444,7 +539,7 @@ def setup_signal_handlers():
 
 def main():
     global START_TIME, LOOP_COUNT
-    parser = argparse.ArgumentParser(description="Multi-Market Robinhood Monitor with Start/Stop/Heartbeat")
+    parser = argparse.ArgumentParser(description="Multi-Market Robinhood Monitor with Noise Suppression")
     parser.add_argument("--once", action="store_true", help="Run a single inspection cycle and exit")
     parser.add_argument("--loop", action="store_true", help="Run continuously in background daemon mode")
     parser.add_argument("--interval", type=int, default=60, help="Check interval in seconds (default: 60s)")
@@ -503,11 +598,12 @@ def main():
     START_TIME = time.time()
     last_heartbeat_time = START_TIME
 
-    print(f"🚀 Starting Multi-Market Robinhood Monitor Daemon...")
+    print(f"🚀 Starting Multi-Market Robinhood Monitor Daemon (Noise-Filtered)...")
     print(f"   - Host:               {socket.gethostname()}")
     print(f"   - Scan Interval:      {args.interval}s")
     print(f"   - Heartbeat Interval: {args.heartbeat_interval}s ({args.heartbeat_interval//60} mins)")
     print(f"   - Monitored Markets:  {list(WATCHLIST.keys())}")
+    print(f"   - Active Alert Filter: 30m Cooldowns & Position-Aware Thresholds Enabled")
 
     # Fetch initial state and send Startup Alert
     try:

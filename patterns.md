@@ -222,6 +222,29 @@ Every recorded historical scenario must be documented under the following taxono
 
 ---
 
+### Case Study 006: The SHROOM Genesis Window & Memecoin Carry Dynamics
+- **Date & Market:** 2026-09-11 | SHROOM (24-SEP-2026) Robinhood Chain (`4663`)
+- **Macro Spot & Texture:**
+  - Asset: SHROOM Yield Pool ($0.01496 spot) | PT: $0.01471 (1.66% discount) | YT: $0.000248
+  - Implied APY: **63.98%** | Underlying APY: **10.73%** | Carry Spread: **-53.25%**
+  - DTE: 12.1 Days | Expiry: 2026-09-24 00:00 UTC | $T-7$ Cliff: 2026-09-17 00:00 UTC (5.1 days runway)
+  - Incentive Band: `[63.58%, 64.38%]` (80 bps wide)
+  - Competing Maker Depth: **$0.00 USD on both Long and Short**
+- **The Microstructure Catalyst & Genesis Window:**
+  - On launch day (Sep 11), TVL expanded from $1 to $175,820 within 5 hours, capturing >99% of all new capital on Robinhood Chain.
+  - Retail attempted to speculate on yield, pushing Implied APY up to 65.19%.
+  - Because the pool was virgin, competing maker depth was precisely **$0.00**, leaving 100% of PENDLE emissions (0.223 PENDLE/day) unallocated.
+- **The Quantitative Analysis & Strategy Synthesis:**
+  1. *The YT Trap:* Buying YT suffers a toxic -53.25% carry spread and -8.26%/day linear theta decay. Breakeven requires underlying yield to jump 5.96x immediately. Evaluated as a strict graveyard no-go (Score: 0/100).
+  2. *The PT Delta Risk:* Fixed yield of 63.98% clears the Klarman floor by +56%, but PT settles in SHROOM token. If SHROOM spot declines >1.66% in USD, net return is negative.
+  3. *The Solitary Maker Fat Pitch:* Quoting a resting Limit Order (Short Yield / Buy PT) inside `[63.58%, 64.38%]` captures 100% of PENDLE incentives (~100% APR). At 3,000 SHROOM size (~$44), the gas fee ($0.020) is recovered in 52 minutes (6.1x 24h reward/gas ratio).
+- **Codified Invariants:**
+  1. **The Genesis Vacuum Monopolization:** When a new market launches with zero maker competition, deploy resting maker liquidity immediately to monopolize 100% of protocol rewards.
+  2. **The Memecoin Carry Rule:** Never long yield when Implied APY exceeds Underlying APY by >20% on short-maturity pools (<30 DTE).
+  3. **The 5-Day Operational Lifespan:** Enforce hard cancellation on 2026-09-17 00:00 UTC ($T-7$ cliff) to prevent being caught in the pre-expiry liquidity drain documented in `sNET`.
+
+---
+
 ## Comparative Playbook: What Separates Winners from Losers on Pendle V2
 
 | Dimension | ❌ The Fatal Mistakes (Retail & Naive Makers) | 🏆 The Winning Plays (Quantitative Institutional Desk) |

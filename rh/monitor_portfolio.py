@@ -23,23 +23,20 @@ RPC_URL = "https://rpc.mainnet.chain.robinhood.com"
 BASE_API = "https://api-v2.pendle.finance/core"
 HEADERS = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)"}
 
-MARKETS = {
-    "NVDA": {
-        "market": "0x206a5cd00e9ffabb8ca564076b64799a78df19b9",
-        "pt": "0x4bcb25fce9618e62e9f9fba8d65af50cf867b812",
-        "yt": "0x9cc22e51c6f0cb4aa1bfd1f18e85df1451ebb9b3",
-        "accounting": "0xd0601ce157db5bdc3162bbac2a2c8af5320d9eec",
-        "expiry": "2026-10-15"
-    },
-    "sNUKE": {
-        "market": "0x8547b391a65deb89c41a4c3b2eb1502d0bbc566a",
-        "pt": "0x9d4e9d97967b07db3d9646b976e58f000b213c9e",
-        "yt": "0xe32a6d0356d080d9dd8c0bd8e7ab3f464b3f1dbc",
-        "accounting": "0xcd7079e32bf53093f60bf973c28e5d72937c12f2",
-        "order_token": "0x9e9093a12b343c0f4d519ab093bef989b1936f73",
-        "expiry": "2026-09-24"
+CONFIG_PATH = os.path.join(os.path.dirname(__file__), "config", "markets.json")
+with open(CONFIG_PATH, "r") as f:
+    CONFIG = json.load(f)
+
+MARKETS = {}
+for m_key, m_val in CONFIG.get("markets", {}).items():
+    MARKETS[m_key] = {
+        "market": m_val["marketAddress"],
+        "pt": m_val["ptAddress"],
+        "yt": m_val["ytAddress"],
+        "accounting": m_val["accountingAsset"],
+        "expiry": m_val.get("expiry", "").split("T")[0]
     }
-}
+
 
 def rpc_call(method, params):
     try:
@@ -73,11 +70,14 @@ def get_onchain_balances():
     tokens_to_query = [
         ("NVDA", MARKETS["NVDA"]["accounting"]),
         ("PT-NVDA", MARKETS["NVDA"]["pt"]),
-        ("YT-NVDA", MARKETS["NVDA"]["yt"]),
-        ("sNUKE (Token)", MARKETS["sNUKE"]["order_token"]),
+        ("sNUKE", MARKETS["sNUKE"]["accounting"]),
+        ("SHROOM", MARKETS["SHROOM"]["accounting"]),
+        ("SGOV", MARKETS["SGOV"]["accounting"]),
     ]
 
     for symbol, addr in tokens_to_query:
+        if not addr:
+            continue
         res_hex = rpc_call("eth_call", [{"to": addr, "data": calldata}, "latest"])
         bal = int(res_hex, 16) / 1e18 if res_hex and res_hex != "0x" else 0.0
         balances[symbol] = {"amount": bal, "address": addr}
@@ -129,16 +129,22 @@ def generate_report():
 
     w3 = Web3(Web3.HTTPProvider(RPC_URL))
     gas = get_gas_metrics(w3, WALLET)
+    balances["ETH"]["amount"] = gas["eth_balance"]
+    balances["ETH"]["value_usd"] = gas["eth_balance_usd"]
 
-    nvda_price = market_info.get(MARKETS["NVDA"]["market"].lower(), {}).get("underlyingPrice", 218.84)
-    snuke_price = 16.88
-
-    balances["NVDA"]["price"] = nvda_price
-    balances["NVDA"]["value_usd"] = balances["NVDA"]["amount"] * nvda_price
-    balances["sNUKE (Token)"]["price"] = snuke_price
-    balances["sNUKE (Token)"]["value_usd"] = balances["sNUKE (Token)"]["amount"] * snuke_price
-
-    total_capital_usd = balances["ETH"]["value_usd"] + balances["NVDA"]["value_usd"] + balances["sNUKE (Token)"]["value_usd"]
+    total_capital_usd = balances["ETH"]["value_usd"]
+    for sym in ["NVDA", "sNUKE", "SHROOM", "SGOV"]:
+        if sym in balances:
+            m_addr = MARKETS.get(sym, {}).get("market", "").lower()
+            px = market_info.get(m_addr, {}).get("underlyingPrice", 0.0)
+            if px == 0.0:
+                if sym == "NVDA": px = 218.84
+                elif sym == "sNUKE": px = 16.88
+                elif sym == "SHROOM": px = 0.0148
+                elif sym == "SGOV": px = 100.0
+            balances[sym]["price"] = px
+            balances[sym]["value_usd"] = balances[sym]["amount"] * px
+            total_capital_usd += balances[sym]["value_usd"]
 
     report = []
     report.append(f"# Portfolio & Operations Manager: Dashboard")
@@ -150,8 +156,10 @@ def generate_report():
     report.append("| Asset | Address / Type | Balance | Price (USD) | Total Value (USD) |")
     report.append("| :--- | :--- | :--- | :--- | :--- |")
     report.append(f"| **ETH** (Gas) | Native Gas Buffer | {balances['ETH']['amount']:.6f} ETH | ~$2,500.00 | ${balances['ETH']['value_usd']:.2f} |")
-    report.append(f"| **NVDA** | `{MARKETS['NVDA']['accounting'][:10]}...` | {balances['NVDA']['amount']:.4f} NVDA | ${nvda_price:.2f} | **${balances['NVDA']['value_usd']:.2f}** |")
-    report.append(f"| **sNUKE** | `{MARKETS['sNUKE']['order_token'][:10]}...` | {balances['sNUKE (Token)']['amount']:.4f} sNUKE | ${snuke_price:.2f} | **${balances['sNUKE (Token)']['value_usd']:.2f}** |")
+    for sym in ["NVDA", "sNUKE", "SHROOM", "SGOV"]:
+        if sym in balances and (balances[sym]["amount"] > 0 or sym in ["NVDA", "sNUKE"]):
+            addr_snippet = f"`{balances[sym]['address'][:10]}...`" if balances[sym].get('address') else "N/A"
+            report.append(f"| **{sym}** | {addr_snippet} | {balances[sym]['amount']:.4f} {sym} | ${balances[sym]['price']:.4f} | **${balances[sym]['value_usd']:.2f}** |")
     report.append(f"| **Total Liquid Capital** | | | | **${total_capital_usd:.2f} USD** |\n")
 
     # Gas Economics Model
@@ -194,9 +202,7 @@ def generate_report():
     report.append("| Order ID | Market | Type | Making Amount | Order Implied Rate | Market Band [Min, Max] | Incentive Status |")
     report.append("| :--- | :--- | :--- | :--- | :--- | :--- | :--- |")
 
-    nvda_inc = incentive_map.get(MARKETS["NVDA"]["market"].lower(), {})
-    min_apy = nvda_inc.get("minApy", 9.65)
-    max_apy = nvda_inc.get("maxApy", 10.40)
+    yt_to_market = {m_val["yt"].lower(): m_key for m_key, m_val in MARKETS.items()}
 
     for o in maker_orders:
         oid = o.get("id")[:14] + "..."
@@ -204,21 +210,24 @@ def generate_report():
         making_val = making_wei / 1e18
         raw_ln_rate = int(o.get("lnImpliedRate", 0)) / 1e18
         apy_rate = (math.exp(raw_ln_rate) - 1) * 100
-        is_nvda = o.get("yt", "").lower() == MARKETS["NVDA"]["yt"].lower()
-        market_label = "NVDA (Oct 2026)" if is_nvda else "sNUKE"
+        
+        yt_addr = (o.get("yt") or "").lower()
+        mkt_key = yt_to_market.get(yt_addr, "Unknown")
+        
+        inc = incentive_map.get(MARKETS.get(mkt_key, {}).get("market", "").lower(), {})
+        min_apy = inc.get("minApy", 0.0)
+        max_apy = inc.get("maxApy", 0.0)
         
         is_canceled = o.get("isCanceled", False) or not o.get("isActive", True)
         if making_wei == 0 or is_canceled:
             status_tag = "⚪ Cancelled / Inactive"
-        elif is_nvda:
-            if min_apy <= apy_rate <= max_apy:
-                status_tag = "🟢 **IN-RANGE (Earning 100% APR)**"
-            else:
-                status_tag = f"🔴 **OUT-OF-RANGE** (Needs {min_apy:.2f}%-{max_apy:.2f}%)"
+        elif min_apy <= apy_rate <= max_apy:
+            status_tag = "🟢 **IN-RANGE (Earning 100% APR)**"
         else:
-            status_tag = "⚪ Off-Band"
+            status_tag = f"🔴 **OUT-OF-RANGE** (Needs {min_apy:.2f}%-{max_apy:.2f}%)"
 
-        report.append(f"| `{oid}` | {market_label} | Type {o.get('type')} | {making_val:.4f} | **{apy_rate:.2f}%** | [{min_apy:.2f}%, {max_apy:.2f}%] | {status_tag} |")
+        band_str = f"[{min_apy:.2f}%, {max_apy:.2f}%]" if min_apy > 0 else "N/A"
+        report.append(f"| `{oid}` | {mkt_key} | Type {o.get('type')} | {making_val:.4f} | **{apy_rate:.2f}%** | {band_str} | {status_tag} |")
 
     return "\n".join(report)
 

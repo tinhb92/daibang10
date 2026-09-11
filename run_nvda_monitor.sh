@@ -2,11 +2,14 @@
 # Runs NVDA Big Move & Order Fill Monitor in background
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PYTHON_EXEC="/Users/tin/miniconda3/envs/jlab/bin/python"
-
-if [ ! -f "$PYTHON_EXEC" ]; then
-    PYTHON_EXEC="python3"
-fi
+# Auto-detect Python interpreter (prefers conda jlab on Hetzner & Mac)
+PYTHON_EXEC="python3"
+for candidate in "/root/anaconda3/envs/jlab/bin/python" "/Users/tin/miniconda3/envs/jlab/bin/python"; do
+    if [ -f "$candidate" ]; then
+        PYTHON_EXEC="$candidate"
+        break
+    fi
+done
 
 PID=$(pgrep -f "rh/monitor_nvda_moves.py")
 if [ -n "$PID" ]; then

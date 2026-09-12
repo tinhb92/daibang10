@@ -115,5 +115,30 @@ class TestPoolActionEngine(unittest.TestCase):
         self.assertTrue(any("Liquidity Floor" in v for v in res["violations"]))
 
 
+class TestDeltaNeutralSimulation(unittest.TestCase):
+
+    def test_nvda_delta_neutral_math(self):
+        from rh.research.simulate_nvda_delta_neutral import simulate_nvda_delta_neutral
+        res = simulate_nvda_delta_neutral(
+            total_capital_usd=1000.0,
+            nvda_spot_price=200.0,
+            pendle_allocation_pct=0.50,
+            pendle_pool_apy=25.0,
+            pendle_maker_apr=100.0,
+            hl_leverage=2.0,
+            horizon_days=30.0
+        )
+        self.assertEqual(res["pendle_capital"], 500.0)
+        self.assertEqual(res["hl_margin"], 500.0)
+        self.assertEqual(res["nvda_units"], 2.5)
+        # Liquidation price: 200 + (500 / 2.5) = 400 (+100%)
+        self.assertEqual(res["liq_price"], 400.0)
+        self.assertEqual(res["liq_distance_pct"], 100.0)
+        # Pool net APR on total capital: (25% on 50% capital) = 12.5%
+        self.assertAlmostEqual(res["pool_route"]["net_apr_total_cap"], 12.5, places=2)
+        # Maker net APR on total capital: (100% on 50% capital) = 50.0%
+        self.assertAlmostEqual(res["maker_route"]["net_apr_total_cap"], 50.0, places=2)
+
+
 if __name__ == "__main__":
     unittest.main()

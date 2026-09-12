@@ -78,6 +78,27 @@ Adapted from the Boros Quantitative Trading Framework for **Pendle V2 Autonomous
 
 ---
 
+## Core Principle 5: "Cognitive Hierarchy Theory & $k$-Level Player Architecture" (Camerer, Ho & Chong 2004)
+> *"Players in games do not exhibit infinite rationality. Instead, players are distributed across levels of strategic thinking, with lower-level players acting non-strategically and higher-level players best-responding to perceived lower levels."* — Colin Camerer, Teck-Hua Ho, and Juin-Kuan Chong (*"A Cognitive Hierarchy Model of Games: Thinking, Emotion, and Coordination"*, Quarterly Journal of Economics, 2004)
+
+In all automated trading logic, competitor telemetry, and pool selection across Pendle V2 and Hyperliquid perps, the desk adheres to **Cognitive Hierarchy Theory**:
+
+### The DeFi $k$-Level Taxonomy
+
+| Level | Classification | Pendle V2 & Robinhood Actors | Hyperliquid & Cross-Desk Actors | Strategic Exploitation & Immunization |
+| :--- | :--- | :--- | :--- | :--- |
+| **$k=0$** | **Non-Strategic / Mechanical / Yield-Chasers** | Retail buying high-implied YT ("The Graveyard Doctrine") seduced by nominal APY while theta decay obliterates 100% of capital. Passive unhedged LPs. | Mechanical grid bots placing fixed micro-orders regardless of underlying shift or adverse carry. Retail perp FOMO. | **Do not fight or negotiate:** Treat as deterministic state machines. Never buy negative carry YT; underwrite their exit flow at steep premiums. |
+| **$k=1$** | **First-Order Best Responders (Opportunists)** | Simple PT discount pull-to-par buyers; basic APY trend-followers; routine pool rebalancers. | Latency takers sweeping stale quotes when index or spot moves; basic funding rate arbitrageurs. | **Pre-empt adverse selection:** Use Avellaneda-Stoikov volatility buffers and rapid delta alerts to cancel or widen quotes before $k=1$ fast-movers sweep stale maker quotes. |
+| **$k=2$** | **Second-Order Antifragile Strategists (Our Native Stance)** | **Our Taleb Desk:** Monopolize solitary maker depth in uncrowded pools (`sNUKE`, `SGOV`), harvest underlying organic yield with short perp hedges, sell overvalued float to $k=0$ retail, exit before $T-7$ cliff. | **Our Indra3 & Delta-Neutral Desks:** Pair AMM LP fees + rewards with short perps ($1,000 NVDA short on Hyperliquid) to eliminate directional volatility while harvesting 100% of rewards. | **Harvest protocol asymmetry:** While $k=0$ and $k=1$ battle over directional fills, we collect 100% of risk-free protocol incentives and locked fixed spreads with zero-ruin constraints. |
+| **$k \ge 3$** | **Meta-Structural & Institutional Players** | Cross-chain fee turnover syndicates (Robinhood, Arbitrum, Base, Sonic) and structural pool architects. | Multi-venue basis syndicates and liquidity creators orchestrating cross-venue synthetic carry. | **Align with structural incentives:** Participate only where structural yield, capital efficiency, and convex payoffs align with institutional flows. |
+
+### The "Over-Leveling" Trap
+- **The Classical Mistake:** Assuming your counterparty is $k \ge 3$ when they are actually $k=0$ or $k=1$.
+- Retail traders buying YT in pools where Implied APY $\gg$ Underlying APY do not have a secret hedging model—they simply see "104% APY" and click swap.
+- **Rule:** Never over-complicate models against naive actors. Structure positions where their bounded rationality directly funds our risk-free, delta-hedged carry.
+
+---
+
 ## The Pendle Historian Persona (The Post-Mortem & Forensic Desk)
 
 A permanent analytical persona dedicated to logging, categorizing, and dissecting live Pendle scenarios and historical market moves into a cumulative archive of institutional memory.

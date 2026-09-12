@@ -31,7 +31,7 @@ import socket
 import threading
 import argparse
 import urllib.request
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from typing import Any, Dict, Optional, List
 from web3 import Web3
 
@@ -51,6 +51,25 @@ RPC_URL = "https://rpc.mainnet.chain.robinhood.com"
 WALLET = "0xaa7c405151c1a11fc2e9998a31b285c7b53d248b".lower()
 BASE_API = "https://api-v2.pendle.finance/core"
 HEADERS = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)"}
+# Vietnam Timezone (UTC+7) & Sleep Quiet Hours (10 PM to 6 AM VN Time)
+VIETNAM_TZ = timezone(timedelta(hours=7))
+
+def get_vietnam_now() -> datetime:
+    """Returns current datetime in Vietnam timezone (UTC+7)."""
+    return datetime.now(VIETNAM_TZ)
+
+def is_reduced_frequency_window() -> bool:
+    """
+    Returns True if current time is within 11:00 PM to 3:30 AM Vietnam Time (UTC+7).
+    During this window, notification frequency is reduced (longer cooldowns & higher thresholds).
+    All other frames (3:30 AM to 11:00 PM) run at normal frequency.
+    """
+    vn_now = get_vietnam_now()
+    h, m = vn_now.hour, vn_now.minute
+    return h >= 23 or h < 3 or (h == 3 and m < 30)
+
+is_vietnam_quiet_hours = is_reduced_frequency_window
+
 STATE_FILE = os.path.join(RH_DIR, "rh_markets_state.json")
 TRACKER_FILE = os.path.join(RH_DIR, "rh_alert_tracker.json")
 
@@ -265,9 +284,12 @@ ALERT_TRACKER = load_alert_tracker()
 
 def should_alert(event_key: str, cooldown_seconds: int = 1800) -> bool:
     """Returns True if the cooldown window has elapsed for this specific alert event."""
+    effective_cooldown = cooldown_seconds
+    if is_reduced_frequency_window():
+        effective_cooldown = max(cooldown_seconds * 4, 7200)
     now = time.time()
     last = ALERT_TRACKER.get("timestamps", {}).get(event_key, 0)
-    return (now - last) >= cooldown_seconds
+    return (now - last) >= effective_cooldown
 
 def record_alert(event_key: str, baseline_val: Optional[float] = None):
     """Records the timestamp and updated anchor baseline for an event."""
@@ -689,14 +711,15 @@ def check_market_moves(m_key: str, current: Dict[str, Any], prev: Dict[str, Any]
             compress_key = f"{m_key}:band_compress"
             dist_to_min = order_apy - min_band
             dist_to_max = max_band - order_apy
-            if (dist_to_min < 0.10 or dist_to_max < 0.10) and should_alert(compress_key, cooldown_seconds=1800):
+            compress_threshold = 0.02 if is_reduced_frequency_window() else 0.10
+            if (dist_to_min < compress_threshold or dist_to_max < compress_threshold) and should_alert(compress_key, cooldown_seconds=1800):
                 alerts.append(
                     f"⚠️ <b>[INCENTIVE BAND COMPRESSION WARNING]</b>\n"
                     f"━━━━━━━━━━━━━━━━━━━━\n"
                     f"• <b>Market:</b> <b>{m_key}</b>\n"
                     f"• <b>Order Rate:</b> <code>{order_apy:.2f}%</code>\n"
                     f"• <b>Band Range:</b> <code>[{min_band:.2f}%, {max_band:.2f}%]</code>\n"
-                    f"• <b>Warning:</b> Resting within 10 bps of boundary."
+                    f"• <b>Warning:</b> Resting within {compress_threshold*100:.0f} bps of boundary."
                 )
                 record_alert(compress_key)
 
@@ -709,18 +732,19 @@ def check_market_moves(m_key: str, current: Dict[str, Any], prev: Dict[str, Any]
     delta_apy = cur_apy - baseline_apy
 
     threshold_met = False
+    is_reduced = is_reduced_frequency_window()
     if has_active_order:
         if cur_apy > 100.0:
             rel_change = abs(delta_apy) / max(baseline_apy, 1.0) * 100.0
-            threshold_met = rel_change >= 5.0
+            threshold_met = rel_change >= (12.0 if is_reduced else 5.0)
         else:
-            threshold_met = abs(delta_apy) >= 0.50
+            threshold_met = abs(delta_apy) >= (1.50 if is_reduced else 0.50)
     else:
         if cur_apy > 100.0:
             rel_change = abs(delta_apy) / max(baseline_apy, 1.0) * 100.0
-            threshold_met = rel_change >= 15.0
+            threshold_met = rel_change >= (25.0 if is_reduced else 15.0)
         else:
-            threshold_met = abs(delta_apy) >= 2.0
+            threshold_met = abs(delta_apy) >= (4.0 if is_reduced else 2.0)
 
     if threshold_met and should_alert(apy_key, cooldown_seconds=1800):
         direction = "📈 SPIKED" if delta_apy > 0 else "📉 DROPPED"
@@ -743,9 +767,11 @@ def check_market_moves(m_key: str, current: Dict[str, Any], prev: Dict[str, Any]
 
     if baseline_spot > 0:
         pct_spot = (cur_spot - baseline_spot) / baseline_spot * 100.0
-        spot_threshold = 3.0 if has_active_order else 6.0
+        is_reduced = is_reduced_frequency_window()
+        spot_threshold = (8.0 if has_active_order else 15.0) if is_reduced else (3.0 if has_active_order else 6.0)
+        min_abs_move = 0.002 if cur_spot < 0.10 else 0.0
 
-        if abs(pct_spot) >= spot_threshold and should_alert(spot_key, cooldown_seconds=1800):
+        if abs(pct_spot) >= spot_threshold and abs(cur_spot - baseline_spot) >= min_abs_move and should_alert(spot_key, cooldown_seconds=1800):
             direction = "🟢 SURGED" if pct_spot > 0 else "🔴 DUMPED"
             alerts.append(
                 f"⚡ <b>[SPOT PRICE {direction}: {m_key}]</b>\n"
@@ -795,6 +821,81 @@ def check_market_moves(m_key: str, current: Dict[str, Any], prev: Dict[str, Any]
 
     return alerts
 
+
+def build_rh_morning_digest(states: Dict[str, Any]) -> str:
+    vn_now = get_vietnam_now()
+    date_str = vn_now.strftime("%a, %b %d, %Y")
+    time_str = vn_now.strftime("%H:%M VN Time")
+    gas = fetch_gas_status()
+    overnight = ALERT_TRACKER.get("overnight_events", [])
+
+    fills = [a for a in overnight if "LIMIT ORDER FILL DETECTED!" in a]
+    drifts = [a for a in overnight if "ORDER DRIFTED OUT-OF-RANGE!" in a]
+    vol_moves = [a for a in overnight if "SPOT PRICE" in a or "MARKET RADAR" in a or "INCENTIVE BAND COMPRESSION" in a]
+
+    order_lines = []
+    active_cnt = 0
+    in_band_cnt = 0
+    for k, s in states.items():
+        band = f"[{s['min_apy']:.1f}%, {s['max_apy']:.1f}%]"
+        if s.get("order") and s["order"].get("making_amt", 0) > 0:
+            active_cnt += 1
+            o = s["order"]
+            in_b = s["min_apy"] <= o["apy"] <= s["max_apy"]
+            if in_b:
+                in_band_cnt += 1
+                b_tag = "✅ IN-BAND"
+            else:
+                b_tag = "⚠️ DRIFTED"
+            order_lines.append(f"  • <b>{k}:</b> Rate: <code>{o['apy']:.2f}%</code> ({o['making_amt']:.3f} {k}) | Band: <code>{band}</code> {b_tag}")
+        else:
+            order_lines.append(f"  • <b>{k}:</b> Implied: <code>{s['implied_apy']:.2f}%</code> | Band: <code>{band}</code> (No active order)")
+
+    lines = [
+        f"🌅 <b>[PENDLE V2 ROBINHOOD • MORNING DIGEST]</b>",
+        f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+        f"📅 <b>Date:</b> {date_str} • <b>{time_str}</b>",
+        f"🌙 <b>Overnight Window (11 PM - 3:30 AM VN):</b> Completed ({len(overnight)} noise events buffered)", "",
+        f"⚡ <b>OVERNIGHT FILLS ({len(fills)} Executed):</b>"
+    ]
+    if fills:
+        lines.append(f"  • {len(fills)} fills recorded overnight.")
+    else:
+        lines.append("  • <i>No fills overnight — all maker orders remained resting.</i>")
+    lines.append("")
+
+    lines.append(f"🎯 <b>DESK ORDER STATUS ({in_band_cnt}/{active_cnt} In-Band):</b>")
+    lines.extend(order_lines)
+    lines.append("")
+
+    lines.append(f"🌊 <b>OVERNIGHT VOLATILITY LOG:</b>")
+    lines.append(f"  • Price/Rate Swings: <b>{len(vol_moves)}</b> events buffered")
+    lines.append(f"  • Out-of-Range Reminders: <b>{len(drifts)}</b> events buffered")
+    lines.append("")
+
+    lines.append(f"⛽ <b>ETH GAS RUNWAY:</b>")
+    lines.append(f"  • Balance: <code>{gas['eth_balance']:.6f} ETH</code> (~{gas['runway_cancels']:,} cancels)")
+    lines.append(f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+    lines.append(f"🦅 <i>Robinhood Desk active daytime monitoring resumed.</i>")
+
+    return chr(10).join(lines)
+
+def check_and_send_rh_morning_digest(states: Dict[str, Any]):
+    vn_now = get_vietnam_now()
+    if vn_now.hour < 6:
+        return
+    today_str = vn_now.strftime("%Y-%m-%d")
+    if ALERT_TRACKER.get("last_morning_digest_date") == today_str:
+        return
+
+    print("\n🌅 [06:00 AM VN] Generating and dispatching Robinhood Morning Digest to Telegram...")
+    digest_msg = build_rh_morning_digest(states)
+    send_telegram_alert(digest_msg)
+    ALERT_TRACKER["last_morning_digest_date"] = today_str
+    ALERT_TRACKER["overnight_events"] = []
+    save_alert_tracker(ALERT_TRACKER)
+    print("✅ Robinhood Morning Digest dispatched successfully.")
+
 def inspect_all_and_alert(current_states: Dict[str, Any], prev_states: Optional[Dict[str, Any]]):
     now_str = datetime.now(timezone.utc).strftime('%H:%M:%S UTC')
     
@@ -816,7 +917,10 @@ def inspect_all_and_alert(current_states: Dict[str, Any], prev_states: Optional[
         full_msg = "\n\n---\n\n".join(all_alerts)
         print("\n>>> DISPATCHING TELEGRAM ALERT <<<")
         print(full_msg)
-        send_telegram_alert(full_msg)
+        send_telegram_alert(full_msg, disable_notification=False)
+        if is_reduced_frequency_window():
+            ALERT_TRACKER.setdefault("overnight_events", []).extend(all_alerts)
+            save_alert_tracker(ALERT_TRACKER)
     else:
         status_line = " | ".join([
             f"{k}: Imp {v['implied_apy']:.1f}% (Spot: ${v['spot_price']:.2f}, In-Band: {v['min_apy'] <= (v.get('order') or {}).get('apy', -999) <= v['max_apy'] if v.get('order') else 'NoOrd'})"
@@ -853,6 +957,7 @@ def main():
     parser.add_argument("--test-heartbeat", action="store_true", help="Force send a test heartbeat alert immediately")
     parser.add_argument("--test-startup", action="store_true", help="Force send a test startup alert immediately")
     parser.add_argument("--test-shutdown", action="store_true", help="Force send a test shutdown alert immediately")
+    parser.add_argument("--test-morning-digest", action="store_true", help="Preview or dispatch overnight Morning Summary Digest")
     args = parser.parse_args()
 
     # Manual test triggers
@@ -868,6 +973,16 @@ def main():
 
     if args.test_shutdown:
         send_shutdown_alert(time.time() - 7200, 120, reason="Test Shutdown Trigger")
+        return
+
+    if args.test_morning_digest:
+        states = get_all_markets_state()
+        digest = build_rh_morning_digest(states)
+        print("=" * 80)
+        print("🌅 PREVIEW: ROBINHOOD MORNING SUMMARY DIGEST")
+        print("=" * 80)
+        print(digest)
+        print("=" * 80)
         return
 
     if args.test_alert:
@@ -918,9 +1033,15 @@ def main():
 
             # Check Heartbeat Trigger
             now = time.time()
-            if (now - last_heartbeat_time) >= args.heartbeat_interval:
+            effective_hb_interval = args.heartbeat_interval
+            if is_reduced_frequency_window():
+                effective_hb_interval = max(args.heartbeat_interval * 3, 10800)
+            if (now - last_heartbeat_time) >= effective_hb_interval:
                 send_heartbeat_alert(current, START_TIME, LOOP_COUNT)
                 last_heartbeat_time = now
+
+            # Check Morning Digest Trigger (06:00 AM VN Time)
+            check_and_send_rh_morning_digest(current)
 
         except Exception as e:
             print(f"Error in monitor loop: {e}")

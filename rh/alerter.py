@@ -38,7 +38,7 @@ def get_chat_id():
                 pass
     return DEFAULT_CHAT_ID
 
-def send_telegram_alert(text: str, parse_mode: str = "HTML", max_retries: int = 3) -> bool:
+def send_telegram_alert(text: str, parse_mode: str = "HTML", max_retries: int = 3, disable_notification: bool = False) -> bool:
     """
     Sends an alert to Telegram with rate-limiting gap and fallback bot support.
     """
@@ -54,7 +54,8 @@ def send_telegram_alert(text: str, parse_mode: str = "HTML", max_retries: int = 
         "chat_id": chat_id,
         "text": text,
         "parse_mode": parse_mode,
-        "disable_web_page_preview": True
+        "disable_web_page_preview": True,
+        "disable_notification": disable_notification
     }
 
     for attempt in range(1, max_retries + 1):
@@ -101,6 +102,25 @@ def send_telegram_alert(text: str, parse_mode: str = "HTML", max_retries: int = 
                 except Exception as f_err:
                     print(f"❌ Fallback alert failed: {f_err}")
                     break
+            elif e.code == 400 and ("parse entities" in err_msg.lower() or "bad request" in err_msg.lower()):
+                import re
+                try:
+                    clean_text = re.sub(r"<[^>]+>", "", text)
+                    fb_payload = dict(payload, text=clean_text, parse_mode=None)
+                    req_fb = urllib.request.Request(
+                        primary_url,
+                        data=json.dumps(fb_payload).encode("utf-8"),
+                        headers={"Content-Type": "application/json"}
+                    )
+                    with urllib.request.urlopen(req_fb, timeout=10) as resp_fb:
+                        data_fb = json.loads(resp_fb.read().decode())
+                        if data_fb.get("ok"):
+                            _LAST_ALERT_TIME = time.time()
+                            print("📱 Telegram alert delivered via @pendleV2_bot (plain-text fallback)")
+                            return True
+                except Exception:
+                    pass
+                print(f"❌ Telegram HTTP error {e.code}: {err_msg}")
             else:
                 print(f"❌ Telegram HTTP error {e.code}: {err_msg}")
                 time.sleep(1.0 * attempt)
